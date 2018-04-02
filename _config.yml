@@ -1,16 +1,11 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+# This file is NOT reloaded automatically when you use 'bundle exec jekyll
+# serve'. If you change this file, restart the server.
 
-# Site settings
+
+# ===== SITE SETTINGS =====
 # These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# you will see them accessed via {{ site.title }}, {{ site.email }}, etc.
+# Liquid tags.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Logz.io Documentation Portal
@@ -24,7 +19,31 @@ url: "https://www.logz.io" # the base hostname & protocol for your site, e.g. ht
 twitter_username: logzio
 github_username:  logzio
 
-# Build settings
+
+# ===== COLLECTIONS =====
+# Collections are the highest-level categories of Logz.io content.
+
+# all collections are contained in the 'collections' directory
+collections_dir: logzio_collections
+
+collections:
+  account-admin:
+    output: true
+  developer-center:
+   output: true
+  getting-started:
+    output: true
+  monitor-logs:
+    output: true
+  insights:
+    output: true
+  ship-and-parse-logs:
+    output: true
+  troubleshooting:
+    output: true
+
+
+# ===== BUILD SETTINGS =====
 markdown: kramdown
 theme: minima
 plugins:
@@ -32,19 +51,14 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
+
+# ===== EXCLUDE FROM PROCESSING =====
+# These items will not be processed, by default. Add new items as array entries.
 exclude:
   - .DS_Store
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
 
-# source and destination settings
+
+# ===== SOURCE AND DESTINATION =====
+# Don't mess with these, unless you're willing to move a lot of files around.
 source: ./_source
 destination: ./_site

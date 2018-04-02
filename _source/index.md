@@ -7,7 +7,7 @@ layout: home
 
 <div class="row card-group">
   <div class="card text-center bg-light border-dark ">
-    <a href="#">
+    <a href="{{ site.baseurl }}/getting-started">
       <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Camera-icon.svg" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Getting started</h5>
@@ -18,7 +18,7 @@ layout: home
 
 
   <div class="card text-center bg-light border-dark ">
-    <a href="#">
+    <a href="{{ site.baseurl }}/ship-and-parse-logs">
       <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Camera-icon.svg" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Ship & parse logs</h5>
@@ -29,7 +29,7 @@ layout: home
 
 
   <div class="card text-center bg-light border-dark ">
-    <a href="#">
+    <a href="{{ site.baseurl }}/monitor-logs">
       <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Camera-icon.svg" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Monitor logs</h5>
@@ -44,7 +44,7 @@ layout: home
 <div class="row card-group">
 
   <div class="card text-center bg-light border-dark ">
-    <a href="#">
+    <a href="{{ site.baseurl }}/insights">
       <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Camera-icon.svg" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Insights</h5>
@@ -55,7 +55,7 @@ layout: home
 
 
   <div class="card text-center bg-light border-dark ">
-    <a href="#">
+    <a href="{{ site.baseurl }}/developer-center">
       <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Camera-icon.svg" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Developer Center</h5>
@@ -66,7 +66,7 @@ layout: home
 
 
   <div class="card text-center bg-light border-dark ">
-    <a href="#">
+    <a href="{{ site.baseurl }}/account-admin">
       <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Camera-icon.svg" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Account Admin</h5>
@@ -80,7 +80,7 @@ layout: home
 <div class="row card-group">
 
   <div class="card text-center bg-light border-dark ">
-    <a href="#">
+    <a href="{{ site.baseurl }}/troubleshooting">
       <div class="card-body">
         <h5 class="card-title">Troubleshooting</h5>
         <p class="card-text">Solutions to common problems</p>
