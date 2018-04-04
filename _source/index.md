@@ -66,7 +66,7 @@ layout: home
 
 
   <div class="card text-center bg-light border-dark ">
-    <a href="{{ site.baseurl }}/account-admin">
+    <a href="{{ site.baseurl }}/account-settings">
       <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Camera-icon.svg" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Account Admin</h5>

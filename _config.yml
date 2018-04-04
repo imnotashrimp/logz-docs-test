@@ -27,20 +27,22 @@ github_username:  logzio
 collections_dir: logzio_collections
 
 collections:
-  account-admin:
-    output: true
-  developer-center:
-   output: true
   getting-started:
-    output: true
-  monitor-logs:
-    output: true
-  insights:
     output: true
   ship-and-parse-logs:
     output: true
+  monitor-logs:
+    output: true
+  account-settings:
+    output: true
+  # integrations:
+    # output: true
+  developer-center:
+   output: true
   troubleshooting:
     output: true
+
+
 
 
 # ===== BUILD SETTINGS =====
@@ -51,6 +53,8 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
+kramdown:
+  auto_ids: true
 
 # ===== EXCLUDE FROM PROCESSING =====
 # These items will not be processed, by default. Add new items as array entries.
