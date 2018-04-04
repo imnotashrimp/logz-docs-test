@@ -7,13 +7,37 @@
 
     {%- include header.html -%}
 
+    <!-- TOC -->
+    {% if page.showToc == true %}
+    <nav class="js-toc toc toc-right js-toc relative z-1 transition--300 absolute pa4 is-position-fixed"></nav>
+    {% endif %}
+
     <main class="page-content" aria-label="Content">
+
+
       <div class="wrapper">
         {{ content }}
       </div>
     </main>
 
     {%- include footer.html -%}
+
+    <script>
+    $(document).ready( function() {
+      console.log("jquery loaded.");
+
+    });
+
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.page-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h1, h2, h3'
+    });
+    </script>
+
 
   </body>
 
