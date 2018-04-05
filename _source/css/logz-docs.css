@@ -1,0 +1,124 @@
+/*===== FONT IMPORTS =====*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+/* heading font */
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+/*===== BASE STYLES =====*/
+body, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #757c86;
+}
+
+h1, h2, h3, h4, h5, .site-title, .post-title {
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 400; /* neutral weight */
+  padding: 0px;
+  color: #296386;
+}
+
+h1, .site-title, .post-title {
+  font-size: 42px;
+}
+
+h2 {
+  font-size: 36px;;
+}
+
+h3 {
+  font-size: 30px;;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h5 {
+  font-size: 18px;
+}
+
+h6 { /* We use h6 to introduce procedures. If you need a regular heading, use h5 */
+  font-weight: 700; /* bold */
+  color: #757c86;
+}
+
+h6::before { /* '>' to indicate a procedure */
+  content: "> "
+}
+
+/* Alpha nested ordered lists */
+ol ol {
+  list-style-type: lower-alpha;
+}
+
+a, a:hover {
+  /* color: #296386; */
+  color: #009cbd;
+  text-decoration: none;
+}
+
+/*===== SITE HEADER =====*/
+ .site-header {
+  display: block;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgb(41, 99, 134);
+  background-color: white;
+} /**/
+
+
+/*===== FLEXBOX STYLING =====*/
+/* For left nav, right nav, and content
+   STRUCTURE:
+    container: div.body-container
+      left menu: nav.all-pages-toc > ul > li.menu-item{index} > ul.sub-menu > li.menu-item{index}
+      content: main.page-content > div.wrapper > { content }. I've commented out div.wrapper to see if we really need it.
+      right menu: nav.this-page-toc > { toc content }
+        for right menu, see tocbot.css and tocbot_styles.css
+*/
+
+div.body-container {
+  border: 1px solid red;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+div.body-container > * {
+  border: 1px solid blue;
+  display: inline-flex;
+  margin-top: 60px;
+}
+
+.body-container > nav {
+  width: 280px;
+  flex-grow: 1;
+  align-self: flex-start;
+  vertical-align: top;
+}
+
+.all-pages-toc {
+  margin-right: 30px;
+}
+
+.this-page-toc {
+  margin-left: 30px;
+  float: right;
+}
+
+.page-content {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-flex !important;
+  padding: 0px;
+  flex-grow: 2;
+  align-self: flex-start;
+  vertical-align: top;
+}

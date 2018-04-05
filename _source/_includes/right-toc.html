@@ -1,0 +1,13 @@
+<!-- right TOC -->
+{% if page.this-page-toc == true %}
+  <nav class="this-page-toc js-toc toc relative z-1 transition--300 absolute pa4 is-position-fixed"></nav>
+
+{% capture script %}
+  {% include toc-init.js %}
+{% endcapture %}
+  <script type="text/javascript">
+    {{ script }}
+  </script>
+{% endif %}
+
+<!-- /right TOC -->

@@ -3,7 +3,10 @@ layout: article
 title: Quickstart
 collection: getting-started
 permalink: /getting-started/
-thisPageTOC: true
+this-page-toc: true
+menus:
+  header:
+    weight: 1
 ---
 
 Welcome to the Logz.io Documentation Portal! Here, you'll learn how to parse and analyze your log data in our hosted ELK stack.

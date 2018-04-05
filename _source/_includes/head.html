@@ -14,11 +14,14 @@
   <script type="text/javascript" src="{{ "./js/jquery-3.3.1.min.js" | relative_url }}"></script>
   <script type="text/javascript" src="{{ "./js/tocbot.min.js" | relative_url }}"></script>
 
+  <!-- the one stylesheet to rule them all -->
+  <link rel="stylesheet" href="{{ "./css/logz-docs.css" | relative_url }}">
 
   {%- feed_meta -%}
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
     {%- include google-analytics.html -%}
   {%- endif -%}
   {% seo %}
+
 
 </head>

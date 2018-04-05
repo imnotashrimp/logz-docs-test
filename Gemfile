@@ -33,3 +33,8 @@ gem 'jekyll-seo-tag'
 
 # Sitemap - https://github.com/jekyll/jekyll-sitemap
 gem 'jekyll-sitemap'
+
+# Jekyll menus - https://github.com/forestryio/jekyll-menus
+group :jekyll_plugins do
+   gem "jekyll-menus"
+end
