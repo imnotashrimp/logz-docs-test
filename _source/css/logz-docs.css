@@ -65,6 +65,14 @@ a, a:hover {
 
 /* ===== TOC STYLING ===== */
 
+.active-page {
+  font-weight: bold;
+}
+
+.active-page li {
+  font-weight: normal;
+}
+
 /* ===== SITE HEADER ===== */
  .site-header {
   display: block;
