@@ -1,6 +1,6 @@
 ---
 layout: category-home
-title: Quickstart
+title: Getting started
 collection: getting-started
 permalink: /getting-started/
 # this-page-toc: true

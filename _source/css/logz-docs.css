@@ -1,15 +1,15 @@
 /* ===== FONT IMPORTS ===== */
-/* Montserrat (body) and Titillium (heading) */
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+/* Roboto (body) and Titillium (heading) */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
 
 
 /* ===== BASE STYLES ===== */
 body, h6 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 26px;
+  line-height: 20px;
   color: #757c86;
 }
 
@@ -21,23 +21,23 @@ h1, h2, h3, h4, h5, .site-title, .post-title {
 }
 
 h1, .site-title, .post-title {
-  font-size: 42px;
+  font-size: 32px;
 }
 
 h2 {
-  font-size: 36px;;
-}
-
-h3 {
-  font-size: 30px;;
-}
-
-h4 {
   font-size: 24px;
 }
 
+h3 {
+  font-size: 20px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
 h5 {
-  font-size: 18px;
+  font-size: 14px;
 }
 
 h6 { /* We use h6 to introduce procedures. If you need a regular heading, use h5 */
@@ -63,7 +63,7 @@ a, a:hover {
 /* ===== LEFT TOC STYLING ===== */
 
 .all-pages-toc, .all-pages-toc a, .this-page-toc, .this-page-toc a {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -81,19 +81,17 @@ a, a:hover {
   list-style: none;
 }
 
+.all-pages-toc > ul > li > a {
+  font-weight: 700;
+}
+
+.all-pages-toc > ul > li {
+  padding-bottom: 15px;
+}
+
 /* indent nested ul */
 .all-pages-toc ul ul {
   padding-left: 10px;
-}
-
-/* if menu has child menus, jekyll will add a fontawesome caret. if this happens, remove some padding so that the caret is outdented */
-.menu-icon {
-  margin-left: -12px;
-}
-
-/* hide child menus by default */
-ul.parent ul.child {
-  display: none;
 }
 
 /* ===== RIGHT TOC STYLING ===== */

@@ -2,7 +2,6 @@
   <ul class="parent">
     {% for item in site.menus.header %}
       <li class="{% if item.url == page.url %}active-page default-show{% endif %}{% if item.children %}parent default-show{% endif %}" id="left-toc-{{ forloop.index }}">
-        {% if item.children %}<span class="menu-icon"><i class="fas fa-angle-down"></i></span>{% endif %}
         <a href="{{ item.url | prepend:site.baseurl }}" title="Go to {{ item.title }}">{{ item.title }}</a>
 
         {% if item.children %}
