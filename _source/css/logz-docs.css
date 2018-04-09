@@ -4,10 +4,6 @@
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
 
 
-script {
-  /* display: none !important; */
-}
-
 /* ===== BASE STYLES ===== */
 body, h6 {
   font-family: 'Montserrat', sans-serif;
@@ -64,9 +60,9 @@ a, a:hover {
   text-decoration: none;
 }
 
-/* ===== TOC STYLING ===== */
+/* ===== LEFT TOC STYLING ===== */
 
-.all-pages-toc, .all-pages-toc a {
+.all-pages-toc, .all-pages-toc a, .this-page-toc, .this-page-toc a {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -100,10 +96,22 @@ ul.parent ul.child {
   display: none;
 }
 
+/* ===== RIGHT TOC STYLING ===== */
 
+/* .this-page-toc ol {
+  /* padding-left: 10px; * /
+}
 
-/* //clear the content if a is only child */
+ol + .is-active-li {
+  border-left: 5px solid red;
+  transition: border .1s;
+  display: block;
+  padding-left: 15px;
+}
 
+.is-active-li ol {
+  border: hide;
+} */
 
 /* ===== SITE HEADER ===== */
  .site-header {
