@@ -1,12 +1,14 @@
 <nav class="all-pages-toc">
-  <ul>
+  <ul class="parent">
     {% for item in site.menus.header %}
-      <li {% if item.url == page.url %}class = "active-page" {% endif %} >
+      <li class="{% if item.url == page.url %}active-page default-show{% endif %}{% if item.children %}parent default-show{% endif %}" id="left-toc-{{ forloop.index }}">
+        {% if item.children %}<span class="menu-icon"><i class="fas fa-angle-down"></i></span>{% endif %}
         <a href="{{ item.url | prepend:site.baseurl }}" title="Go to {{ item.title }}">{{ item.title }}</a>
+
         {% if item.children %}
-          <ul class="sub-menu">
+          <ul class="child">
           {% for item in item.children %}
-            <li {% if item.url == page.url %}class = "active-page" {% endif %} >
+            <li class="child {% if item.url == page.url %}active-page{% endif %}" id="left-toc-sub-{{ forloop.index }}">
               <a href="{{ item.url | prepend:site.baseurl }}" title="Go to {{ item.title }}">{{ item.title }}</a>
             </li>
           {% endfor %}
@@ -15,4 +17,6 @@
       </li>
     {% endfor %}
   </ul>
+
+<script type="text/javascript" src="{{ "/js/left-toc.js" | prepend:site.baseurl }}"></script>
 </nav>

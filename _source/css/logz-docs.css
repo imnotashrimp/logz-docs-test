@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
 
+
 script {
   /* display: none !important; */
 }
@@ -48,7 +49,7 @@ h6 { /* We use h6 to introduce procedures. If you need a regular heading, use h5
   color: #757c86;
 }
 
-h6::before { /* '>' to indicate a procedure */
+h6:before { /* '>' to indicate a procedure */
   content: "> "
 }
 
@@ -65,13 +66,44 @@ a, a:hover {
 
 /* ===== TOC STYLING ===== */
 
-.active-page {
-  font-weight: bold;
+.all-pages-toc, .all-pages-toc a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #757c86;
 }
 
-.active-page li {
-  font-weight: normal;
+/* mark the active page */
+.active-page > a {
+  font-weight: 700;
+  color: #009cbd;
 }
+
+/* remove bullets */
+.all-pages-toc ul {
+  list-style: none;
+}
+
+/* indent nested ul */
+.all-pages-toc ul ul {
+  padding-left: 10px;
+}
+
+/* if menu has child menus, jekyll will add a fontawesome caret. if this happens, remove some padding so that the caret is outdented */
+.menu-icon {
+  margin-left: -12px;
+}
+
+/* hide child menus by default */
+ul.parent ul.child {
+  display: none;
+}
+
+
+
+/* //clear the content if a is only child */
+
 
 /* ===== SITE HEADER ===== */
  .site-header {
