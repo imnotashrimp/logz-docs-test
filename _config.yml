@@ -43,8 +43,6 @@ collections:
     output: true
 
 
-
-
 # ===== BUILD SETTINGS =====
 markdown: kramdown
 theme: minima
@@ -68,3 +66,9 @@ exclude:
 # Don't mess with these, unless you're willing to move a lot of files around.
 source: ./_source
 destination: ./_site
+
+# ===== BREADCRUMBS =====
+breadcrumbs:
+  root:
+    hide: true  # show breadcrumbs on root/home page
+    image: true # Show image or title text
