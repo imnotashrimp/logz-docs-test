@@ -8,19 +8,29 @@
     {% include header.html %}
 
     <div class="body-container">
-    {% if page.api-page != true %}
-      {% include left-toc.html %}
-    {% endif %}
+      <div class="toc-container">
+        {% if page.api-page != true %}
+          {% include left-toc.html %}
+        {% endif %}
 
-    <nav class="this-page-toc" id="scrolling-toc">
-    </nav>
-    <script type="text/javascript">$('#scrolling-toc').toc({
-      'selectors': 'h2',
-      'container': 'main',
-      'smoothScrolling': true,
-      'highlightOnScroll': true,
-      'highlightOffset': 0
-    });</script>
+        {% if page.this-page-toc == true %}
+        <nav class="this-page-toc" id="this-page-toc">
+          <ul class='tocify-header'><li><h3>In this article</h3></li></ul>
+          <script type="text/javascript">
+          $(function() {
+            //Calls the tocify method
+            $("#this-page-toc").tocify({
+              'context': '.page-content',
+              'selectors': 'h2',
+              'showAndHide': false,
+              'theme': 'none',
+              'hashGenerator': 'pretty'
+            });
+          });
+          </script>
+        </nav> <!-- /.this-page-toc -->
+        {% endif %}
+      </div> <!-- /.toc-container -->
 
       <main class="page-content" aria-label="Content">
         <!-- <div class="wrapper"> -->
