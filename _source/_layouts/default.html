@@ -12,13 +12,15 @@
       {% include left-toc.html %}
     {% endif %}
 
-    <nav class="this-page-toc">
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-      </ul>
+    <nav class="this-page-toc" id="scrolling-toc">
     </nav>
+    <script type="text/javascript">$('#scrolling-toc').toc({
+      'selectors': 'h2',
+      'container': 'main',
+      'smoothScrolling': true,
+      'highlightOnScroll': true,
+      'highlightOffset': 0
+    });</script>
 
       <main class="page-content" aria-label="Content">
         <!-- <div class="wrapper"> -->
