@@ -12,6 +12,14 @@
       {% include left-toc.html %}
     {% endif %}
 
+    <nav class="this-page-toc">
+      <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul>
+    </nav>
+
       <main class="page-content" aria-label="Content">
         <!-- <div class="wrapper"> -->
           {{ content }}
@@ -19,7 +27,7 @@
       </main>
 
       <!-- right TOC -->
-      {% if page.this-page-toc == true %}
+      <!-- {% if page.this-page-toc == true %}
         <nav class="this-page-toc toc relative z-1 transition--300 absolute pa4 is-position-fixed">
 
         <script type="text/javascript">
@@ -30,7 +38,7 @@
         });
         </script>
       </nav>
-      {% endif %}
+      {% endif %} -->
       <!-- /right TOC -->
 
     </div> <!-- /.body-container -->
