@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
 
-/* ===== LAYOUT ===== */
+/* ===== PAGE LAYOUT ===== */
 
 div.body-container {
   display: flex;
@@ -161,60 +161,31 @@ header.site-header {
   }
 
 /* ===== BREADCRUMBS ===== */
-nav.breadcrumbs.bootstrap {
-   /* from Twitter Bootstrap 4 */
-   /* If you already use Twitter, you do not need these css lines above, cause they already in Twitter Bootstrap */
-   /* Additions: image integration */
+nav.breadcrumbs ol.breadcrumb {
+  margin-left: 0;
+  margin-top: 0;
+  padding: 0;
+  font-size: .9rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: white;
+  border-radius: 0.25rem;
 }
 
-nav.breadcrumbs.bootstrap ol {
-   margin-left: 0
-}
-
-nav.breadcrumbs.bootstrap .breadcrumb {
-   font-size: 1rem;
-   padding: 0.75rem 1rem;
-   margin-bottom: 1rem;
-   list-style: none;
-   background-color: white;
-   border-radius: 0.25rem;
-}
-
-nav.breadcrumbs.bootstrap .breadcrumb::after {
+nav.breadcrumbs .breadcrumb::after {
    content: "";
    display: table;
    clear: both;
 }
 
-nav.breadcrumbs.bootstrap .breadcrumb-item {
+nav.breadcrumbs .breadcrumb-item {
    float: left;
 }
 
-nav.breadcrumbs.bootstrap .breadcrumb-item+.breadcrumb-item::before {
+nav.breadcrumbs .breadcrumb-item+.breadcrumb-item::before {
    display: inline-block;
-   padding-right: 0.5rem;
-   padding-left: 0.5rem;
-   color: #818a91;
+   padding-right: 0.3rem;
+   padding-left: 0.3rem;
+   /* color: #757c86; */
    content: "/";
-}
-
-nav.breadcrumbs.bootstrap .breadcrumb-item+.breadcrumb-item:hover::before {
-   text-decoration: underline;
-}
-
-nav.breadcrumbs.bootstrap .breadcrumb-item+.breadcrumb-item:hover::before {
-   text-decoration: none;
-}
-
-nav.breadcrumbs.bootstrap .breadcrumb-item-active {
-   color: #818a91;
-}
-
-nav.breadcrumbs.bootstrap .breadcrumb .icon {
-   display: inline-block;
-}
-
-nav.breadcrumbs.bootstrap .breadcrumb .icon svg {
-   height: 0.8rem;
-   width: 0.8rem;
 }
