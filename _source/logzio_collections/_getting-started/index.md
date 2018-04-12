@@ -3,7 +3,7 @@ layout: category-home
 title: Getting started
 collection: getting-started
 permalink: /getting-started/
-# this-page-toc: true
+this-page-toc: true
 menus:
   header:
     identifier: getting-started

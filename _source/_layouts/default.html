@@ -33,25 +33,9 @@
       </div> <!-- /.toc-container -->
 
       <main class="page-content" aria-label="Content">
-        <!-- <div class="wrapper"> -->
-          {{ content }}
-        <!-- </div> -->
+        {% include breadcrumbs.html %}
+        {{ content }}
       </main>
-
-      <!-- right TOC -->
-      <!-- {% if page.this-page-toc == true %}
-        <nav class="this-page-toc toc relative z-1 transition--300 absolute pa4 is-position-fixed">
-
-        <script type="text/javascript">
-        tocbot.init({
-          tocSelector: '.this-page-toc', // Where to render the table of contents.
-          contentSelector: '.page-content', // Where to grab the headings to build the table of contents.
-          headingSelector: 'h2, h3, h4' // Which headings to grab inside of the contentSelector element.
-        });
-        </script>
-      </nav>
-      {% endif %} -->
-      <!-- /right TOC -->
 
     </div> <!-- /.body-container -->
 

@@ -2,7 +2,7 @@
 layout: category-home
 title: Account settings
 collection: account-settings
-permalink: /account-settings/index.html
+permalink: /account-settings/
 menus:
   header:
     identifier: account-settings
