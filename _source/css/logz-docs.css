@@ -134,6 +134,8 @@ header.site-header {
 .all-pages-toc ul, .this-page-toc ul {
   list-style: none;
   margin: 0;
+  padding: 0 25px;
+  width: 200px;
 }
 
 .all-pages-toc > ul > li > a {
@@ -150,12 +152,19 @@ header.site-header {
 }
 
 /* ===== THIS-PAGE TOC STYLING ===== */
+ul.tocify-header {
+  width: 200px;
+  padding: 0;
+}
 
-  ul.tocify-header {
-    width: 175px;
-  }
+ul.tocify-header li {
+  margin-bottom: .5rem;
+  padding: 6px;
+}
 
-  li.tocify-focus {
-    background-color: #009cbd33;
-    transition-duration: 0.5s;
-  }
+
+li.tocify-focus {
+  border-radius: 10px;
+  background-color: #009cbd33;
+  transition-duration: 0.5s;
+}
