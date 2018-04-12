@@ -1,6 +1,6 @@
 {% unless page.breadcrumbs == false %}
   <nav class="breadcrumbs">
-       <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+       <ul class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
           {% for crumb in breadcrumbs %}
           <li class="breadcrumb-item{% if forloop.first %} icon{%- endif -%}" property="itemListElement" typeof="ListItem">
             {%- if forloop.first -%}
@@ -12,6 +12,6 @@
             {%- endif -%}
           </li>
           {% endfor %}
-        </ol>
+        </ul>
   </nav>
 {% endunless %}

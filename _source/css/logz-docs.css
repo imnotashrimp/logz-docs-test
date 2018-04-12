@@ -162,20 +162,14 @@ ul.tocify-header li {
   padding: 6px;
 }
 
-
-<<<<<<< HEAD
 li.tocify-focus {
   border-radius: 10px;
   background-color: #009cbd33;
   transition-duration: 0.5s;
-=======
-  li.tocify-focus {
-    background-color: #009cbd33;
-    transition-duration: 0.5s;
-  }
+}
 
 /* ===== BREADCRUMBS ===== */
-nav.breadcrumbs ol.breadcrumb {
+nav.breadcrumbs ul.breadcrumb {
   margin-left: 0;
   margin-top: 0;
   padding: 0;
@@ -200,10 +194,5 @@ nav.breadcrumbs .breadcrumb-item+.breadcrumb-item::before {
    display: inline-block;
    padding-right: 0.3rem;
    padding-left: 0.3rem;
-   /* color: #757c86; */
    content: "/";
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> rework-tocs
 }
