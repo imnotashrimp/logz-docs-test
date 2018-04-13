@@ -33,6 +33,11 @@
       </div> <!-- /.toc-container -->
 
       <main class="page-content" aria-label="Content">
+        <div class="algolia-search-widget">
+          <div id="search-searchbar"></div>
+          <div id="search-hits"></div>
+        </div>
+        {% include algolia.html %}
         {% include breadcrumbs.html %}
         {% include community.html %}
         {{ content }}
