@@ -18,6 +18,13 @@ url: "https://www.logz.io" # the base hostname & protocol for your site, e.g. ht
 twitter_username: logzio
 github_username:  logzio
 
+# if you wish to integrate disqus on pages set your shortname here
+disqus:
+  shortname: 'sboroda'
+  site_url: 'imnotashrimp.github.com'
+
+# if you use google analytics, add your tracking id here
+google_analytics_id: ''
 
 # ===== COLLECTIONS =====
 # Collections are the highest-level categories of Logz.io content.
