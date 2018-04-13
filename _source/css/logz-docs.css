@@ -168,8 +168,8 @@ li.tocify-focus {
   transition-duration: 0.5s;
 }
 
-/* ===== BREADCRUMBS ===== */
-nav.breadcrumbs ul.breadcrumb {
+/* ===== BREADCRUMBS & COMMUNITY BUTTONS ===== */
+nav.breadcrumbs ul.breadcrumb, div.community-buttons ul {
   margin-left: 0;
   margin-top: 0;
   padding: 0;
@@ -177,22 +177,39 @@ nav.breadcrumbs ul.breadcrumb {
   margin-bottom: 1rem;
   list-style: none;
   background-color: white;
-  border-radius: 0.25rem;
 }
 
-nav.breadcrumbs .breadcrumb::after {
+nav.breadcrumbs li.breadcrumb::after, div.community-buttons li::after {
    content: "";
    display: table;
    clear: both;
 }
 
-nav.breadcrumbs .breadcrumb-item {
+nav.breadcrumbs li.breadcrumb-item, div.community-buttons li {
    float: left;
 }
 
-nav.breadcrumbs .breadcrumb-item+.breadcrumb-item::before {
+nav.breadcrumbs li.breadcrumb-item+.breadcrumb-item::before {
    display: inline-block;
    padding-right: 0.3rem;
    padding-left: 0.3rem;
    content: "/";
 }
+
+div.community-buttons {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
+  clear: both;
+}
+
+div.community-buttons li+li::before {
+  display: inline-block;
+  padding-right: 0.1rem;
+  padding-left: 0.1rem;
+  content: "";
+}
+
+/* ===== COMMUNITY BUTTONS ===== */
