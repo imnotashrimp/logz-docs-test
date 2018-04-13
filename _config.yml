@@ -80,4 +80,4 @@ breadcrumbs:
 # ===== SEARCH =====
 algolia:
   application_id: 5JG6L7AEGE
-  index_name:     logzio docs # You can replace that with whatever name you want
+  index_name:     logzio_docs # You can replace that with whatever name you want
