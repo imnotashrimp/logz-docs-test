@@ -217,31 +217,48 @@ div.community-buttons li+li::before {
   max-width: 100%;
   margin-bottom: 15px;
 }
+
+div#search-hits {
+  position: absolute;
+  background-color: silver;
+  display: block;
+  z-index: 100;
+}
+
 .post-item {
   margin-bottom: 30px;
 }
+
 .post-link .ais-Highlight {
   color: #111;
+  background-color: yellow;
   font-style: normal;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
+
 .post-breadcrumbs {
   color: #424242;
   display: block;
 }
+
 .post-breadcrumb {
   font-size: 18px;
   color: #424242;
 }
+
 .post-breadcrumb .ais-Highlight {
   font-weight: bold;
   font-style: normal;
+  background-color: yellow;
 }
+
 .post-snippet .ais-Highlight {
   color: #2a7ae2;
   font-style: normal;
   font-weight: bold;
+  background-color: yellow;
 }
+
 .post-snippet img {
   display: none;
 }

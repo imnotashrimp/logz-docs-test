@@ -15,7 +15,7 @@ var search = instantsearch({
 search.addWidget(
   instantsearch.widgets.searchBox({
     container: '#search-searchbar',
-    placeholder: 'Search into posts...',
+    placeholder: 'Search Logz.io docs...',
     poweredBy: true // This is required if you're on the free Community plan
   })
 );
@@ -38,5 +38,18 @@ search.addWidget(
 
 // Starting the search
 search.start();
+
+$(document).ready( function() {
+  $('#search-hits').hide();
+});
+
+$('.ais-search-box').find('input').keyup( function() {
+  let query = $(this).val();
+  if (query === "") {
+    $('#search-hits').slideUp(500);
+  } else {
+    $('#search-hits').slideDown(500);
+  }
+});
 
 </script>
