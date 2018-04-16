@@ -45,12 +45,14 @@ main.page-content {
 }
 
 /* ===== BASE STYLES ===== */
+
 body, h6 {
   font-family: 'Roboto', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 24px;
   color: #757c86;
+  margin-bottom: 1rem;
 }
 
 h1, h2, h3, h4, h5, .site-title, .post-title {
@@ -58,8 +60,8 @@ h1, h2, h3, h4, h5, .site-title, .post-title {
   font-weight: 400; /* neutral weight */
   padding: 0px;
   color: #296386;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
@@ -83,9 +85,9 @@ h4 {
   font-size: 16px;
 }
 
-h5 {
+/* h5 {
   font-size: 14px;
-}
+} */
 
 h6 { /* We use h6 to introduce procedures. If you need a regular heading, use h5 */
   font-weight: 700; /* bold */
@@ -116,9 +118,34 @@ header.site-header {
 
 /* ===== ALL-PAGES TOC STYLING ===== */
 
+ul.parent, ul.child {
+  text-transform: uppercase;
+}
+
+ul.parent {
+  font-size: 1.1rem;
+  font-weight: 400;
+  padding-left: 1rem;
+}
+
+ul.parent > li {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+ul.child {
+  font-size: .9rem;
+  padding-left: .5rem;
+  margin-top: .5rem;
+}
+
+ul.child li {
+  margin-bottom: .5rem;
+}
+
 .all-pages-toc, .all-pages-toc a, .this-page-toc, .this-page-toc a {
   font-family: 'Roboto', sans-serif;
-  font-size: 14px;
+  /* font-size: 1rem; */
   font-weight: 400;
   line-height: 20px;
   color: #757c86;
@@ -126,32 +153,28 @@ header.site-header {
 
 /* mark the active page */
 .active-page > a {
-  font-weight: 700;
+  /* font-weight: 700; */
   color: #009cbd;
 }
 
 /* remove bullets */
 .all-pages-toc ul, .this-page-toc ul {
   list-style: none;
-  margin: 0;
-  padding: 0 25px;
+  /* margin: 0; */
+  /* padding: 0 25px; */
   width: 200px;
 }
 
-.all-pages-toc > ul > li > a {
-  font-weight: 700;
-}
-
 .all-pages-toc > ul > li {
-  padding-bottom: 15px;
+  /* padding-bottom: 15px; */
 }
 
 /* indent nested ul */
-.all-pages-toc ul ul {
-  padding-left: 10px;
+ul.child {
 }
 
 /* ===== THIS-PAGE TOC STYLING ===== */
+
 ul.tocify-header {
   width: 200px;
   padding: 0;
@@ -169,11 +192,12 @@ li.tocify-focus {
 }
 
 /* ===== BREADCRUMBS & COMMUNITY BUTTONS ===== */
+
 nav.breadcrumbs ul.breadcrumb, div.community-buttons ul {
   margin-left: 0;
   margin-top: 0;
   padding: 0;
-  font-size: .9rem;
+  font-size: .8rem;
   margin-bottom: 1rem;
   list-style: none;
   background-color: white;
@@ -213,6 +237,7 @@ div.community-buttons li+li::before {
 }
 
 /* ===== SEARCH ===== */
+
 .ais-search-box {
   max-width: 100%;
   margin-bottom: 15px;
