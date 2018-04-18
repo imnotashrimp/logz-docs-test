@@ -127,7 +127,12 @@ header.site-header {
 
 /* ===== ALL-PAGES TOC STYLING ===== */
 
-ul.parent, ul.child {
+nav.all-pages-toc {
+  background-color: gray;
+  color: white;
+}
+
+ul.parent+li {
   text-transform: uppercase;
 }
 
@@ -152,16 +157,18 @@ ul.child > li {
   margin-bottom: .5rem;
 }
 
-.all-pages-toc, .all-pages-toc a, .this-page-toc, .this-page-toc a {
+.all-pages-toc, .all-pages-toc a/*, .this-page-toc, .this-page-toc a */{
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   line-height: 1.25rem;
-  color: #757c86;
+  color: white;
+  /* color: #757c86; */
 }
 
 /* mark the active page */
 .active-page > a {
-  color: #009cbd;
+  /* color: #009cbd; */
+  color: white;
 }
 
 /* remove bullets */
