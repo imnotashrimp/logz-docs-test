@@ -1,21 +1,29 @@
 <nav class="all-pages-toc">
   <ul class="parent">
-    {% for item in site.menus.header %}
-      <li class="{% if item.url == page.url %}active-page default-show{% endif %}{% if item.children %}parent default-show{% endif %}" id="left-toc-{{ forloop.index }}">
-        <a href="{{ item.url | prepend:site.baseurl }}" title="Go to {{ item.title }}">{{ item.title }}</a>
+    {% for parent in site.data.toc.parents %}
+    <li class="{% if parent.url == page.url %}active-page{% endif %}">
+      <a href="{{ site.baseurl }}{{ parent.url }}" title="Go to {{ parent.title }}">{{ parent.title }}</a>
 
-        {% if item.children %}
-          <ul class="child">
-          {% for item in item.children %}
-            <li class="child {% if item.url == page.url %}active-page{% endif %}" id="left-toc-sub-{{ forloop.index }}">
-              <a href="{{ item.url | prepend:site.baseurl }}" title="Go to {{ item.title }}">{{ item.title }}</a>
-            </li>
-          {% endfor %}
-          </ul>
-        {% endif %}
-      </li>
+      {% if parent.children %}
+      <ul class="child">
+        {% for child in parent.children %}
+          <li class="{% if child.url == page.url %}active-page{% endif %}">
+            <a href="{{ site.baseurl }}{{ parent.url }}{{ child.url }}" title="Go to {{ child.title }}">{{ child.title }}</a>
+
+            {% if child.grandchildren %}
+              <ul class="grandchild">
+              {% for grandchild in child.grandchildren %}
+                <li class="{% if grandchild.url == page.url %}active-page{% endif %}">
+                  <a href="{{ site.baseurl }}{{ parent.url }}{{ child.url }}{{ grandchild.url }}" title="Go to {{ grandchild.title }}">{{ grandchild.title }}</a>
+                </li> <!-- /ul.grandchild > li -->
+              {% endfor %}
+              </ul> <!-- /ul.grandchild -->
+            {% endif %}
+          </li> <!-- /ul.child > li -->
+        {% endfor %}
+      </ul> <!-- /ul.child -->
+      {% endif %}
+    </li> <!-- /ul.parent > li -->
     {% endfor %}
-  </ul>
-
-<!-- <script type="text/javascript" src="{{ "/js/left-toc.js" | prepend:site.baseurl }}"></script> -->
+  </ul> <!-- /ul.parent -->
 </nav>
