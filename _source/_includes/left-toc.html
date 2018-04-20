@@ -2,19 +2,31 @@
   <ul class="parent">
     {% for parent in site.data.toc.parents %}
     <li class="{% if parent.url == page.url %}active-page{% endif %}">
-      <a href="{{ site.baseurl }}{{ parent.url }}" title="Go to {{ parent.title }}">{{ parent.title }}</a>
+      {% if parent.url %}
+      <a href="{{ site.baseurl }}/{{ parent.url }}" title="Go to {{ parent.title }}">{{ parent.title }}</a>
+      {% else %}
+      <span style="color: yellow">{{ parent.title }}</span>
+      {% endif %}
 
       {% if parent.children %}
       <ul class="child">
         {% for child in parent.children %}
           <li class="{% if child.url == page.url %}active-page{% endif %}">
-            <a href="{{ site.baseurl }}{{ parent.url }}{{ child.url }}" title="Go to {{ child.title }}">{{ child.title }}</a>
+            {% if child.url %}
+            <a href="{{ site.baseurl }}/{{ parent.url }}/{{ child.url }}" title="Go to {{ child.title }}">{{ child.title }}</a>
+            {% else %}
+            <span style="color: yellow">{{ child.title }}</span>
+            {% endif %}
 
             {% if child.grandchildren %}
               <ul class="grandchild">
               {% for grandchild in child.grandchildren %}
                 <li class="{% if grandchild.url == page.url %}active-page{% endif %}">
-                  <a href="{{ site.baseurl }}{{ parent.url }}{{ child.url }}{{ grandchild.url }}" title="Go to {{ grandchild.title }}">{{ grandchild.title }}</a>
+                  {% if grandchild.url %}
+                  <a href="{{ site.baseurl }}/{{ parent.url }}/{{ child.url }}/{{ grandchild.url }}" title="Go to {{ grandchild.title }}">{{ grandchild.title }}</a>
+                  {% else %}
+                  <span style="color: yellow">{{ grandchild.title }}</span>
+                  {% endif %}
                 </li> <!-- /ul.grandchild > li -->
               {% endfor %}
               </ul> <!-- /ul.grandchild -->
