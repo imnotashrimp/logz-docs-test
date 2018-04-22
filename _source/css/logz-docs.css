@@ -23,8 +23,32 @@ div.toc-container {
   grid-column: 1 / 1;
 }
 
+div.full-width {
+  grid-column: 1 / -1 !important;
+}
+
 div.body-container {
   grid-column: 2 / 2;
+}
+
+div.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: auto;
+  align-items: strech;
+  grid-gap: 10px;
+}
+
+/* ===== DOCS HOME CARDS ===== */
+div.card {
+  max-width: 100%;
+  border: 1px solid black;
+  grid-row: span 2;
+  padding: 10px;
+}
+
+div.half-card {
+  grid-row: span 1;
 }
 
 /* ===== BASE STYLES ===== */
