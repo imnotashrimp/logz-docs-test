@@ -1,5 +1,5 @@
 ---
-layout: category-home
+layout: article
 title: Getting started
 collection: getting-started
 permalink: /getting-started/

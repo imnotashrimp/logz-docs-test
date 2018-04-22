@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Developer center
 collection: developer-center
 permalink: /developer-center/
