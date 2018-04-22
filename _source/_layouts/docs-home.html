@@ -7,27 +7,16 @@
 
 <div class="big-container">
   {% include header.html %}
-    <div class="toc-container">
+    <div class="toc-container full-width">
       <div class="algolia-search-widget">
         <div id="search-searchbar"></div>
         <div id="search-hits" class="search-hits-show"></div>
       </div>
       {% include algolia.html %}
-      {% include left-toc.html %}
     </div> <!-- /.toc-container -->
 
-    <div class="body-container">
-      <h1 class="post-title">{{ page.title | escape }}</h1>
-      {% include community.html %}
-
-      <main class="page-content" aria-label="Content">
-<!--
-        {% include breadcrumbs.html %} -->
+    <div class="body-container card-container full-width">
         {{ content }}
-      </main>
-      {% include disqus-comments.html %}
-
-
     </div> <!-- /.body-container -->
     {% include footer.html %}
   </div> <!-- /div.big-container -->

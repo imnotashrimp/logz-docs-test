@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Ship and parse logs
 collection: ship-and-parse-logs
 permalink: /ship-and-parse-logs/

@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Monitor logs
 collection: monitor-logs
 permalink: /monitor-logs/
