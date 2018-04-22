@@ -5,48 +5,32 @@
 
   <body>
 
-    {% include header.html %}
+<div class="big-container">
+  {% include header.html %}
+    <div class="toc-container">
+      <div class="algolia-search-widget">
+        <div id="search-searchbar"></div>
+        <div id="search-hits" class="search-hits-show"></div>
+      </div>
+      {% include algolia.html %}
+      {% include left-toc.html %}
+    </div> <!-- /.toc-container -->
 
     <div class="body-container">
-      <div class="toc-container">
-        {% if page.api-page != true %}
-          {% include left-toc.html %}
-        {% endif %}
-
-        {% if page.this-page-toc == true %}
-        <nav class="this-page-toc" id="this-page-toc">
-          <ul class='tocify-header'><li><h3>In this article</h3></li></ul>
-          <script type="text/javascript">
-          $(function() {
-            //Calls the tocify method
-            $("#this-page-toc").tocify({
-              'context': '.page-content',
-              'selectors': 'h2',
-              'showAndHide': false,
-              'theme': 'none',
-              'hashGenerator': 'pretty'
-            });
-          });
-          </script>
-        </nav> <!-- /.this-page-toc -->
-        {% endif %}
-      </div> <!-- /.toc-container -->
+      <h1 class="post-title">{{ page.title | escape }}</h1>
+      {% include community.html %}
 
       <main class="page-content" aria-label="Content">
-        <div class="algolia-search-widget">
-          <div id="search-searchbar"></div>
-          <div id="search-hits" class="search-hits-show"></div>
-        </div>
-        {% include algolia.html %}
-        {% include breadcrumbs.html %}
-        {% include community.html %}
+<!--
+        {% include breadcrumbs.html %} -->
         {{ content }}
-        {% include disqus-comments.html %}
       </main>
+      {% include disqus-comments.html %}
 
 
     </div> <!-- /.body-container -->
     {% include footer.html %}
+  </div> <!-- /div.big-container -->
   </body>
 
 </html>
