@@ -10,6 +10,15 @@ Welcome to the proof-of-concept for Logz.io Documentation Portal! You'll find ex
 
 Here's an overview of the main features of Logz.io.
 
+<div class="feature-box enterprise"></div>
+<p> </p>
+<div class="feature-box pro"></div>
+<p> </p>
+<div class="feature-box community"></div>
+<p> </p>
+
+<p> </p>
+
 <div class="info-box note"><p>This is a note. Notes are non-actionable bits of information that the user should know</p></div>
 
 <p> </p>

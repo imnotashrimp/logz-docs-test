@@ -124,6 +124,69 @@ a, a:hover {
   text-decoration: none;
 }
 
+/* ===== FEATURE BOXES ===== */
+div.feature-box {
+  width: 300px;
+  border: 1px solid gray;
+  margin: auto;
+  padding: 0 .5rem;
+  border-radius: 10px;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "availability availability availability"
+    "community pro enterprise";
+  color: silver;
+}
+
+div.feature-box > span {
+  text-align: center;
+  font-weight: 400;
+  font-size: .8rem;
+}
+
+span.available-in {
+  grid-area: availability;
+}
+
+span.available-in::before {
+  content: "" !important;
+}
+
+div.feature-box > span::before {
+  font-family: "Font Awesome 5 Free";
+  white-space: pre;
+  font-size: 1rem;
+  content: "\f058";
+  margin-right: .3rem;
+  font-weight: 900;
+}
+
+span.community {
+  grid-area: community;
+}
+
+span.community.yes {
+  color: #5eb4e5;
+}
+
+span.pro {
+  grid-area: pro;
+}
+
+span.pro.yes {
+  color: #ffbd1f;
+}
+
+span.enterprise {
+  grid-area: enterprise;
+}
+
+span.enterprise.yes {
+  color: #53cbb2;
+}
+
 /* ===== INFO BOXES ===== */
 div.info-box {
   width: 400px;
