@@ -151,6 +151,7 @@ pre.highlight {
 }
 
 /* ===== FEATURE BOXES ===== */
+
 div.feature-box {
   width: 300px;
   border: 1px solid gray;
@@ -163,17 +164,18 @@ div.feature-box {
   grid-template-areas:
     "availability availability availability"
     "community pro enterprise";
-  color: silver;
+  color: #dfdfdf;
 }
 
 div.feature-box > span {
   text-align: center;
   font-weight: 400;
-  font-size: .8rem;
+  font-size: .75rem;
 }
 
 span.available-in {
   grid-area: availability;
+  color: gray;
 }
 
 span.available-in::before {
@@ -214,6 +216,7 @@ span.enterprise.yes {
 }
 
 /* ===== INFO BOXES ===== */
+
 div.info-box {
   width: 400px;
   padding: .75rem;
