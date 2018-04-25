@@ -12,3 +12,4 @@ menus: about
 * tocify.js
 * jQuery
 * Jekyll
+* AnchorJS
