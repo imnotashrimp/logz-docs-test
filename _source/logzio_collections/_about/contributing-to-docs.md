@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Credits
+title: Contributing to docs
 collection: about
 this-page-toc: true
 menus: about
