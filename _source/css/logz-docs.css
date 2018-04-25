@@ -113,6 +113,12 @@ h6:before { /* '>' to indicate a procedure */
   content: "> "
 }
 
+span.reading-time {
+  font-size: .75rem;
+  white-space: nowrap;
+  text-transform: lowercase;
+}
+
 /* Alpha nested ordered lists */
 ol ol {
   list-style-type: lower-alpha;
