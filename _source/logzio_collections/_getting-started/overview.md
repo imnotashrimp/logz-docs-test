@@ -10,33 +10,6 @@ Welcome to the proof-of-concept for Logz.io Documentation Portal! You'll find ex
 
 Here's an overview of the main features of Logz.io.
 
-<div class="feature-box enterprise"></div>
-<p> </p>
-<div class="feature-box pro"></div>
-<p> </p>
-<div class="feature-box community"></div>
-<p> </p>
-
-<p> </p>
-
-<div class="info-box note"><p>This is a note. Notes are non-actionable bits of information that the user should know</p></div>
-
-<p> </p>
-
-<div class="info-box gotcha"><p>This is a "gotcha". It's a place to point out tricky things</p></div>
-
-<p> </p>
-
-<div class="info-box tip"><p>This is a tip. Here's where we'll place best practices and good actions to ensure success</p></div>
-
-<p> </p>
-
-<div class="info-box help"><p>This is a help box. We can redirect the user to resources that give them more information, like videos, blog entries, or other help articles. </p></div>
-
-<p> </p>
-
-<div class="info-box warning"><p>This is a warning. We'll use warnings when the user could cause damage that's difficult or impossible to recover from.</p></div>
-
 ## Shipping & parsing logs
 There’s no more faith in thee than a stewed prune. Thou art a boil, a plague sore, an embossed carbunkle in my corrupted blood. Away you three inch fool! Thou art a natural coward without instinct. You, minion, are too saucy. Thou art the best of cutthroats. A weasel has not such a spleen as you are toss’d with. Your virginity breeds mites, much like a cheese. Thou leathern-jerkin, crystal button, knot-pated, agatering, puke-stocking, caddis-garter, smooth tongue, Spanish pouch. Thou art the son and heir of a mongrel.
 

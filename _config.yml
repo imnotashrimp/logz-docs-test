@@ -46,6 +46,8 @@ collections:
    output: true
   troubleshooting:
     output: true
+  about:
+    output: true
 
 
 # ===== BUILD SETTINGS =====
