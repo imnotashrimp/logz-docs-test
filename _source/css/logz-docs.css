@@ -462,6 +462,11 @@ div.community-buttons li+li::before {
   content: "";
 }
 
+a.atom-feed {
+  font-size: 18px;
+  color: orange;
+}
+
 /* ===== SEARCH ===== */
 
 .ais-search-box {
