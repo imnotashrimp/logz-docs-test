@@ -253,11 +253,10 @@ div.info-box > p {
 
 /* --- info-box colors ---
                   color
-help (blue)       #309ff2
 gotcha (orange)   #ffa64c
 warning (red)     #d94141
 tip (green)       #66d957
-note (gray)       #646464   */
+note (blue)       #309ff2   */
 
 /* .warning */
 div.info-box.warning {
@@ -271,7 +270,7 @@ div.info-box.warning::before {
 }
 
 div.info-box.warning > p::before {
-  content: "Important \a";
+  content: "Warning \a";
   color: #d94141;
 }
 
@@ -293,18 +292,18 @@ div.info-box.help > p::before {
 
 /* .note */
 div.info-box.note {
-  border: 2px solid #646464;
+  border: 2px solid #309ff2;
 }
 
 div.info-box.note::before {
   content: "\f249";
-  color: #646464;
+  color: #309ff2;
   font-weight: 400;
 }
 
 div.info-box.note > p::before {
   content: "Note \a";
-  color: #646464;
+  color: #309ff2;
 }
 
 /* .gotcha */

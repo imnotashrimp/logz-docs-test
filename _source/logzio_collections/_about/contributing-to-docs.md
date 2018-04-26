@@ -31,55 +31,35 @@ See that gray line? That's the feature box. Of course, this box has no content, 
 <div class="feature-box community"></div>
 
 ### Info boxes
-Info boxes comprise a `<div class="info-box">` container and a single `<p>` child. The `<p>` child takes no classes of its own.
-
-Jekyll ignores Markdown newlines in HTML tags, so you'll need to use the `<br />` tag to make a line break. Use line breaks sparingly.
+Info boxes comprise a `<div class="info-box">` container.
 
 Info boxes come in one of five CSS classes: `note`, `warning`, `gotcha`, `tip`, `help`. Icon and heading styling is handled in CSS, so contributors only need to worry about the class name and box content.
 
 
 #### Notes
 ```html
-<div class="info-box note">
-  <p>Content</p>
-</div>
+<div class="info-box note">Content</div>
 ```
 <p> </p>
-<div class="info-box note"><p>Notes are non-actionable. They're more important than the surrounding text but less important than warnings. <br />
-Could something bad happen if the user ignores this note? If yes, make it a note. Otherwise, make it a warning.</p></div>
+<div class="info-box note">Notes are non-actionable. They're more important than the surrounding text but less important than warnings. Could something bad happen if the user ignores this note? If yes, make it a note. Otherwise, make it a warning.</div>
 
 #### Warnings
 ```html
-<div class="info-box warning">
-  <p>Content</p>
-</div>
+<div class="info-box warning">Content</div>
 ```
 <p> </p>
-<div class="info-box warning"><p>Use warnings when the user could cause damage that's difficult or impossible to recover from. If you need something less severe than a warning, consider a gotcha or a note.</p></div>
+<div class="info-box warning">Use warnings when the user could cause damage that's difficult or impossible to recover from. If you need something less severe than a warning, consider a gotcha or a note.</div>
 
 #### Gotchas
 ````html
-<div class="info-box gotcha">
-  <p>Content</p>
-</div>
+<div class="info-box gotcha">Content</div>
 ````
 <p> </p>
-<div class="info-box gotcha"><p>Gotchas help the user work through common trip-up points. If the user could cause damage by ignoring the gotcha, consider a warning instead.</p></div>
+<div class="info-box gotcha">Gotchas help the user work through common trip-up points. If the user could cause damage by ignoring the gotcha, consider a warning instead.</div>
 
 #### Pro tips
 ````html
-<div class="info-box tip">
-  <p>Content</p>
-</div>
+<div class="info-box tip">Content</div>
 ````
 <p> </p>
-<div class="info-box tip"><p>Pro tips convey best practices and good actions to ensure success. Think of these as a little more proactive than gotchas.</p></div>
-
-#### More info
-````html
-<div class="info-box help">
-  <p>Content</p>
-</div>
-````
-<p> </p>
-<div class="info-box help"><p>Use the more info box to route the user to resources that give them more information, like videos, blog entries, or other help articles. (I may just take this out and store all this stuff in a "Related links" section at the bottom of articles.)</p></div>
+<div class="info-box tip">Pro tips convey best practices and good actions to ensure success. Think of these as a little more proactive than gotchas.</div>
