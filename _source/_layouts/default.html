@@ -17,12 +17,15 @@
     </div> <!-- /.toc-container -->
 
     <div class="body-container">
-      {%- capture time -%}{{ content | reading_time }}{%- endcapture -%}
       <h1 class="post-title">
         {{ page.title | escape }}
-        <span class="reading-time"><i class="far fa-clock"></i> {{ time }} min</span>
       </h1>
-      {% include community.html %}
+      <div class="article-info">
+        {%- capture time -%}{{ content | reading_time }}{%- endcapture -%}
+        <span class="reading-time"><i class="far fa-clock"></i>{{ time }} min</span>
+        <span class="contributor-list"><i class="fas fa-users"></i>(Contributors list)</span>
+        {% include community.html %}
+      </div>
 
       <main class="page-content" aria-label="Content">
 <!--

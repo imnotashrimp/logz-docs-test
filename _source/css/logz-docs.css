@@ -113,9 +113,26 @@ h6:before { /* '>' to indicate a procedure */
   content: "> "
 }
 
-span.reading-time {
+div.article-info {
   font-size: .75rem;
   white-space: nowrap;
+  display: block;
+}
+
+/* div.article-info > span {
+  margin-right: 1rem;
+} */
+
+div.article-info > span > svg {
+  margin-left: 1rem;
+  margin-right: .25rem;
+}
+
+div.article-info > span:first-child > svg {
+  margin-left: 0;
+}
+
+span.reading-time {
   text-transform: lowercase;
 }
 
@@ -219,13 +236,13 @@ span.enterprise.yes {
 
 div.info-box {
   width: 400px;
-  padding: .75rem;
   margin: auto;
   display: grid;
   grid-template-columns: 2rem, auto;
   grid-template-areas: "icon info";
-  grid-column-gap: 1rem;
-  border-radius: 10px;
+  grid-column-gap: .25rem;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
 }
 
 div.info-box::before {
@@ -236,31 +253,30 @@ div.info-box::before {
   font-variant: normal;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-  margin: 0;
-  padding: 0;
+  margin-top: 1.2rem;
 }
 
 div.info-box > p::before {
-  white-space: pre;
   font-weight: 700;
+  white-space: pre;
 }
 
 div.info-box > p {
   grid-area: info;
   margin: 0;
-  padding: 0;
+  padding: .75rem;
 }
 
 /* --- info-box colors ---
                   color
 gotcha (orange)   #ffa64c
 warning (red)     #d94141
-tip (green)       #66d957
-note (blue)       #309ff2   */
+tip (green)       #5abf4d
+note (blue)       #2e97e5  2e97e5   */
 
 /* .warning */
 div.info-box.warning {
-  border: 2px solid #d94141;
+  border-color: #d94141;
 }
 
 div.info-box.warning::before {
@@ -270,45 +286,29 @@ div.info-box.warning::before {
 }
 
 div.info-box.warning > p::before {
-  content: "Warning \a";
+  content: "Warning   ";
   color: #d94141;
-}
-
-/* .help */
-div.info-box.help {
-  border: 2px solid #309ff2;
-}
-
-div.info-box.help::before {
-  content: "\f02d";
-  color: #309ff2;
-  font-weight: 900;
-}
-
-div.info-box.help > p::before {
-  content: "More Info \a";
-  color: #309ff2;
 }
 
 /* .note */
 div.info-box.note {
-  border: 2px solid #309ff2;
+  border-color: #2e97e5;
 }
 
 div.info-box.note::before {
   content: "\f249";
-  color: #309ff2;
-  font-weight: 400;
+  color: #2e97e5;
+  font-weight: 900;
 }
 
 div.info-box.note > p::before {
-  content: "Note \a";
-  color: #309ff2;
+  content: "Note   ";
+  color: #2e97e5;
 }
 
 /* .gotcha */
 div.info-box.gotcha {
-  border: 2px solid #ffa64c;
+  border-color: #ffa64c;
 }
 
 div.info-box.gotcha::before {
@@ -318,24 +318,24 @@ div.info-box.gotcha::before {
 }
 
 div.info-box.gotcha > p::before {
-  content: "Gotcha \a";
+  content: "Gotcha   ";
   color: #ffa64c;
 }
 
 /* .tip */
 div.info-box.tip {
-  border: 2px solid #66d957;
+  border-color: #5abf4d;
 }
 
 div.info-box.tip::before {
   content: "\f46c";
   font-weight: 900;
-  color: #66d957;
+  color: #5abf4d;
 }
 
 div.info-box.tip > p::before {
-  content: "Pro Tip \a";
-  color: #66d957;
+  content: "Pro Tip   ";
+  color: #5abf4d;
 }
 
 /* ===== SITE HEADER ===== */
