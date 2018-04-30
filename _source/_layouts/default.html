@@ -23,7 +23,15 @@
       <div class="article-info">
         {%- capture time -%}{{ content | reading_time }}{%- endcapture -%}
         <span class="reading-time"><i class="far fa-clock"></i>{{ time }} min</span>
-        <span class="contributor-list"><i class="fas fa-users"></i>(Contributors list)</span>
+        {%- if page.contributors -%}
+          <span class="contributor-list"><i class="fas fa-users"></i>
+            {%- for contributor in page.contributors -%}
+            {%- assign thisContributor = site.data.contributors[contributor] -%}
+              <a href="https://www.github.com/{{ thisContributor.github }}">{{ thisContributor.name }}</a>
+              {%- unless forloop.last -%},&nbsp;{%- endunless -%}
+            {%- endfor -%}
+          </span>
+        {%- endif -%}
         {% include community.html %}
       </div>
 

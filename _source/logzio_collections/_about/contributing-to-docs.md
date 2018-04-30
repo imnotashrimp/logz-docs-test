@@ -3,6 +3,9 @@ layout: article
 title: Contributing to docs
 collection: about
 this-page-toc: true
+contributors:
+- imnotashrimp
+- proudboffin
 menus: about
 ---
 

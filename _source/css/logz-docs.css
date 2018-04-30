@@ -115,25 +115,20 @@ h6:before { /* '>' to indicate a procedure */
 
 div.article-info {
   font-size: .75rem;
-  white-space: nowrap;
   display: block;
 }
 
-/* div.article-info > span {
-  margin-right: 1rem;
-} */
-
 div.article-info > span > svg {
-  margin-left: 1rem;
   margin-right: .25rem;
-}
-
-div.article-info > span:first-child > svg {
-  margin-left: 0;
 }
 
 span.reading-time {
   text-transform: lowercase;
+}
+
+span.contributor-list, span.reading-time {
+  display: block;
+  line-height: 1rem;
 }
 
 /* Alpha nested ordered lists */
