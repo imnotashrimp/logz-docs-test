@@ -22,24 +22,38 @@ Like so: `<div class="feature-box"></div>`
 See that gray line? That's the feature box. Of course, this box has no content, so we'll add one of three classes (`enterprise`, `pro`, or `community`). A linked javascript file takes care of all the content. The samples below show how it's done.
 
 #### Enterprise plan
-`<div class="feature-box enterprise"></div>`
+
+```html
+<div class="feature-box enterprise"></div>
+```
+<p> </p>
 <div class="feature-box enterprise"></div>
 
 #### Pro plan
-`<div class="feature-box pro"></div>`
+
+```html
+<div class="feature-box pro"></div>
+```
+<p> </p>
 <div class="feature-box pro"></div>
 
 #### Community plan
-`<div class="feature-box community"></div>`
+
+```html
+<div class="feature-box community"></div>
+```
+<p> </p>
 <div class="feature-box community"></div>
 
 ### Info boxes
+
 Info boxes comprise a `<div class="info-box">` container.
 
 Info boxes come in one of five CSS classes: `note`, `warning`, `gotcha`, `tip`, `help`. Icon and heading styling is handled in CSS, so contributors only need to worry about the class name and box content.
 
 
 #### Notes
+
 ```html
 <div class="info-box note">Content</div>
 ```
