@@ -13,3 +13,9 @@ menus: about
 * jQuery
 * Jekyll
 * AnchorJS
+
+
+### The Noun Project icons
+* *start up* by Alina Oleynik from the Noun Project
+* *Shipping* by Sergey Novosyolov from the Noun Project
+* *visualization* by Becris from the Noun Project

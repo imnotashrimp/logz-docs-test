@@ -9,7 +9,7 @@ menus:
 
   <div class="card">
     <a href="{{ site.baseurl }}/getting-started">
-      <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Camera-icon.svg" alt="Card image cap">
+      <img class="card-img-top" src="{{ site.baseurl}}/img/home-icons/rocketship.svg" alt="Card image cap">
         <h5 class="card-title">Getting started</h5>
         <p class="card-text">A few warm up exercises for the uninitiated</p>
     </a>
@@ -18,7 +18,7 @@ menus:
 
   <div class="card">
     <a href="{{ site.baseurl }}/ship-and-parse-logs">
-      <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Camera-icon.svg" alt="Card image cap">
+      <img class="card-img-top" src="{{ site.baseurl }}/img/home-icons/truck.svg" alt="Card image cap">
         <h5 class="card-title">Ship & parse logs</h5>
         <p class="card-text">All the different ways you can feed the ELK machine</p>
     </a>
@@ -27,7 +27,7 @@ menus:
 
   <div class="card">
     <a href="{{ site.baseurl }}/monitor-logs">
-      <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Camera-icon.svg" alt="Card image cap">
+      <img class="card-img-top" src="{{ site.baseurl }}/img/home-icons/monitor-charts.svg" alt="Card image cap">
         <h5 class="card-title">Monitor logs</h5>
         <p class="card-text">Keep an eye on what's happening in your logs, in real time or periodic summaries</p>
     </a>
