@@ -35,7 +35,7 @@ menus:
 
 <div class="card">
     <a href="{{ site.baseurl }}/insights">
-      <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Camera-icon.svg" alt="Card image cap">
+      <img class="card-img-top" src="{{ site.baseurl }}/img/home-icons/eye.svg" alt="Card image cap">
         <h5 class="card-title">Insights</h5>
         <p class="card-text">Use AI-powered Insights to find all sorts of information you might need to know about in your logs</p>
     </a>
@@ -44,7 +44,7 @@ menus:
 
   <div class="card">
     <a href="{{ site.baseurl }}/developer-center">
-      <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Camera-icon.svg" alt="Card image cap">
+      <img class="card-img-top" src="{{ site.baseurl }}/img/home-icons/dev.svg" alt="Card image cap">
         <h5 class="card-title">Developer Center</h5>
         <p class="card-text">Grow your own integration using our API documentation and cookbooks</p>
     </a>
@@ -53,7 +53,7 @@ menus:
 
   <div class="card">
     <a href="{{ site.baseurl }}/account-settings">
-      <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Camera-icon.svg" alt="Card image cap">
+      <img class="card-img-top" src="{{ site.baseurl }}/img/home-icons/admin.svg" alt="Card image cap">
         <h5 class="card-title">Account Admin</h5>
         <p class="card-text">Manage storage, usage, billing, and user and API access. Who's the boss? You're the boss.</p>
     </a>
