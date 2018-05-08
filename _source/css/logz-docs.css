@@ -40,7 +40,12 @@ header {
   z-index: 100;
   top: 0px;
   width: auto;
+<<<<<<< HEAD
   margin: 0 auto 1rem auto;
+=======
+  margin: 0 auto;
+  padding: 0 10px;
+>>>>>>> add padding to top-nav
   height: 60px;
   background-color: white;
   border-bottom: 1px solid #dddddd;
