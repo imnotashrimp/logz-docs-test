@@ -49,7 +49,7 @@ See that gray line? That's the feature box. Of course, this box has no content, 
 
 Info boxes comprise a `<div class="info-box">` container.
 
-Info boxes come in one of five CSS classes: `note`, `warning`, `gotcha`, `tip`, `help`. Icon and heading styling is handled in CSS, so contributors only need to worry about the class name and box content.
+Info boxes come in four CSS classes: `note`, `warning`, `gotcha`, `tip`. Icon and heading styling is handled in CSS, so contributors only need to worry about the class name and box content.
 
 
 #### Notes
