@@ -28,7 +28,7 @@ div.home-page-container {
     "footer";
 }
 
-header.site-header {
+header {
   /* flex */
   display: flex;
   flex-direction: row;
