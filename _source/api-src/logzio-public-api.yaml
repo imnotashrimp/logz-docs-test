@@ -24,9 +24,9 @@ info:
     - [x] API TOS and license
     - [x] x-logo URL
     - [. ] should we list more than just 200 codes?
-    - [. ] code samples — let's start with cURL.
-    - [. ] figure out the best way to organize this document - what are the use cases?
-    - [. ] add example values
+    - [x] code samples — let's start with cURL.
+    - [x] figure out the best way to organize this document - what are the use cases?
+    - [x] add example values
 
   version: 1.0.0
   title: Logzio API
@@ -34,8 +34,8 @@ info:
   contact:
     email: help@logz.io
     url: https://logz.io/
-  x-logo:
-    url: 'https://logz.io/wp-content/themes/Avada-Child-Theme/images/logz-logo.svg'
+  # x-logo:
+  #   url: 'https://logz.io/wp-content/themes/Avada-Child-Theme/images/logz-logo.svg'
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
@@ -65,15 +65,16 @@ tags:
     description: Use these calls to modify or delete accounts
 
 x-tagGroups:
-  - name: User and Account Management
+  - name: Accounts
     tags:
       - Get account information
       - Update or delete accounts
 
+
 paths:
   /account-management/time-based-accounts:
     get:
-      summary: List partial information on all Time Based Accounts
+      summary: Get partial information on all time-based accounts
       tags:
         - Get account information
       operationId: getAll
@@ -89,7 +90,7 @@ paths:
         source: |
           curl --request GET --url https://api.logz.io/v1/account-management/time-based-accounts --header 'X-API-TOKEN: {API key}'
     post:
-      summary: Create a Time Based Account
+      summary: Create a time-based account
       tags:
         - Update or delete accounts
       operationId: createTimeBasedAccount
@@ -99,8 +100,8 @@ paths:
           required: false
           schema:
             $ref: '#/definitions/TimeBasedAccountUpsertRequest'
-        - name: x-forwarded-for
-          in: header
+        - in: header
+          name: x-forwarded-for
           required: false
           type: string
           description: ?? IP address of the client making this API call
@@ -134,7 +135,7 @@ paths:
           }'
   /account-management/time-based-accounts/detailed:
     get:
-      summary: List detailed information on all Time Based Accounts
+      summary: Get detailed information on all time-based accounts
       tags:
         - Get account information
       operationId: getAllDetailedTimeBasedAccount
@@ -151,7 +152,7 @@ paths:
           curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/detailed -H 'X-API-TOKEN: {API key}'
   /account-management/time-based-accounts/detailed/{id}:
     get:
-      summary: List detailed information by Account ID
+      summary: Get detailed information by Account ID
       tags:
         - Get account information
       operationId: getDetailedTimeBasedAccount
@@ -173,7 +174,7 @@ paths:
         source: "curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/detailed/99999 -H 'X-API-TOKEN: {API key}'"
   /account-management/time-based-accounts/{id}:
     get:
-      summary: List partial information by account ID
+      summary: Get partial information by account ID
       tags:
         - Get account information
       operationId: get
