@@ -439,10 +439,6 @@ footer ul {
   height: 100%;
 }
 
-footer li {
-  display: inline-block;
-}
-
 div.site-logo-footer li::after {
   content: "|";
   margin: auto .5rem;
