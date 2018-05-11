@@ -452,6 +452,10 @@ div.site-logo-footer img.logz-logo, div.github-links-footer li {
   margin-right: 1rem;
 }
 
+div.github-links-footer li.icon {
+  font-size: 1.25rem;
+}
+
 /* ===== ALL-PAGES TOC STYLING ===== */
 
 nav.all-pages-toc {
