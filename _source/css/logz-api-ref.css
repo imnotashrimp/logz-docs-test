@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+iframe {
+  padding: 0;
+  margin: 0;
+  border: none;
+  width: 100%;
+}
+
+iframe.header-frame {
+  position: sticky;
+  z-index: 100;
+  top: 0px;
+  height: 60px;
+  background-color: white;
+}
