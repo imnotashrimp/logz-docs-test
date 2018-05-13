@@ -5,7 +5,7 @@
           {% for crumb in breadcrumbs %}
           <li class="breadcrumb-item{% if forloop.first %} icon{%- endif -%}" property="itemListElement" typeof="ListItem">
             {%- if forloop.first -%}
-              <a href="{{ site.baseurl }}/"><i class="fas fa-home"></i></a>
+              <a href="{{ site.baseurl }}/">Docs</a>
             {%- elsif forloop.last -%}
               {{ crumb.title }}
             {%- else -%}
@@ -18,7 +18,6 @@
 
   <div class="github-icons">
     <ul class="horizontal-list">
-      <li class="icon"><a href="{{ site.github_repo_url }}/">{% octicon repo %} Repo</a></li>
       <li class="icon"><a href="{{ site.github_repo_url }}/fork">{% octicon repo-forked %} Fork</a></li>
       <li class="icon"><a href="{{ site.github_repo_url }}/issues">{% octicon issue-opened %} Issue</a></li>
       <li class="icon"><a href="">{% octicon pencil %} Edit</a></li>
