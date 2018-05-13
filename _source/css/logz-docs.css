@@ -89,15 +89,34 @@ div.algolia-search-widget.home-page {
 }
 
 /* ===== DOCS HOME CARDS ===== */
+div.half-card-container {
+  display: grid;
+  border: none;
+  grid-row-gap: 10px;
+  grid-template-rows: 1fr 1fr;
+  grid-row: span 2;
+}
+
 div.card {
   max-width: 100%;
   border: 1px solid black;
   grid-row: span 2;
   padding: 10px;
+  text-align: center;
 }
 
 div.half-card {
   grid-row: span 1;
+}
+
+div.card p {
+  text-align: left;
+  font-size: .85rem;
+}
+
+img.card-img-top {
+  width: 100px;
+  margin: 0 auto;
 }
 
 /* ===== BASE STYLES ===== */
