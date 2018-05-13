@@ -40,7 +40,7 @@ header {
   z-index: 100;
   top: 0px;
   width: auto;
-  margin: 1rem auto;
+  margin: 0 auto 1rem auto;
   height: 60px;
   background-color: white;
 }
@@ -54,10 +54,9 @@ footer {
   align-items: center;
 
   /* position & style */
-  grid-column: 1 / -1;
   width: 100%;
   max-width: 1240px !important;
-  margin: 0 auto;
+  margin: 1rem auto 0 auto;
   font-size: .8rem;
   border-top: 1px solid #dddddd;
   padding-top: 10px;
