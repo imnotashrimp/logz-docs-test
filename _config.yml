@@ -21,7 +21,7 @@ facebook_url: https://www.facebook.com/logz.io
 twitter_url: https://twitter.com/logzio
 youtube_url: https://www.youtube.com/channel/UC9Rc1hpWHUju8O2rYHAUVXA
 github_url:  https://github.com/imnotashrimp
-github_repo: logz-docs-test
+github_repo_url: https://github.com/imnotashrimp/logz-docs-test
 google_plus_url: https://plus.google.com/+LogzIo/
 linkedin_url: https://www.linkedin.com/company/4831888
 
@@ -65,6 +65,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-menus
+  - jekyll-octicons
 
 
 kramdown:

@@ -1,6 +1,7 @@
 {% unless page.breadcrumbs == false %}
+<div class="breadcrumbs-container">
   <nav class="breadcrumbs">
-       <ul class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+       <ul class="breadcrumb horizontal-list" vocab="http://schema.org/" typeof="BreadcrumbList">
           {% for crumb in breadcrumbs %}
           <li class="breadcrumb-item{% if forloop.first %} icon{%- endif -%}" property="itemListElement" typeof="ListItem">
             {%- if forloop.first -%}
@@ -14,4 +15,14 @@
           {% endfor %}
         </ul>
   </nav>
+
+  <div class="github-icons">
+    <ul class="horizontal-list">
+      <li class="icon"><a href="{{ site.github_repo_url }}/">{% octicon repo %} Repo</a></li>
+      <li class="icon"><a href="{{ site.github_repo_url }}/fork">{% octicon repo-forked %} Fork</a></li>
+      <li class="icon"><a href="{{ site.github_repo_url }}/issues">{% octicon issue-opened %} Issue</a></li>
+      <li class="icon"><a href="">{% octicon pencil %} Edit</a></li>
+    </ul>
+  </div>
+</div>
 {% endunless %}

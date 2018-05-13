@@ -10,6 +10,7 @@ div.big-container {
   grid-template-columns: 300px 500px auto;
   grid-template-rows: auto, auto, auto;
   grid-template-areas:
+    "toc breadcrumbs breadcrumbs"
     "toc content blank"
     "footer footer footer";
   grid-column-gap: 20px;
@@ -21,7 +22,6 @@ div.big-container {
 div.home-page-container {
   grid-template-rows: repeat(4, auto);
   grid-template-areas:
-    /* "header" */
     "search"
     "cards"
     "footer";
@@ -228,6 +228,17 @@ pre.highlight {
   padding: .5rem;
 }
 
+ul.horizontal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+ul.horizontal-list li {
+  display: inline;
+}
+
 /* ===== FEATURE BOXES ===== */
 
 div.feature-box {
@@ -405,13 +416,6 @@ nav.site-links, nav.site-actions {
   font-size: .9rem;
 }
 
-nav.site-links ul, nav.site-actions ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  height: 100%;
-}
-
 nav.site-links li, nav.site-actions li {
   display: inline-block;
   padding: .25rem;
@@ -447,28 +451,16 @@ footer * {
   display: inline-block;
 }
 
-footer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  height: 100%;
+footer li {
+  margin-right: 1.25rem;
 }
 
-div.site-logo-footer li::after {
-  content: "|";
-  margin: auto .5rem;
-}
-
-div.site-logo-footer li:last-child::after {
-  content: "";
-}
-
-div.site-logo-footer img.logz-logo, div.github-repo-links li {
-  margin-right: 1rem;
-}
-
-div.github-repo-links li.icon {
+div.social-icons li.icon {
   font-size: 1.25rem;
+}
+
+a.atom-feed {
+  color: orange;
 }
 
 /* ===== ALL-PAGES TOC STYLING ===== */
@@ -543,54 +535,37 @@ li.tocify-focus {
   transition-duration: 0.5s;
 }
 
-/* ===== BREADCRUMBS & COMMUNITY BUTTONS ===== */
+/* ===== BREADCRUMBS & GITHUB BUTTONS ===== */
 
-nav.breadcrumbs ul.breadcrumb, div.community-buttons ul {
-  margin-left: 0;
-  margin-top: 0;
-  padding: 0;
+div.breadcrumbs-container {
+  grid-area: breadcrumbs;
+
+  /*  flex */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  /* position & style */
+  width: 100%;
+  margin: 0 auto;
   font-size: .8rem;
-  margin-bottom: 1rem;
-  list-style: none;
-  background-color: white;
-}
-
-nav.breadcrumbs li.breadcrumb::after, div.community-buttons li::after {
-   content: "";
-   display: table;
-   clear: both;
-}
-
-nav.breadcrumbs li.breadcrumb-item, div.community-buttons li {
-   float: left;
 }
 
 nav.breadcrumbs li.breadcrumb-item+.breadcrumb-item::before {
-   display: inline-block;
    padding-right: 0.3rem;
    padding-left: 0.3rem;
    content: "/";
 }
 
-div.community-buttons {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  display: block;
-  clear: both;
+div.github-icons li {
+  margin-right: .75rem;
 }
 
-div.community-buttons li+li::before {
-  display: inline-block;
-  padding-right: 0.1rem;
-  padding-left: 0.1rem;
-  content: "";
-}
-
-a.atom-feed {
-  font-size: 18px;
-  color: orange;
+div.github-icons a svg {
+  vertical-align: text-bottom;
+  fill: currentColor;
 }
 
 /* ===== SEARCH ===== */
