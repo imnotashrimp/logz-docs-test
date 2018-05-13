@@ -18,6 +18,9 @@ url: "https://affectionate-mccarthy-d5aefa.netlify.com" # the base hostname & pr
 twitter_username: logzio
 github_username:  logzio
 
+# GitHub project info
+github_repo_url: https://github.com/imnotashrimp/logz-docs-test
+
 # if you wish to integrate disqus on pages set your shortname here
 disqus:
   shortname: 'sboroda'

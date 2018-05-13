@@ -445,11 +445,11 @@ div.site-logo-footer li:last-child::after {
   content: "";
 }
 
-div.site-logo-footer img.logz-logo, div.github-links-footer li {
+div.site-logo-footer img.logz-logo, div.github-repo-links li {
   margin-right: 1rem;
 }
 
-div.github-links-footer li.icon {
+div.github-repo-links li.icon {
   font-size: 1.25rem;
 }
 
