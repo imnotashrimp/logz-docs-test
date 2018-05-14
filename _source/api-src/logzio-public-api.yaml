@@ -66,7 +66,9 @@ tags:
   - name: Retrieve alert definitions
     description: Retrieve a list of alert definitions. Each alert definition in the list returns the alert query and settings.
   - name: Retrieve triggered alerts
-    description: Retrieve a list of alerts triggered in your accounts. This list includes
+    description: Retrieve a list of alerts triggered in your accounts.
+  - name: Create or update alerts
+    description: Create or update alert definitions
 
 
 x-tagGroups:
@@ -76,9 +78,9 @@ x-tagGroups:
       - Create, update, or delete accounts
   - name: Alerts
     tags:
-      - Retrieve alerts
+      - Retrieve alert definitions
       - Retrieve triggered alerts
-      - Create or update alert
+      - Create or update alerts
 
 
 paths:
@@ -242,7 +244,7 @@ paths:
     get:
       summary: Retrieve all alerts
       tags:
-        - Retrieve alerts
+        - Retrieve alert definitions
       responses:
         '200':
           description: successful operation
@@ -252,6 +254,8 @@ paths:
               $ref: '#/definitions/AlertResponse'
     post:
       summary: Create an alert
+      tags:
+        - Create or update alerts
       parameters:
         - in: body
           name: body
@@ -649,12 +653,20 @@ definitions:
     properties:
       title:
         type: string
+        description: Title for the new alert
+        example: Error level logs
       description:
         type: string
+        description: Longer, more complete description of the alert
+        example: Capture ERROR level logs in the given time range
       query_string:
         type: string
+        description: Elasticsearch query
+        example: loglevel:ERROR
       filter:
         type: string
+        description: ??description of FILTER
+        example: {"bool":{"must":[{"match":{"type":"mytype"}}],"must_not":[]}}
       operation:
         type: string
         enum:
@@ -664,13 +676,19 @@ definitions:
           - GREATER_THAN_OR_EQUALS
           - EQUALS
           - NOT_EQUALS
+        description: Mathematical evaluator, used in combination with array `severityThresholdTiers`.
+        example: GREATER_THAN
       searchTimeFrameMinutes:
         type: integer
         format: int32
+        description: Evaluated time frame, in minutes.
+        example: 5
       notificationEmails:
         type: array
         items:
           type: string
+        description: Email addresses to receive notifications, as items in an array.
+        example: [ "you@yourcompany.com", "them@yourcompany.com" ]
       isEnabled:
         type: boolean
         default: true
