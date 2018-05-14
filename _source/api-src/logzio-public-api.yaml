@@ -20,7 +20,13 @@ info:
 
     # Todo
     - [. ] define x-security definitions - getting api keys and permissions (see account settings page)
+    - [x] determine API URLs
+    - [x] API TOS and license
+    - [x] x-logo URL
     - [. ] should we list more than just 200 codes?
+    - [x] code samples — let's start with cURL.
+    - [x] figure out the best way to organize this document - what are the use cases?
+    - [x] add example values
 
   version: 1.0.0
   title: Logzio API
@@ -73,8 +79,8 @@ x-tagGroups:
   - name: Alerts
     tags:
       - Retrieve alert definitions
-      - Create or update alert definitions
       - Retrieve triggered alerts
+      - Create or update alerts
 
 
 paths:
@@ -164,8 +170,8 @@ paths:
           required: true
           type: integer
           format: int32
-          description: ID of the account to be retrieved
-          example: 99999
+          description: Account id
+          x-example: 99999
       responses:
         '200':
           description: successful operation
@@ -186,8 +192,8 @@ paths:
           required: true
           type: integer
           format: int32
-          description: ID of the account to be retrieved
-          example: 99999
+          description: Account id
+          x-example: 99999
       responses:
         '200':
           description: successful operation
@@ -207,8 +213,8 @@ paths:
           required: true
           type: integer
           format: int32
-          description: ID of the account to be updated
-          example: 99999
+          description: Account id
+          x-example: 99999
         - in: body
           name: body
           required: false
@@ -229,8 +235,6 @@ paths:
           required: true
           type: integer
           format: int32
-          description: ID of the account to be deleted.
-          example: 99999
       responses:
         default:
           description: successful operation
@@ -251,7 +255,7 @@ paths:
     post:
       summary: Create an alert
       tags:
-        - Create or update alert definitions
+        - Create or update alerts
       parameters:
         - in: body
           name: body
@@ -282,10 +286,7 @@ paths:
             $ref: '#/definitions/PageResponseTriggeredAlert'
   /alerts/notification-endpoints:
     get:
-      summary: Retrieve all alert notification endpoints
-      description: Retrieve a list of all of the notification endpoints for your account.
-      tags:
-        - Retrieve alert definitions
+      summary: Get all of the account notification endpoints
       responses:
         '200':
           description: successful operation
@@ -304,8 +305,7 @@ paths:
           required: true
           type: integer
           format: int32
-          description: ID of the alert to be retrieved
-          example: ??example needed
+          description: Alert Id
       responses:
         '200':
           description: successful operation
@@ -313,16 +313,12 @@ paths:
             $ref: '#/definitions/AlertResponse'
     put:
       summary: Update an alert
-      tags:
-        - Create or update alert definitions
       parameters:
         - name: alertId
           in: path
           required: true
           type: integer
           format: int32
-          description: ID of the alert to be updated
-          example: ??example needed
         - in: body
           name: body
           required: true
@@ -341,8 +337,6 @@ paths:
           required: true
           type: integer
           format: int32
-          description: ID of the alert to be deleted
-          example: ??example needed
       responses:
         default:
           description: successful operation
@@ -432,12 +426,12 @@ definitions:
       ownerAccountId:
         type: integer
         format: int32
-        description: ID of the owner account
+        description: Id of the Owner Account
         example: 88765
       subAccountId:
         type: integer
         format: int32
-        description: ID of the sub account
+        description: Id of the Sub Account
         example: 89234
       searchable:
         $ref: "#/definitions/Searchable"
@@ -446,14 +440,12 @@ definitions:
       createdDate:
         type: string
         format: date-time
-        description: |
-          Date this account was created. Format: `{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z`
+        description: Date this account was created, as `{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z`
         example: 2018-02-22T09:14:53Z
       lastUpdatedDate:
         type: string
         format: date-time
-        description: |
-          Date this account was updated. Format: `{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z`
+        description: Date this account was updated, as `{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z`
         example: 2018-04-01T19:18:38Z
       lastUpdaterUserId:
         type: integer
@@ -505,7 +497,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/SharingAccount'
-        description: IDs of accounts that can access this account's data
+        description: Ids of accounts that can access this account's data
       utilizationSettings:
         $ref: '#/definitions/AccountUtilizationSettings'
   TimeBasedAccountCreationResponse:
@@ -514,7 +506,7 @@ definitions:
       accountId:
         type: integer
         format: int32
-        description: ID of the account
+        description: Account id
       accountToken:
         type: string
         description: Account token to be used for log shipping
@@ -551,7 +543,7 @@ definitions:
         items:
           type: integer
           format: int32
-        description: IDs of accounts that can access this account's data
+        description: Ids of accounts that can access this account's data
         example: [ 48672, 36259 ]
       docSizeSetting:
         $ref: '#/definitions/DocSizeSetting'
@@ -665,7 +657,7 @@ definitions:
         example: Error level logs
       description:
         type: string
-        description: Complete description of the alert
+        description: Longer, more complete description of the alert
         example: Capture ERROR level logs in the given time range
       query_string:
         type: string
@@ -673,7 +665,7 @@ definitions:
         example: loglevel:ERROR
       filter:
         type: string
-        description: Filter to be performed on `query_string`
+        description: ??description of FILTER
         example: {"bool":{"must":[{"match":{"type":"mytype"}}],"must_not":[]}}
       operation:
         type: string
@@ -684,18 +676,18 @@ definitions:
           - GREATER_THAN_OR_EQUALS
           - EQUALS
           - NOT_EQUALS
-        description: With `searchTimeFrameMinutes` and `??whatsTheOtherFieldHere`, sets the conditions for triggering this alert.
+        description: Mathematical evaluator, used in combination with array `severityThresholdTiers`.
         example: GREATER_THAN
       searchTimeFrameMinutes:
         type: integer
         format: int32
-        description: Evaluated time frame, in minutes. Used in combination with `operation` and `??whatsTheOtherFieldHere`.
+        description: Evaluated time frame, in minutes.
         example: 5
       notificationEmails:
         type: array
         items:
           type: string
-        description: Array of email addresses to receive notifications
+        description: Email addresses to receive notifications, as items in an array.
         example: [ "you@yourcompany.com", "them@yourcompany.com" ]
       isEnabled:
         type: boolean
@@ -704,11 +696,6 @@ definitions:
         type: integer
         format: int32
         minimum: 5
-        description: |
-          If this alert has been triggered: The amount of time, in minutes, until a notification will be sent to alert endpoints.
-
-          **Note:** This setting only affects notifications. If alert conditions are met, alerts will continue to be triggered and logged during the suppression period.
-        example: 10
       valueAggregationType:
         type: string
         enum:
@@ -718,8 +705,6 @@ definitions:
           - AVG
           - COUNT
           - NONE
-        description:
-        example:
       valueAggregationField:
         type: string
       groupByAggregationFields:
@@ -737,7 +722,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/SeverityThresholdTier'
-        description: Sets threshold values for high, medium, and low severity alerts.
   NotificationEndpointResponse:
     type: object
     properties:
@@ -765,12 +749,10 @@ definitions:
           - LOW
           - MEDIUM
           - HIGH
-        description: Severity level
         example: HIGH
       threshold:
         type: number
         format: double
-        description: Threshold for this severity
         example: 2.0
   TriggeredAlertsRequest:
     type: object
