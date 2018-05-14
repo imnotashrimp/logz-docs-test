@@ -525,25 +525,7 @@ ul.child > li {
 ul.child {
 }
 
-/* ===== THIS-PAGE TOC STYLING ===== */
-
-ul.tocify-header {
-  width: 200px;
-  padding: 0;
-}
-
-ul.tocify-header li {
-  margin-bottom: .5rem;
-  padding: 6px;
-}
-
-li.tocify-focus {
-  border-radius: 10px;
-  background-color: #009cbd33;
-  transition-duration: 0.5s;
-}
-
-/* ===== BREADCRUMBS & COMMUNITY BUTTONS ===== */
+/* ===== BREADCRUMBS & GITHUB BUTTONS ===== */
 
 div.breadcrumbs-container {
   grid-area: breadcrumbs;

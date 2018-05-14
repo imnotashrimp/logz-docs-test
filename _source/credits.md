@@ -7,7 +7,6 @@ collection: about
 ## Here's the open source stuff we used
 
 * Font Awesome 5 Free
-* tocify.js
 * jQuery
 * Jekyll
 * AnchorJS
