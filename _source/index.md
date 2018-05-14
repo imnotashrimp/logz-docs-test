@@ -6,7 +6,7 @@ menus:
   header:
     title: Docs Home
 ---
-{% if site.api_only == true %}
+{% if site.public == false %}
   <a href="{{ site.baseurl }}/developer-center/logzio-public-api.html">Logz.io API reference</a>
 {% else %}
   <div class="card">
