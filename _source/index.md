@@ -6,7 +6,9 @@ menus:
   header:
     title: Docs Home
 ---
-
+{% if site.api_only == true %}
+  <a href="{{ site.baseurl }}/developer-center/logzio-public-api.html">Logz.io API reference</a>
+{% else %}
   <div class="card">
     <a href="{{ site.baseurl }}/getting-started">
     <h5 class="card-title">Getting started</h5>
@@ -74,3 +76,4 @@ menus:
     </a>
   </div>
 </div>
+{% endif %}

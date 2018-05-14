@@ -9,10 +9,10 @@
 
   <nav class="site-links">
     <ul>
-      <li><a href="{{ site.baseurl }}/" target="_top">Docs Home</a></li>
+      {% if site.api_only == "true" %}<li><a href="{{ site.baseurl }}/" target="_top">Docs Home</a></li>{% endif %}
       <li><a href="{{ site.baseurl }}/developer-center/logzio-public-api.html" target="_top">API</a></li>
-      <li><a href="https://logz.io/blog/" target="_top">Blog</a></li>
-      <li><a href="https://support.logz.io/" target="_top">Support</a></li>
+      {% if site.api_only == "true" %}<li><a href="https://logz.io/blog/" target="_top">Blog</a></li>{% endif %}
+      {% if site.api_only == "true" %}<li><a href="https://support.logz.io/" target="_top">Support</a></li>{% endif %}
     </ul>
   </nav>
 
