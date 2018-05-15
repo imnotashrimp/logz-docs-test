@@ -15,8 +15,8 @@ description: >- # this means to ignore newlines until "baseurl:"
   Services: Log Analytics, DevOps Automation, Critical Event Prediction
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://affectionate-mccarthy-d5aefa.netlify.com" # the base hostname & protocol for your site, e.g. http://example.com
-public: false
-api_only: true
+public: true
+api_only: false
 
 # Social
 facebook_url: https://www.facebook.com/logz.io
