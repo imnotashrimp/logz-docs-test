@@ -71,11 +71,11 @@ x-tagGroups:
     tags:
       - Retrieve accounts
       - Create, update, or delete accounts
-  - name: Alerts
-    tags:
-      - Retrieve alert definitions
-      - Create or update alert definitions
-      - Retrieve triggered alerts
+  # - name: Alerts
+  #   tags:
+  #     - Retrieve alert definitions
+  #     - Create or update alert definitions
+  #     - Retrieve triggered alerts
   - name: Search
     tags:
       - Search logs
