@@ -1,0 +1,825 @@
+swagger: '2.0'
+schemes: [ https ]
+host: api.logz.io
+basePath: /v1
+produces: [ application/json ]
+consumes: [ application/json ]
+info:
+  description: |
+    # Introduction
+    This API is documented in **OpenAPI format**. You can browse the API documentation on this page, or you can [download](http://localhost:9000/swagger.yaml) the OpenAPI YAML file.
+
+    ### Updates and Improvements
+    We update this document regularly to reflect changes to the Logz.io API. If you'd like to suggest corrections or improvements to this document, please email us at [support@logz.io](mailto:support@logz.io).
+
+    # Authentication
+    The Logz.io API is available to Enterprise plan subscribers. You can create a new API key in your [account settings](https://app.logz.io/#/dashboard/settings/manage-accounts_). You can also set and revoke API permissions at any time.
+
+    If you don't have an Enterprise account, we encourage to sign up for a [free trial](https://logz.io/signup/freetrial.php).
+
+
+    # Todo
+    - [. ] define x-security definitions - getting api keys and permissions (see account settings page)
+    - [x] determine API URLs
+    - [x] API TOS and license
+    - [x] x-logo URL
+    - [. ] should we list more than just 200 codes?
+    - [x] code samples — let's start with cURL.
+    - [x] figure out the best way to organize this document - what are the use cases?
+    - [x] add example values
+
+  version: 1.0.0
+  title: Logzio API
+  # termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: help@logz.io
+    url: https://logz.io/
+  # x-logo:
+  #   url: 'https://logz.io/wp-content/themes/Avada-Child-Theme/images/logz-logo.svg'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+
+# There are 3 API key types.
+# - one API type requires a specific role to be set by Support. It's still X-API-KEY in the header
+# - most require X-API-KEY
+# - there's a third, older one that's deprecated (X-AUTH-TOKEN), but it's still used in older APIs
+securityDefinitions:
+  API key:
+    description: This is used in most of our endpoints. If no other security methods are used, this one wins.
+    type: apiKey
+    in: header
+    name: X-API-KEY
+  Deprecated API key:
+    description: This is our older form of generating a key. This is used in the Search API. It will be replaced by our new API key, but we continue to support it.
+    type: apiKey
+    in: header
+    name: X-AUTH-TOKEN
+security:
+  - API key: []
+
+tags:
+  - name: Retrieve accounts
+    description: Retreive partial or detailed account information
+  - name: Create, update, or delete accounts
+    description: Make a new account, or modify an existing account
+  - name: Retrieve alert definitions
+    description: Retrieve a list of alert definitions. Each alert definition in the list returns the alert query and settings.
+  - name: Retrieve triggered alerts
+    description: Retrieve a list of alerts triggered in your accounts. This list includes
+
+
+x-tagGroups:
+  - name: Accounts
+    tags:
+      - Retrieve accounts
+      - Create, update, or delete accounts
+  - name: Alerts
+    tags:
+      - Retrieve alerts
+      - Retrieve triggered alerts
+      - Create or update alert
+
+
+paths:
+  # ===== ACCOUNTS =====
+  /account-management/time-based-accounts:
+    get:
+      summary: Retrieve partial information on all time-based accounts
+      tags:
+        - Retrieve accounts
+      operationId: getAll
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TimeBasedAccount'
+      x-code-samples:
+      - lang: Shell
+        source: |
+          curl --request GET --url https://api.logz.io/v1/account-management/time-based-accounts --header 'X-API-TOKEN: {API key}'
+    post:
+      summary: Create a time-based account
+      tags:
+        - Create, update, or delete accounts
+      operationId: createTimeBasedAccount
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/TimeBasedAccountUpsertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/TimeBasedAccountCreationResponse'
+      x-code-samples:
+      - lang: Shell
+        source: |
+          curl -X POST \
+            https://api.logz.io/v1/account-management/time-based-accounts \
+            -H 'X-API-TOKEN: {API key}' \
+            -d '{
+            "email": "support@logz.io",
+            "accountName": "AWS Lambda svr 3",
+            "maxDailyGB": 5,
+            "retentionDays": 5,
+            "searchable": true,
+            "accessible": false,
+            "sharingObjectsAccounts": [
+              48672,
+              36259
+            ],
+            "docSizeSetting": true,
+            "utilizationSettings": {
+              "frequencyMinutes": 5,
+              "utilizationEnabled": true
+            }
+          }'
+  /account-management/time-based-accounts/detailed:
+    get:
+      summary: Retrieve detailed information on all time-based accounts
+      tags:
+        - Retrieve accounts
+      operationId: getAllDetailedTimeBasedAccount
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DetailedTimeBasedAccount'
+      x-code-samples:
+      - lang: Shell
+        source: |
+          curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/detailed -H 'X-API-TOKEN: {API key}'
+  /account-management/time-based-accounts/detailed/{id}:
+    get:
+      summary: Retrieve detailed information by account ID
+      tags:
+        - Retrieve accounts
+      operationId: getDetailedTimeBasedAccount
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+          description: Account id
+          x-example: 99999
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DetailedTimeBasedAccount'
+      x-code-samples:
+      - lang: Shell
+        source: "curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/detailed/99999 -H 'X-API-TOKEN: {API key}'"
+  /account-management/time-based-accounts/{id}:
+    get:
+      summary: Retrieve partial information by account ID
+      tags:
+        - Retrieve accounts
+      operationId: get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+          description: Account id
+          x-example: 99999
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/TimeBasedAccount'
+      x-code-samples:
+      - lang: Shell
+        source: "curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/99999 -H 'X-API-TOKEN: {API key}'"
+    put:
+      summary: Update a time-based account
+      tags:
+        - Create, update, or delete accounts
+      operationId: updateTimeBasedAccount
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+          description: Account id
+          x-example: 99999
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/TimeBasedAccountUpsertRequest'
+          description: ??
+      responses:
+        default:
+          description: successful operation
+    delete:
+      summary: Delete a time-based account
+      tags:
+        - Create, update, or delete accounts
+      operationId: deleteTimeBasedAccount
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        default:
+          description: successful operation
+
+  # ===== ALERTS =====
+  /alerts:
+    get:
+      summary: Retrieve all alerts
+      tags:
+        - Retrieve alerts
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AlertResponse'
+    post:
+      summary: Create an alert
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/AlertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/AlertResponse'
+  /alerts/triggered-alerts:
+    post:
+      summary: Retrieve triggered alerts
+      description: Retrieve a paginated, filtered list of triggered alerts
+      tags:
+        - Retrieve triggered alerts
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/TriggeredAlertsRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/PageResponseTriggeredAlert'
+  /alerts/notification-endpoints:
+    get:
+      summary: Get all of the account notification endpoints
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/NotificationEndpointResponse'
+  /alerts/{alertId}:
+    get:
+      summary: Retrieve alert by ID
+      tags:
+        - Retrieve alerts
+      parameters:
+        - name: alertId
+          in: path
+          required: true
+          type: integer
+          format: int32
+          description: Alert Id
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/AlertResponse'
+    put:
+      summary: Update an alert
+      parameters:
+        - name: alertId
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/AlertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/AlertResponse'
+    delete:
+      summary: Delete an alert
+      parameters:
+        - name: alertId
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        default:
+          description: successful operation
+
+definitions:
+  # ===== ACCOUNTS DEFINITIONS =====
+  AccountUtilizationSettings:
+    type: object
+    properties:
+      frequencyMinutes:
+        type: integer
+        format: int32
+        description: How often utilization metrics are written to logs, in minutes
+      utilizationEnabled:
+        type: boolean
+        description: If utilization metrics are written to logs, `true`. Otherwise, `false`.
+    example:
+      frequencyMinutes: 5
+      utilizationEnabled: true
+  AccountView:
+    type: object
+    properties:
+      accountId:
+        type: integer
+        format: int32
+      accountName:
+        type: string
+      accountToken:
+        type: string
+      active:
+        type: boolean
+      esIndexPrefix:
+        type: string
+      maxDailyGB:
+        type: number
+        format: float
+      retentionDays:
+        type: integer
+        format: int32
+        description: Data retention time, in days
+  DailyUsagesList:
+    type: object
+    properties:
+      usage:
+        type: array
+        items:
+          $ref: '#/definitions/LHDailyCount'
+  DetailedTimeBasedAccount:
+    type: object
+    properties:
+      subAccountRelation:
+        $ref: '#/definitions/SubAccountRelation'
+      account:
+        $ref: '#/definitions/AccountView'
+      sharingObjectsAccounts:
+        type: array
+        items:
+          $ref: '#/definitions/AccountView'
+      utilizationSettings:
+        $ref: '#/definitions/AccountUtilizationSettings'
+      dailyUsagesList:
+        $ref: '#/definitions/DailyUsagesList'
+      docSizeSetting:
+        $ref: '#/definitions/DocSizeSetting'
+  LHDailyCount:
+    type: object
+    properties:
+      date:
+        type: integer
+        format: int64
+      bytes:
+        type: integer
+        format: int64
+  SharingAccount:
+    type: object
+    properties:
+      accountId:
+        type: integer
+        format: int32
+        example: 88888
+      accountName:
+        type: string
+        example: dev group 8
+  SubAccountRelation:
+    type: object
+    properties:
+      ownerAccountId:
+        type: integer
+        format: int32
+        description: Id of the Owner Account
+        example: 88765
+      subAccountId:
+        type: integer
+        format: int32
+        description: Id of the Sub Account
+        example: 89234
+      searchable:
+        $ref: "#/definitions/Searchable"
+      accessible:
+        $ref: "#/definitions/Accessible"
+      createdDate:
+        type: string
+        format: date-time
+        description: Date this account was created, as `{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z`
+        example: 2018-02-22T09:14:53Z
+      lastUpdatedDate:
+        type: string
+        format: date-time
+        description: Date this account was updated, as `{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z`
+        example: 2018-04-01T19:18:38Z
+      lastUpdaterUserId:
+        type: integer
+        format: int32
+        description: Id of the user who last updated this account
+        example: 33342
+      type:
+        type: string
+        enum:
+          - OWNER_ACCOUNT
+          - SUB_ACCOUNT
+          - TIMELESS_INDEX
+          - ALL
+        description: Account type
+        example: SUB_ACCOUNT
+  TimeBasedAccount:
+    type: object
+    properties:
+      accountId:
+        type: integer
+        format: int32
+        description: Account id
+        example: 99999
+      accountName:
+        type: string
+        description: Account name
+        example: 404 errors
+      accountToken:
+        type: string
+        description: Account token to be used for log shipping
+        example: f483abe93b
+      maxDailyGB:
+        type: number
+        format: float
+        description: Maximum daily usage, in GB
+        example: 100
+      retentionDays:
+        type: integer
+        format: int32
+        description: Data retention time, in days
+        example: 5
+      searchable:
+        $ref: "#/definitions/Searchable"
+      accessible:
+        $ref: "#/definitions/Accessible"
+      docSizeSetting:
+        $ref: '#/definitions/DocSizeSetting'
+      sharingObjectsAccounts:
+        type: array
+        items:
+          $ref: '#/definitions/SharingAccount'
+        description: Ids of accounts that can access this account's data
+      utilizationSettings:
+        $ref: '#/definitions/AccountUtilizationSettings'
+  TimeBasedAccountCreationResponse:
+    type: object
+    properties:
+      accountId:
+        type: integer
+        format: int32
+        description: Account id
+      accountToken:
+        type: string
+        description: Account token to be used for log shipping
+  TimeBasedAccountUpsertRequest:
+    type: object
+    required:
+      - sharingObjectsAccounts
+    properties:
+      email:
+        type: string
+        pattern: "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$"
+        description: Account administrator's email address
+        example: support@logz.io
+      accountName:
+        type: string
+        description: Name of the new account
+        example: AWS Lambda svr 3
+      maxDailyGB:
+        type: number
+        format: float
+        description: Maximum daily usage, in GB
+        example: 5
+      retentionDays:
+        type: integer
+        format: int32
+        description: Data retention time, in days
+        example: 5
+      searchable:
+        $ref: "#/definitions/Searchable"
+      accessible:
+        $ref: "#/definitions/Accessible"
+      sharingObjectsAccounts:
+        type: array
+        items:
+          type: integer
+          format: int32
+        description: Ids of accounts that can access this account's data
+        example: [ 48672, 36259 ]
+      docSizeSetting:
+        $ref: '#/definitions/DocSizeSetting'
+      utilizationSettings:
+        $ref: '#/definitions/AccountUtilizationSettings'
+  Searchable:
+    type: boolean
+    description: If other accounts can search this account's logs, `true`. Otherwise, `false`.
+    example: true
+  Accessible:
+    type: boolean
+    description: If other accounts can access this account, `true`. Otherwise, `false`.
+    example: false
+  DocSizeSetting:
+    type: boolean
+    description: If document size is attached to logs, `true`. Otherwise, `false`.
+    example: true
+
+  # ===== ALERTS DEFINITIONS =====
+  AlertResponse:
+    type: object
+    properties:
+      alertId:
+        type: integer
+        format: int32
+        example: 88888
+      lastUpdated:
+        type: string
+        format: date-time
+        example: 2017-07-16'T'12:22:28.301'Z'
+      lastUpdatedBy:
+        type: string
+        example: myuser@my.organization.com
+      title:
+        type: string
+        example: Error level logs
+      description:
+        type: string
+        example: Capture ERROR level logs in the given time range
+      query_string:
+        type: string
+        example: loglevel:ERROR
+      filter:
+        type: string
+        example: {\"bool\":{\"must\":[{\"match\":{\"type\":\"mytype\"}}],\"must_not\":[]}}
+      operation:
+        type: string
+        enum:
+          - LESS_THAN
+          - GREATER_THAN
+          - LESS_THAN_OR_EQUALS
+          - GREATER_THAN_OR_EQUALS
+          - EQUALS
+          - NOT_EQUALS
+        example: GREATER_THAN
+      searchTimeFrameMinutes:
+        type: integer
+        format: int32
+        example: 5
+      notificationEmails:
+        type: array
+        items:
+          type: string
+        example: [ "me@myorganization.com", "us@myorganization.com", "them@myorganization.com" ]
+      isEnabled:
+        type: boolean
+        example: true
+      suppressNotificationsMinutes:
+        type: integer
+        format: int32
+        example: 0
+      valueAggregationType:
+        type: string
+        enum:
+          - SUM
+          - MIN
+          - MAX
+          - AVG
+          - COUNT
+          - NONE
+        example: NONE
+      valueAggregationField:
+        type: string
+        example: null
+      groupByAggregationFields:
+        type: array
+        items:
+          type: string
+        example: null
+      alertNotificationEndpoints:
+        type: array
+        items:
+          type: integer
+          format: int32
+        example: [ 0 ]
+      severityThresholdTiers:
+        type: array
+        items:
+          $ref: '#/definitions/SeverityThresholdTier'
+  AlertRequest:
+    type: object
+    required:
+      - notificationEmails
+      - query_string
+      - severity
+      - title
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+      query_string:
+        type: string
+      filter:
+        type: string
+      operation:
+        type: string
+        enum:
+          - LESS_THAN
+          - GREATER_THAN
+          - LESS_THAN_OR_EQUALS
+          - GREATER_THAN_OR_EQUALS
+          - EQUALS
+          - NOT_EQUALS
+      searchTimeFrameMinutes:
+        type: integer
+        format: int32
+      notificationEmails:
+        type: array
+        items:
+          type: string
+      isEnabled:
+        type: boolean
+        default: true
+      suppressNotificationsMinutes:
+        type: integer
+        format: int32
+        minimum: 5
+      valueAggregationType:
+        type: string
+        enum:
+          - SUM
+          - MIN
+          - MAX
+          - AVG
+          - COUNT
+          - NONE
+      valueAggregationField:
+        type: string
+      groupByAggregationFields:
+        type: array
+        items:
+          type: string
+        maxItems: 3
+        minItems: 0
+      alertNotificationEndpoints:
+        type: array
+        items:
+          type: integer
+          format: int32
+      severityThresholdTiers:
+        type: array
+        items:
+          $ref: '#/definitions/SeverityThresholdTier'
+  NotificationEndpointResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      type:
+        type: string
+      description:
+        type: string
+      title:
+        type: string
+      createdDate:
+        type: string
+        format: date-time
+      modifiedDate:
+        type: string
+        format: date-time
+  SeverityThresholdTier:
+    type: object
+    properties:
+      severity:
+        type: string
+        enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+        example: HIGH
+      threshold:
+        type: number
+        format: double
+        example: 2.0
+  TriggeredAlertsRequest:
+    type: object
+    properties:
+      from:
+        type: integer
+        format: int32
+        minimum: 0
+        description: First record to be returned. First record is `0`.
+        example: 5
+      search:
+        type: string
+        description: Partial or complete alert name to filter by. Not case-sensitive.
+        example:
+      severity:
+        type: array
+        items:
+          type: string
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
+        description: Severity of the triggered alerts, evaluated using 'or' logic. For example, `[ "MEDIUM", "LOW" ]` returns triggered alerts with medium and low severity.
+        example: [ "MEDIUM", "LOW" ]
+      size:
+        type: integer
+        format: int32
+        minimum: 1
+        description: Size of page to return, in number of records ??confirm this is true
+        example: 8
+      sortBy:
+        type: string
+        enum:
+          - DATE
+          - SEVERITY
+        description: Sort this list by `DATE` or `SEVERITY`. Used in combination with `sortOrder`.
+        example: SEVERITY
+      sortOrder:
+        type: string
+        enum:
+          - ASC
+          - DESC
+        description: |
+          Used in combination with `sortBy`.
+
+          If sorting by `DATE`, use `ASC` to sort from earliest to latest. Otherwise, use `DESC`.
+
+          If sorting by `SEVERITY`, use `ASC` to sort from low to high. Otherwise, use `DESC`.
+        example: ASC
+  PageResponseTriggeredAlert:
+    type: object
+    properties:
+      from:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 2147483647
+      pageSize:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 500
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/TriggeredAlert'
+      total:
+        type: integer
+        format: int64
+        minimum: 0
+        maximum: 500
+  TriggeredAlert:
+    type: object
+    properties:
+      alertId:
+        type: integer
+        format: int32
+      eventDate:
+        type: integer
+        format: int64
+      name:
+        type: string
+      severity:
+        type: string
+        enum:
+          - LOW
+          - MEDIUM
+          - HIGH

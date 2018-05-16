@@ -1,35 +1,21 @@
-<footer class="site-footer h-card"><!--
-  <data class="u-url" href="{{ "/" | relative_url }}"></data>
-
-  <div class="wrapper">
-
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">
-            {%- if site.author -%}
-              {{ site.author | escape }}
-            {%- else -%}
-              {{ site.title | escape }}
-            {%- endif -%}
-            </li>
-            {%- if site.email -%}
-            <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-            {%- endif -%}
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-2">
-        {%- include social.html -%}
-      </div>
-
-      <div class="footer-col footer-col-3">
-        <p>{{- site.description | escape -}}</p>
-      </div>
-    </div>
-
+<footer>
+  <div class="copyright-footer">
+    <ul class="horizontal-list">
+      <li>&copy; 2018 Logz.io, all rights reserved.</li>
+      <li><a href="https://logz.io/about-us/privacy-policy/" target="_top">Privacy policy</a></li>
+      <li><a href="https://logz.io/about-us/terms-of-use/" target="_top">Terms of use</a></li>
+      {% if site.public == true %}<li><a href="{{ site.baseurl }}/about/credits.html" target="_top">Credits & contributors</a></li>{% endif %}
+    </ul>
   </div>
--->
+
+  <div class="social-icons">
+    <ul class="horizontal-list">
+      <li class="icon"><a href="{{ site.facebook_url }}" target="_top"><i class="fab fa-facebook-f"></i></a></li>
+      <li class="icon"><a href="{{ site.twitter_url }}" target="_top"><i class="fab fa-twitter"></i></a></li>
+      <li class="icon"><a href="{{ site.youtube_url }}" target="_top"><i class="fab fa-youtube"></i></a></li>
+      <li class="icon"><a href="{{ site.google_plus_url }}" target="_top"><i class="fab fa-google-plus-g"></i></a></li>
+      <li class="icon"><a href="{{ site.linkedin_url }}" target="_top"><i class="fab fa-linkedin-in"></i></a></li>
+      <li class="icon"><a class="atom-feed" href="{{ site.baseurl }}/feed.xml" target="_top"><i class="fas fa-rss-square"></i></a></li>
+    </ul>
+  </div>
 </footer>

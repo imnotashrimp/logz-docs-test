@@ -5,15 +5,13 @@
 
   <body>
 
-<div class="big-container">
+<div class="home-page-container">
   {% include header.html %}
-    <div class="toc-container full-width">
-      <div class="algolia-search-widget">
+      <div class="algolia-search-widget home-page">
         <div id="search-searchbar"></div>
         <div id="search-hits" class="search-hits-show"></div>
       </div>
       {% include algolia.html %}
-    </div> <!-- /.toc-container -->
 
     <div class="body-container card-container full-width">
         {{ content }}

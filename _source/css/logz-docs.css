@@ -9,18 +9,61 @@ div.big-container {
   display: grid;
   grid-template-columns: 300px 500px auto;
   grid-template-rows: auto, auto, auto;
+  grid-template-areas:
+    "toc breadcrumbs breadcrumbs"
+    "toc content blank"
+    "footer footer footer";
   grid-column-gap: 20px;
   grid-row-gap: 20px;
   justify-content: start;
   align-items: start;
 }
 
-header.site-header {
-  grid-column: 1 / -1;
+div.home-page-container {
+  grid-template-rows: repeat(4, auto);
+  grid-template-areas:
+    "search"
+    "cards"
+    "footer";
+}
+
+header {
+  /* flex */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  /* position & style */
+  position: sticky;
+  z-index: 100;
+  top: 0px;
+  width: auto;
+  margin: 0 auto 1rem auto;
+  height: 60px;
+  background-color: white;
+}
+
+footer {
+  /* flex */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  /* position & style */
+  width: 100%;
+  max-width: 1240px !important;
+  margin: 1rem auto 0 auto;
+  font-size: .8rem;
+  border-top: 1px solid #dddddd;
+  padding-top: 10px;
 }
 
 div.toc-container {
-  grid-column: 1 / 1;
+  grid-area: toc;
 }
 
 div.full-width {
@@ -28,27 +71,52 @@ div.full-width {
 }
 
 div.body-container {
-  grid-column: 2 / 2;
+  grid-area: content;
+  max-width: 900px;
+  margin: auto;
 }
 
 div.card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-template-rows: auto;
-  align-items: strech;
+  align-items: stretch;
   grid-gap: 10px;
 }
 
+div.algolia-search-widget.home-page {
+  grid-area: search;
+}
+
 /* ===== DOCS HOME CARDS ===== */
+div.half-card-container {
+  display: grid;
+  border: none;
+  grid-row-gap: 10px;
+  grid-template-rows: 1fr 1fr;
+  grid-row: span 2;
+}
+
 div.card {
   max-width: 100%;
   border: 1px solid black;
   grid-row: span 2;
   padding: 10px;
+  text-align: center;
 }
 
 div.half-card {
   grid-row: span 1;
+}
+
+div.card p {
+  text-align: left;
+  font-size: .85rem;
+}
+
+img.card-img-top {
+  width: 100px;
+  margin: 0 auto;
 }
 
 /* ===== BASE STYLES ===== */
@@ -68,7 +136,7 @@ body, h6, h5 {
 
 h1, h2, h3, h4, h5, .site-title, .post-title {
   font-family: 'Titillium Web', sans-serif;
-  font-weight: 400; /* neutral weight */
+  font-weight: 400;
   padding: 0;
   color: #296386;
   margin-top: 3rem;
@@ -105,11 +173,11 @@ h5 {
 }
 
 h6 { /* We use h6 to introduce procedures. If you need a regular heading, use h5 */
-  font-weight: 700; /* bold */
+  font-weight: 700;
   color: #757c86;
 }
 
-h6:before { /* '>' to indicate a procedure */
+h6:before {
   content: "> "
 }
 
@@ -137,7 +205,6 @@ ol ol {
 }
 
 a, a:hover {
-  /* color: #296386; */
   color: #009cbd;
   text-decoration: none;
 }
@@ -145,7 +212,6 @@ a, a:hover {
 p code {
   border: 1px solid navy;
   color: navy;
-  /* background-color: lightskyblue; */
   padding-left: .25rem;
   padding-right: .25rem;
   margin-left: .1rem;
@@ -160,6 +226,17 @@ div.highlight *, p code {
 pre.highlight {
   margin: 0;
   padding: .5rem;
+}
+
+ul.horizontal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+ul.horizontal-list li {
+  display: inline;
 }
 
 /* ===== FEATURE BOXES ===== */
@@ -335,10 +412,56 @@ div.info-box.tip > p::before {
 
 /* ===== SITE HEADER ===== */
 
-/* header.site-header {
-  border-bottom: 3px solid rgb(41, 99, 134) !important;
-  padding: 15px !important;
-} */
+nav.site-links, nav.site-actions {
+  font-size: .9rem;
+}
+
+nav.site-links li, nav.site-actions li {
+  display: inline-block;
+  padding: .25rem;
+}
+
+nav.site-links li {
+  margin: auto 1rem;
+  width: 140px;
+}
+
+nav.site-actions li {
+  margin: auto .25rem;
+}
+
+nav.site-links a, nav.site-actions a {
+  margin: 0;
+  padding: 0;
+  display: block;
+  text-align: center;
+}
+
+li.free-trial-btn a {
+  background-color: rgb(255, 192, 4);
+  color: white;
+  padding: 6px 20px;
+  border-radius: 3px;
+}
+
+/* ===== SITE FOOTER ===== */
+
+footer * {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+footer li {
+  margin-right: 1.25rem;
+}
+
+div.social-icons li.icon {
+  font-size: 1.25rem;
+}
+
+a.atom-feed {
+  color: orange;
+}
 
 /* ===== ALL-PAGES TOC STYLING ===== */
 
@@ -372,12 +495,11 @@ ul.child > li {
   margin-bottom: .5rem;
 }
 
-.all-pages-toc, .all-pages-toc a/*, .this-page-toc, .this-page-toc a */{
+.all-pages-toc, .all-pages-toc a{
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   line-height: 1.25rem;
   color: white;
-  /* color: #757c86; */
 }
 
 /* mark the active page */
@@ -386,7 +508,6 @@ ul.child > li {
   color: white;
 }
 
-/* remove bullets */
 .all-pages-toc ul, .this-page-toc ul {
   list-style: none;
   width: 200px;
@@ -414,54 +535,37 @@ li.tocify-focus {
   transition-duration: 0.5s;
 }
 
-/* ===== BREADCRUMBS & COMMUNITY BUTTONS ===== */
+/* ===== BREADCRUMBS & GITHUB BUTTONS ===== */
 
-nav.breadcrumbs ul.breadcrumb, div.community-buttons ul {
-  margin-left: 0;
-  margin-top: 0;
-  padding: 0;
+div.breadcrumbs-container {
+  grid-area: breadcrumbs;
+
+  /*  flex */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  /* position & style */
+  width: 100%;
+  margin: 0 auto;
   font-size: .8rem;
-  margin-bottom: 1rem;
-  list-style: none;
-  background-color: white;
-}
-
-nav.breadcrumbs li.breadcrumb::after, div.community-buttons li::after {
-   content: "";
-   display: table;
-   clear: both;
-}
-
-nav.breadcrumbs li.breadcrumb-item, div.community-buttons li {
-   float: left;
 }
 
 nav.breadcrumbs li.breadcrumb-item+.breadcrumb-item::before {
-   display: inline-block;
    padding-right: 0.3rem;
    padding-left: 0.3rem;
    content: "/";
 }
 
-div.community-buttons {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  display: block;
-  clear: both;
+div.github-icons li {
+  margin-right: .75rem;
 }
 
-div.community-buttons li+li::before {
-  display: inline-block;
-  padding-right: 0.1rem;
-  padding-left: 0.1rem;
-  content: "";
-}
-
-a.atom-feed {
-  font-size: 18px;
-  color: orange;
+div.github-icons a svg {
+  vertical-align: text-bottom;
+  fill: currentColor;
 }
 
 /* ===== SEARCH ===== */

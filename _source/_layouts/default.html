@@ -5,8 +5,8 @@
 
   <body>
 
+    {% include header.html %}
 <div class="big-container">
-  {% include header.html %}
     <div class="toc-container">
       <div class="algolia-search-widget">
         <div id="search-searchbar"></div>
@@ -16,13 +16,13 @@
       {% include left-toc.html %}
     </div> <!-- /.toc-container -->
 
+    {% include breadcrumbs.html %}
+
     <div class="body-container">
       <h1 class="post-title">
         {{ page.title | escape }}
       </h1>
       <div class="article-info">
-        {%- capture time -%}{{ content | reading_time }}{%- endcapture -%}
-        <span class="reading-time"><i class="far fa-clock"></i>{{ time }} min</span>
         {%- if page.contributors -%}
           <span class="contributor-list"><i class="fas fa-users"></i>
             {%- for contributor in page.contributors -%}
@@ -32,7 +32,6 @@
             {%- endfor -%}
           </span>
         {%- endif -%}
-        {% include community.html %}
       </div>
 
       <main class="page-content" aria-label="Content">
@@ -45,8 +44,8 @@
 
     </div> <!-- /.body-container -->
     {% include anchorjs.html %}
-    {% include footer.html %}
   </div> <!-- /div.big-container -->
+  {% include footer.html %}
   </body>
 
 </html>
