@@ -357,9 +357,88 @@ paths:
       summary: Run an Elasticsearch query
       tags:
         - Search logs
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            required:
+              - query
+            properties:
+              from:
+                type: number
+                default: 0
+                description: ??description
+              size:
+                type: number
+                description: Number of results to return
+                default: 10
+              sort:
+                type: array
+                description: Array that allows sorting by specific fields. Each array item contains a field name and sort parameters. See [Elasticsearch Sort](https://www.elastic.co/guide/en/elasticsearch/reference/5.5/search-request-sort.html) for more information.
+                items:
+                  type: object
+              _source:
+                type: array
+                description: >-
+                  * _Option 1:_ A single item to say whether you want to return the `_source` field.
+
+                  * _Option 2:_ An array of fields to return.
+                items:
+                  - type: boolean
+                    description: To return the `_source` field, `true`. Otherwise, `false`.
+                    example: true
+                  - type: string
+                    description: Fields to return.
+              post_filter:
+                type: object
+              # aggs:
+              # aggregations:
       responses:
-        '200':
-          description: successful operation
+        200:
+          description: successful query
+          schema:
+            type: object
+            example: { "hits": { "total": 339604, "max_score": 0, "hits": [] }, "aggregations": { "byType": { "doc_count_error_upper_bound": 0, "sum_other_doc_count": 44879, "buckets": [ { "key": "web-app", "doc_count": 163690 }, { "key": "core-service", "doc_count": 64893 } ] } } }
+        400:
+          description: invalid query
+          schema:
+            type: string
+            description: >-
+              Possible responses:
+                * `Found JSON elements which are not allowed ...`
+                * `... query_string.allow_leading_wildcard not allowed to be true`
+                * `... 'wildcard' queries are not allowed to start with '*' or '?'`
+                * `... contains a wildcard search with leading wildcard which is not allowed ...`
+                * `Query has failed. Elasticsearch Response: ...`
+                * `Query syntax (in 'query' field) is invalid: ...`
+                * `This search can't be executed: ... Please contact customer support for more details`
+            example: Found JSON elements which are not allowed ...
+        403:
+          description: access forbidden
+          schema:
+            type: string
+            description: >-
+              `Your account is not allowed to use Search API. Please contact support/sales to enable this feature for you`
+            example: Your account is not allowed to use Search API. Please contact support/sales to enable this feature for you
+        429:
+          description: rate limit exceeded
+          schema:
+            type: string
+            description: >-
+              Possible responses:
+                * `Exceeded your account rate limit of searches`
+                * `Your account is allowed to run up to ... concurrent queries via the API`
+            example: Exceeded your account rate limit of searches
+        503:
+          description: service unavailable
+          schema:
+            type: string
+            description: >-
+              `Our service is temporarily unavailable.`
+            example: Our service is temporarily unavailable.
+
 
 definitions:
   # ===== ACCOUNTS DEFINITIONS =====
