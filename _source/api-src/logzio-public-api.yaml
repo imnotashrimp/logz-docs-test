@@ -15,7 +15,7 @@ info:
     We update this document regularly to reflect changes to the Logz.io API. If you'd like to suggest corrections or improvements to this document, please email us at [support@logz.io](mailto:support@logz.io) or click **Edit** at the top of this page.
 
     # Authentication and rate limiting
-    
+
     <!-- ReDoc-Inject: <security-definitions> -->
 
     The Logz.io API is available to Enterprise plan subscribers. You can create a new API key in your [account settings](https://app.logz.io/#/dashboard/settings/manage-accounts_). You can also set and revoke API permissions at any time.
