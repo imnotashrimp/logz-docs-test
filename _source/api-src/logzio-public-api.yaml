@@ -7,20 +7,21 @@ consumes: [ application/json ]
 info:
   description: |
     # Introduction
-    This API is documented in **OpenAPI format**. You can browse the API documentation on this page, or you can [download](http://localhost:9000/swagger.yaml) the OpenAPI YAML file.
 
-    ### Updates and Improvements
-    We update this document regularly to reflect changes to the Logz.io API. If you'd like to suggest corrections or improvements to this document, please email us at [support@logz.io](mailto:support@logz.io).
+    This API is documented using the **OpenAPI 2.0** specification. You can browse the API documentation on this page, or you can download the specification file.
 
-    # Authentication
+    ### Updates and improvements
+
+    We update this document regularly to reflect changes to the Logz.io API. If you'd like to suggest corrections or improvements to this document, please email us at [support@logz.io](mailto:support@logz.io) or click **Edit** at the top of this page.
+
+    # Authentication and rate limiting
+    
+    <!-- ReDoc-Inject: <security-definitions> -->
+
     The Logz.io API is available to Enterprise plan subscribers. You can create a new API key in your [account settings](https://app.logz.io/#/dashboard/settings/manage-accounts_). You can also set and revoke API permissions at any time.
 
     If you don't have an Enterprise account, we encourage you to sign up for a [free trial](https://logz.io/signup/freetrial.php).
 
-
-    # Todo
-    - [. ] define x-security definitions - getting api keys and permissions (see account settings page)
-    - [. ] should we list more than just 200 codes?
 
   version: 1.0.0
   title: Logzio API
@@ -28,27 +29,16 @@ info:
   contact:
     email: help@logz.io
     url: https://logz.io/
-  # x-logo:
-  #   url: 'https://logz.io/wp-content/themes/Avada-Child-Theme/images/logz-logo.svg'
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 
-# There are 3 API key types.
-# - one API type requires a specific role to be set by Support. It's still X-API-KEY in the header
-# - most require X-API-KEY
-# - there's a third, older one that's deprecated (X-AUTH-TOKEN), but it's still used in older APIs
 securityDefinitions:
   API key:
     description: This is used in most of our endpoints. If no other security methods are used, this one wins.
     type: apiKey
     in: header
     name: X-API-KEY
-  Deprecated API key:
-    description: This is our older form of generating a key. This is used in the Search API. It will be replaced by our new API key, but we continue to support it.
-    type: apiKey
-    in: header
-    name: X-AUTH-TOKEN
 security:
   - API key: []
 
