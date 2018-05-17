@@ -59,17 +59,19 @@ tags:
   - name: Create, update, or delete accounts
     description: Make a new account, or modify an existing account
 
-# ::::: ALERTS TAGS
+# ::::: TRIGGERS - ALERTS TAGS
   - name: Retrieve alert definitions
-    description: Retrieve a list of alert definitions. Each alert definition in the list returns the alert query and settings.
-  - name: Retrieve triggered alerts
-    description: Retrieve a list of alerts triggered in your accounts.
-  - name: Create or update alerts
-    description: Create or update alert definitions
+    description: Retrieve a list of alert definitions. Each item in the list returns the alert query and settings.
+  # - name: Retrieve triggered alerts
+  #   description: Retrieve a list of alerts triggered in your accounts.
+  - name: Create, update, or delete alert definitions
+    description: Make a new alert definition, or modify an existing alert definition
 
-# ::::: OPTIMIZER TAGS
-  - name: Retrieve Optimizer definitions
-    description: Retrieve a list of Optimizer definitions. Each Optimizer definition in the list returns the Optimizer query and settings.
+# ::::: TRIGGERS - OPTIMIZER TAGS
+  - name: Retrieve optimizer definitions
+    description: Retrieve a list of optimizer definitions. Each item in the list returns the optimizer query and settings.
+  - name: Create, update, or delete optimizer definitions
+    description: Make a new optimizer definition, or modify an existing optimizer definition
 
 # ::::: SEARCH TAGS
   - name: Search logs
@@ -83,11 +85,12 @@ x-tagGroups:
   - name: Alerts
     tags:
       - Retrieve alert definitions
-      - Create or update alert definitions
-  #     - Retrieve triggered alerts
-  - name: Optimizer
+      # - Retrieve triggered alerts
+      - Create, update, or delete alert definitions
+  - name: Optimizers
     tags:
-      - Retrieve Optimizer definitions
+      - Retrieve optimizer definitions
+      - Create, update, or delete optimizer definitions
   - name: Search
     tags:
       - Search logs
@@ -452,7 +455,7 @@ paths:
               `Our service is temporarily unavailable.`
             example: Our service is temporarily unavailable.
 
-# ::::: TRIGGERS
+# ::::: TRIGGERS (ALERTS & OPTIMIZERS)
   /triggers/alerts/{id}:
     get:
       operationId: getAlert
@@ -474,7 +477,7 @@ paths:
       operationId: updateAlert
       summary: Update an alert
       tags:
-        - Create or update alert definitions
+        - Create, update, or delete alert definitions
       parameters:
         - in: body
           name: body
@@ -492,10 +495,9 @@ paths:
           description: successful operation
     delete:
       operationId: deleteAlert
-      consumes:
-        - application/json
-      produces:
-        - application/json
+      summary: Delete an alert
+      tags:
+        - Create, update, or delete alert definitions
       parameters:
         - name: id
           in: path
@@ -518,74 +520,39 @@ paths:
   /triggers/alerts:
     get:
       operationId: getAllAlerts
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: X-API-TOKEN
-          in: header
-          description: Authentication Api Token
-          required: false
-          type: string
-        - name: X-AUTH-TOKEN
-          in: header
-          description: Authentication User Session
-          required: false
-          type: string
+      summary: Retrieve all alert definitions
+      tags:
+        - Retrieve alert definitions
       responses:
         default:
           description: successful operation
     post:
       operationId: createAlert
-      consumes:
-        - application/json
-      produces:
-        - application/json
+      summary: Create a new alert definition
+      tags:
+        - Create, update, or delete alert definitions
       parameters:
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/SearchBasedTrigger'
-        - name: X-API-TOKEN
-          in: header
-          description: Authentication Api Token
-          required: false
-          type: string
-        - name: X-AUTH-TOKEN
-          in: header
-          description: Authentication User Session
-          required: false
-          type: string
       responses:
         default:
           description: successful operation
   /triggers/alerts/filtered-list:
     post:
-      summary: Get filtered paged alerts list
+      summary: Retrieve filtered list of alert definitions
       description: ''
       operationId: getFilteredAlerts
-      consumes:
-        - application/json
-      produces:
-        - application/json
+      tags:
+        - Retrieve alert definitions
       parameters:
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/FilteredAlertsRequest'
-        - name: X-API-TOKEN
-          in: header
-          description: Authentication Api Token
-          required: false
-          type: string
-        - name: X-AUTH-TOKEN
-          in: header
-          description: Authentication User Session
-          required: false
-          type: string
       responses:
         '200':
           description: successful operation
@@ -594,26 +561,15 @@ paths:
   /triggers/{id}:
     get:
       operationId: getTrigger
-      consumes:
-        - application/json
-      produces:
-        - application/json
+      summary: Retrieve optimizer by ID
+      tags:
+        - Retrieve optimizer definitions
       parameters:
         - name: id
           in: path
           required: true
           type: integer
           format: int32
-        - name: X-API-TOKEN
-          in: header
-          description: Authentication Api Token
-          required: false
-          type: string
-        - name: X-AUTH-TOKEN
-          in: header
-          description: Authentication User Session
-          required: false
-          type: string
       responses:
         '200':
           description: successful operation
@@ -622,10 +578,9 @@ paths:
           headers: {}
     put:
       operationId: updateTrigger
-      consumes:
-        - application/json
-      produces:
-        - application/json
+      summary: Update an optimizer
+      tags:
+        - Create, update, or delete optimizer definitions
       parameters:
         - in: body
           name: body
@@ -637,16 +592,6 @@ paths:
           required: true
           type: integer
           format: int32
-        - name: X-API-TOKEN
-          in: header
-          description: Authentication Api Token
-          required: false
-          type: string
-        - name: X-AUTH-TOKEN
-          in: header
-          description: Authentication User Session
-          required: false
-          type: string
       responses:
         '200':
           description: successful operation
@@ -655,26 +600,15 @@ paths:
           headers: {}
     delete:
       operationId: deleteTrigger
-      consumes:
-        - application/json
-      produces:
-        - application/json
+      summary: Delete an optimizer
+      tags:
+        - Create, update, or delete optimizer definitions
       parameters:
         - name: id
           in: path
           required: true
           type: integer
           format: int32
-        - name: X-API-TOKEN
-          in: header
-          description: Authentication Api Token
-          required: false
-          type: string
-        - name: X-AUTH-TOKEN
-          in: header
-          description: Authentication User Session
-          required: false
-          type: string
       responses:
         '200':
           description: successful operation
@@ -684,21 +618,9 @@ paths:
   /triggers:
     get:
       operationId: getAllTriggers
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: X-API-TOKEN
-          in: header
-          description: Authentication Api Token
-          required: false
-          type: string
-        - name: X-AUTH-TOKEN
-          in: header
-          description: Authentication User Session
-          required: false
-          type: string
+      summary: Retrieve all optimizer definitions
+      tags:
+        - Retrieve optimizer definitions
       responses:
         '200':
           description: successful operation
@@ -709,88 +631,33 @@ paths:
           headers: {}
     post:
       operationId: createTrigger
-      consumes:
-        - application/json
-      produces:
-        - application/json
+      summary: Create a new optimizer definition
+      tags:
+        - Create, update, or delete optimizer definitions
       parameters:
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/SearchBasedTrigger'
-        - name: X-API-TOKEN
-          in: header
-          description: Authentication Api Token
-          required: false
-          type: string
-        - name: X-AUTH-TOKEN
-          in: header
-          description: Authentication User Session
-          required: false
-          type: string
       responses:
         '200':
           description: successful operation
           schema:
             $ref: '#/definitions/SearchBasedTrigger'
           headers: {}
-  /triggers/contributing-users/{triggerActionType}:
-    get:
-      operationId: getTriggersContributingUsers
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: triggerActionType
-          in: path
-          required: true
-          type: string
-          enum:
-            - createdBy
-            - updatedBy
-        - name: X-API-TOKEN
-          in: header
-          description: Authentication Api Token
-          required: false
-          type: string
-        - name: X-AUTH-TOKEN
-          in: header
-          description: Authentication User Session
-          required: false
-          type: string
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/TriggerContributingUser'
-          headers: {}
   /triggers/filtered-list:
     post:
       operationId: getFilteredTriggersList
-      consumes:
-        - application/json
-      produces:
-        - application/json
+      summary: Retrieve a filtered list of optimizer definitions
+      tags:
+        - Retrieve optimizer definitions
       parameters:
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/FilteredTriggersRequest'
-        - name: X-API-TOKEN
-          in: header
-          description: Authentication Api Token
-          required: false
-          type: string
-        - name: X-AUTH-TOKEN
-          in: header
-          description: Authentication User Session
-          required: false
-          type: string
       responses:
         '200':
           description: successful operation
