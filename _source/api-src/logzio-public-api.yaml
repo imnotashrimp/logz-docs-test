@@ -53,39 +53,51 @@ security:
   - API key: []
 
 tags:
+# ::::: ACCOUNTS TAGS
   - name: Retrieve accounts
     description: Retreive partial or detailed account information
   - name: Create, update, or delete accounts
     description: Make a new account, or modify an existing account
+
+# ::::: ALERTS TAGS
   - name: Retrieve alert definitions
     description: Retrieve a list of alert definitions. Each alert definition in the list returns the alert query and settings.
   - name: Retrieve triggered alerts
     description: Retrieve a list of alerts triggered in your accounts.
   - name: Create or update alerts
     description: Create or update alert definitions
+
+# ::::: OPTIMIZER TAGS
+  - name: Retrieve Optimizer definitions
+    description: Retrieve a list of Optimizer definitions. Each Optimizer definition in the list returns the Optimizer query and settings.
+
+# ::::: SEARCH TAGS
   - name: Search logs
-    description: Use the Search resource to run Elasticsearch queries on your Logz.io data. The query language used is Elasticsearch Search API DSL, with some limitations. To ensure system performance, we've restricted some options from the Elasticsearch defaults.
+    description: Use the /search resource to run search queries on your Logz.io data. The query language used is Elasticsearch Search API DSL, with some limitations. To ensure system performance, we've restricted some options from the Elasticsearch defaults.
 
 x-tagGroups:
   - name: Accounts
     tags:
       - Retrieve accounts
       - Create, update, or delete accounts
-  # - name: Alerts
-  #   tags:
-  #     - Retrieve alert definitions
-  #     - Create or update alert definitions
+  - name: Alerts
+    tags:
+      - Retrieve alert definitions
+      - Create or update alert definitions
   #     - Retrieve triggered alerts
+  - name: Optimizer
+    tags:
+      - Retrieve Optimizer definitions
   - name: Search
     tags:
       - Search logs
 
 
 paths:
-  # ===== ACCOUNTS =====
+# ::::: ACCOUNTS
   /account-management/time-based-accounts:
     get:
-      summary: Retrieve partial information on all time-based accounts
+      summary: Retrieve information on sub accounts
       tags:
         - Retrieve accounts
       operationId: getAll
@@ -141,7 +153,8 @@ paths:
           }'
   /account-management/time-based-accounts/detailed:
     get:
-      summary: Retrieve detailed information on all time-based accounts
+      summary: Retrieve information on all time-based accounts
+      description: This endpoint retrieves detailed information on the time-based accounts, which includes the main account and any sub accounts
       tags:
         - Retrieve accounts
       operationId: getAllDetailedTimeBasedAccount
@@ -158,7 +171,7 @@ paths:
           curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/detailed -H 'X-API-TOKEN: {API key}'
   /account-management/time-based-accounts/detailed/{id}:
     get:
-      summary: Retrieve detailed information by account ID
+      summary: Retrieve information by account ID
       tags:
         - Retrieve accounts
       operationId: getDetailedTimeBasedAccount
@@ -239,7 +252,7 @@ paths:
         default:
           description: successful operation
 
-  # ===== ALERTS =====
+# ::::: ALERTS
   # /alerts:
   #   get:
   #     summary: Retrieve all alerts
@@ -351,7 +364,7 @@ paths:
   #       default:
   #         description: successful operation
 
-  # ===== SEARCH =====
+# ::::: SEARCH
   /search:
     post:
       summary: Run an Elasticsearch query
@@ -439,11 +452,358 @@ paths:
               `Our service is temporarily unavailable.`
             example: Our service is temporarily unavailable.
 
+# ::::: TRIGGERS
+  /triggers/alerts/{id}:
+    get:
+      operationId: getAlert
+      summary: Retrieve alert by ID
+      tags:
+        - Retrieve alert definitions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+          description: ID of the alert to be retrieved
+          x-example: 99999
+      responses:
+        default:
+          description: successful operation
+    put:
+      operationId: updateAlert
+      summary: Update an alert
+      tags:
+        - Create or update alert definitions
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/SearchBasedTrigger'
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+          description: ID of the alert
+      responses:
+        default:
+          description: successful operation
+    delete:
+      operationId: deleteAlert
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: X-API-TOKEN
+          in: header
+          description: Authentication Api Token
+          required: false
+          type: string
+        - name: X-AUTH-TOKEN
+          in: header
+          description: Authentication User Session
+          required: false
+          type: string
+      responses:
+        default:
+          description: successful operation
+  /triggers/alerts:
+    get:
+      operationId: getAllAlerts
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: X-API-TOKEN
+          in: header
+          description: Authentication Api Token
+          required: false
+          type: string
+        - name: X-AUTH-TOKEN
+          in: header
+          description: Authentication User Session
+          required: false
+          type: string
+      responses:
+        default:
+          description: successful operation
+    post:
+      operationId: createAlert
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/SearchBasedTrigger'
+        - name: X-API-TOKEN
+          in: header
+          description: Authentication Api Token
+          required: false
+          type: string
+        - name: X-AUTH-TOKEN
+          in: header
+          description: Authentication User Session
+          required: false
+          type: string
+      responses:
+        default:
+          description: successful operation
+  /triggers/alerts/filtered-list:
+    post:
+      summary: Get filtered paged alerts list
+      description: ''
+      operationId: getFilteredAlerts
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/FilteredAlertsRequest'
+        - name: X-API-TOKEN
+          in: header
+          description: Authentication Api Token
+          required: false
+          type: string
+        - name: X-AUTH-TOKEN
+          in: header
+          description: Authentication User Session
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/PageResponseSearchBasedTrigger'
+  /triggers/{id}:
+    get:
+      operationId: getTrigger
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: X-API-TOKEN
+          in: header
+          description: Authentication Api Token
+          required: false
+          type: string
+        - name: X-AUTH-TOKEN
+          in: header
+          description: Authentication User Session
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SearchBasedTrigger'
+          headers: {}
+    put:
+      operationId: updateTrigger
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/SearchBasedTrigger'
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: X-API-TOKEN
+          in: header
+          description: Authentication Api Token
+          required: false
+          type: string
+        - name: X-AUTH-TOKEN
+          in: header
+          description: Authentication User Session
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SearchBasedTrigger'
+          headers: {}
+    delete:
+      operationId: deleteTrigger
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: X-API-TOKEN
+          in: header
+          description: Authentication Api Token
+          required: false
+          type: string
+        - name: X-AUTH-TOKEN
+          in: header
+          description: Authentication User Session
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SearchBasedTrigger'
+          headers: {}
+  /triggers:
+    get:
+      operationId: getAllTriggers
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: X-API-TOKEN
+          in: header
+          description: Authentication Api Token
+          required: false
+          type: string
+        - name: X-AUTH-TOKEN
+          in: header
+          description: Authentication User Session
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SearchBasedTrigger'
+          headers: {}
+    post:
+      operationId: createTrigger
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/SearchBasedTrigger'
+        - name: X-API-TOKEN
+          in: header
+          description: Authentication Api Token
+          required: false
+          type: string
+        - name: X-AUTH-TOKEN
+          in: header
+          description: Authentication User Session
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SearchBasedTrigger'
+          headers: {}
+  /triggers/contributing-users/{triggerActionType}:
+    get:
+      operationId: getTriggersContributingUsers
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: triggerActionType
+          in: path
+          required: true
+          type: string
+          enum:
+            - createdBy
+            - updatedBy
+        - name: X-API-TOKEN
+          in: header
+          description: Authentication Api Token
+          required: false
+          type: string
+        - name: X-AUTH-TOKEN
+          in: header
+          description: Authentication User Session
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TriggerContributingUser'
+          headers: {}
+  /triggers/filtered-list:
+    post:
+      operationId: getFilteredTriggersList
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/FilteredTriggersRequest'
+        - name: X-API-TOKEN
+          in: header
+          description: Authentication Api Token
+          required: false
+          type: string
+        - name: X-AUTH-TOKEN
+          in: header
+          description: Authentication User Session
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/PageResponseSearchBasedTrigger'
+          headers: {}
+
 
 definitions:
-  # ===== ACCOUNTS DEFINITIONS =====
+# ::::: ACCOUNTS DEFINITIONS
   AccountUtilizationSettings:
     type: object
+    description: Account settings for writing utilization metrics
     properties:
       frequencyMinutes:
         type: integer
@@ -515,12 +875,15 @@ definitions:
       accountId:
         type: integer
         format: int32
+        description: ID of the account
         example: 88888
       accountName:
         type: string
+        description: Name of the account
         example: dev group 8
   SubAccountRelation:
     type: object
+    description: List of sub accounts
     properties:
       ownerAccountId:
         type: integer
@@ -539,19 +902,21 @@ definitions:
       createdDate:
         type: string
         format: date-time
-        description: |
-          Date this account was created. Format: `{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z`
+        description: >-
+          Date this account was created.
+          Format: `{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z`
         example: 2018-02-22T09:14:53Z
       lastUpdatedDate:
         type: string
         format: date-time
-        description: |
-          Date this account was updated. Format: `{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z`
+        description: >-
+          Date this account was last updated.
+          Format: `{yyyy}-{mm}-{dd}T{hh}:{mm}:{ss}Z`
         example: 2018-04-01T19:18:38Z
       lastUpdaterUserId:
         type: integer
         format: int32
-        description: Id of the user who last updated this account
+        description: ID of the user who last updated this account
         example: 33342
       type:
         type: string
@@ -568,15 +933,18 @@ definitions:
       accountId:
         type: integer
         format: int32
-        description: Account id
+        description: ID of the account
         example: 99999
+      email:
+        type: string
+        description: Email address of the user who created the account
       accountName:
         type: string
-        description: Account name
+        description: Name of the account
         example: 404 errors
       accountToken:
         type: string
-        description: Account token to be used for log shipping
+        description: Account token (unique to this account)
         example: f483abe93b
       maxDailyGB:
         type: number
@@ -598,7 +966,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/SharingAccount'
-        description: IDs of accounts that can access this account's data
+        description: Accounts that can access this account's data
       utilizationSettings:
         $ref: '#/definitions/AccountUtilizationSettings'
   TimeBasedAccountCreationResponse:
@@ -610,7 +978,7 @@ definitions:
         description: ID of the account
       accountToken:
         type: string
-        description: Account token to be used for log shipping
+        description: Account token (unique to this account)
   TimeBasedAccountUpsertRequest:
     type: object
     required:
@@ -623,7 +991,7 @@ definitions:
         example: support@logz.io
       accountName:
         type: string
-        description: Name of the new account
+        description: Name of the account
         example: AWS Lambda svr 3
       maxDailyGB:
         type: number
@@ -642,10 +1010,8 @@ definitions:
       sharingObjectsAccounts:
         type: array
         items:
-          type: integer
-          format: int32
-        description: IDs of accounts that can access this account's data
-        example: [ 48672, 36259 ]
+          $ref: '#/definitions/SharingAccount'
+        description: Accounts that can access this account's data
       docSizeSetting:
         $ref: '#/definitions/DocSizeSetting'
       utilizationSettings:
@@ -656,14 +1022,14 @@ definitions:
     example: true
   Accessible:
     type: boolean
-    description: If other accounts can access this account, `true`. Otherwise, `false`.
+    description: If users of the main account can access this account, `true`. Otherwise, `false`.
     example: false
   DocSizeSetting:
     type: boolean
     description: If document size is attached to logs, `true`. Otherwise, `false`.
     example: true
 
-  # ===== ALERTS DEFINITIONS =====
+# ::::: ALERTS DEFINITIONS
   # AlertResponse:
   #   type: object
   #   properties:
@@ -950,3 +1316,316 @@ definitions:
   #         - LOW
   #         - MEDIUM
   #         - HIGH
+
+# ::::: TRIGGERS DEFINITIONS
+  SearchBasedTrigger:
+    type: object
+    required:
+      - output
+      - search
+      - triggerOn
+    properties:
+      id:
+        type: integer
+        format: int32
+        description: ID of the alert
+      name:
+        type: string
+        description: Name of the alert
+      description:
+        type: string
+        description: Detailed description of the alert
+      enabled:
+        type: boolean
+        description: If this alert is enabled, `true`. Otherwise, `false`.
+      search:
+        $ref: '#/definitions/TriggerSearchParameters'
+      triggerOn:
+        $ref: '#/definitions/TriggerOn'
+      output:
+        $ref: '#/definitions/TriggerOutput'
+      lastUpdatedOn:
+        type: integer
+        format: int64
+      lastUpdateBy:
+        type: string
+      createdOn:
+        type: integer
+        format: int64
+      createdBy:
+        type: string
+  TriggerSearchParameters:
+    type: object
+    required:
+      - queryString
+    properties:
+      queryString:
+        type: string
+        description: Elasticsearch query used by the alert
+        example: loglevel:ERROR
+      filter:
+        type: string
+        description: Filter to be performed on `queryString`
+        example: {"bool":{"must":[{"match":{"type":"mytype"}}],"must_not":[]}}
+      groupBy:
+        type: array
+        items:
+          type: string
+        maxItems: 3
+        minItems: 0
+      periodInMinutes:
+        type: integer
+        format: int32
+      source:
+        $ref: '#/definitions/TriggerSearchSources'
+      metricsAggregations:
+        type: array
+        items:
+          $ref: '#/definitions/Aggregation'
+  TriggerSearchSources:
+    type: object
+    properties:
+      allTimelessIndices:
+        type: boolean
+      timelessIndices:
+        type: array
+        items:
+          type: integer
+          format: int32
+      allSubAccounts:
+        type: boolean
+      subAccountsIds:
+        type: array
+        items:
+          type: integer
+          format: int32
+  Aggregation:
+    type: object
+    properties:
+      aggregationType:
+        type: string
+        enum:
+          - SUM
+          - MIN
+          - MAX
+          - AVG
+          - COUNT
+          - UNIQUE_COUNT
+          - NONE
+      fieldToAggregateOn:
+        type: string
+  TriggerOn:
+    type: object
+    discriminator: type
+    properties:
+      type:
+        type: string
+        enum:
+          - CONDITION
+          - SCHEDULE
+  TriggerOutput:
+    type: object
+    required:
+      - format
+      - target
+    properties:
+      format:
+        $ref: '#/definitions/Format'
+      target:
+        $ref: '#/definitions/Target'
+  Format:
+    type: object
+    discriminator: type
+  Target:
+    type: object
+    properties:
+      emailNotifications:
+        type: string
+      notificationEndpoints:
+        type: array
+        items:
+          $ref: '#/definitions/NotificationEndpoint'
+      suppressNotificationInMinutes:
+        type: integer
+        format: int32
+        minimum: 5
+      timelessIndex:
+        $ref: '#/definitions/TimelessIndexTarget'
+  NotificationEndpoint:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      accountId:
+        type: integer
+        format: int32
+      type:
+        type: string
+        enum:
+          - HTTP
+      templateName:
+        type: string
+      description:
+        type: string
+      title:
+        type: string
+      createdDate:
+        type: string
+        format: date-time
+      modifiedDate:
+        type: string
+        format: date-time
+      params:
+        $ref: '#/definitions/NotificationEndpointParams'
+  NotificationEndpointParams:
+    type: object
+  TimelessIndexTarget:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      logType:
+        type: string
+  FilteredAlertsRequest:
+    type: object
+    properties:
+      from:
+        type: integer
+        format: int32
+        minimum: 0
+      size:
+        type: integer
+        format: int32
+        minimum: 1
+      search:
+        type: string
+      severities:
+        type: array
+        items:
+          type: string
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
+      updatedBy:
+        type: array
+        items:
+          type: string
+      createdBy:
+        type: array
+        items:
+          type: string
+      activeState:
+        type: array
+        items:
+          type: string
+          enum:
+            - Active
+            - Dismissed
+      emailNotifications:
+        type: array
+        items:
+          type: string
+      notificationsEndpointIds:
+        type: array
+        items:
+          type: integer
+          format: int32
+      lastTriggered:
+        $ref: '#/definitions/LastTriggeredFilter'
+      sortBy:
+        type: string
+        enum:
+          - name
+          - severity
+          - createdAt
+          - updatedAt
+      sortOrder:
+        type: string
+        enum:
+          - ASC
+          - DESC
+  LastTriggeredFilter:
+    type: object
+    required:
+      - fromDate
+      - toDate
+    properties:
+      fromDate:
+        type: integer
+        format: int64
+      toDate:
+        type: integer
+        format: int64
+  PageResponseSearchBasedTrigger:
+    type: object
+    properties:
+      pageSize:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 500
+      from:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 2147483647
+      total:
+        type: integer
+        format: int64
+        minimum: 0
+        maximum: 500
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/SearchBasedTrigger'
+  TriggerContributingUser:
+    type: object
+    properties:
+      username:
+        type: string
+        readOnly: true
+      fullName:
+        type: string
+        readOnly: true
+      isToken:
+        type: boolean
+      token:
+        type: boolean
+  FilteredTriggersRequest:
+    type: object
+    properties:
+      from:
+        type: integer
+        format: int32
+        minimum: 0
+      size:
+        type: integer
+        format: int32
+        minimum: 1
+      search:
+        type: string
+      updatedBy:
+        type: array
+        items:
+          type: string
+      createdBy:
+        type: array
+        items:
+          type: string
+      activeState:
+        type: array
+        items:
+          type: string
+          enum:
+            - Active
+            - Dismissed
+      sortBy:
+        type: string
+      sortOrder:
+        type: string
+        enum:
+          - ASC
+          - DESC
