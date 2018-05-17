@@ -236,7 +236,7 @@ paths:
             $ref: '#/definitions/TimeBasedAccountUpsertRequest'
           description: "??"
       responses:
-        default:
+        200:
           description: successful operation
     delete:
       summary: Delete a time-based account
@@ -252,7 +252,7 @@ paths:
           description: ID of the account to be deleted.
           x-example: 99999
       responses:
-        default:
+        200:
           description: successful operation
 
 # ::::: ALERTS
@@ -471,7 +471,7 @@ paths:
           description: ID of the alert to be retrieved
           x-example: 99999
       responses:
-        default:
+        200:
           description: successful operation
     put:
       operationId: updateAlert
@@ -491,7 +491,7 @@ paths:
           format: int32
           description: ID of the alert
       responses:
-        default:
+        200:
           description: successful operation
     delete:
       operationId: deleteAlert
@@ -515,7 +515,7 @@ paths:
           required: false
           type: string
       responses:
-        default:
+        200:
           description: successful operation
   /triggers/alerts:
     get:
@@ -524,7 +524,7 @@ paths:
       tags:
         - Retrieve alert definitions
       responses:
-        default:
+        200:
           description: successful operation
     post:
       operationId: createAlert
@@ -538,7 +538,7 @@ paths:
           schema:
             $ref: '#/definitions/SearchBasedTrigger'
       responses:
-        default:
+        200:
           description: successful operation
   /triggers/alerts/filtered-list:
     post:
