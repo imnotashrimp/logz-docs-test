@@ -90,7 +90,7 @@ paths:
 # ::::: ACCOUNTS
   /account-management/time-based-accounts:
     get:
-      summary: Retrieve information on sub accounts
+      summary: Retrieve sub accounts
       tags:
         - Retrieve accounts
       operationId: getAll
@@ -146,7 +146,7 @@ paths:
           }'
   /account-management/time-based-accounts/detailed:
     get:
-      summary: Retrieve information on all time-based accounts
+      summary: Retrieve all time-based accounts
       description: This endpoint retrieves detailed information on the time-based accounts, which includes the main account and any sub accounts
       tags:
         - Retrieve accounts
@@ -164,7 +164,7 @@ paths:
           curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/detailed -H 'X-API-TOKEN: {API key}'
   /account-management/time-based-accounts/detailed/{id}:
     get:
-      summary: Retrieve information by account ID
+      summary: Retrieve detailed account information by account ID
       tags:
         - Retrieve accounts
       operationId: getDetailedTimeBasedAccount
@@ -186,7 +186,7 @@ paths:
         source: "curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/detailed/99999 -H 'X-API-TOKEN: {API key}'"
   /account-management/time-based-accounts/{id}:
     get:
-      summary: Retrieve partial information by account ID
+      summary: Retrieve account by ID
       tags:
         - Retrieve accounts
       operationId: get
@@ -510,7 +510,7 @@ paths:
   /triggers/alerts:
     get:
       operationId: getAllAlerts
-      summary: Retrieve all alert definitions
+      summary: Retrieve all alerts
       tags:
         - Retrieve alert definitions
       responses:
@@ -532,7 +532,7 @@ paths:
           description: successful operation
   /triggers/alerts/filtered-list:
     post:
-      summary: Retrieve filtered list of alert definitions
+      summary: Retrieve filtered list of alerts
       description: ''
       operationId: getFilteredAlerts
       tags:
@@ -608,7 +608,7 @@ paths:
   /triggers:
     get:
       operationId: getAllTriggers
-      summary: Retrieve all optimizer definitions
+      summary: Retrieve all optimizers
       tags:
         - Retrieve optimizer definitions
       responses:
@@ -621,7 +621,7 @@ paths:
           headers: {}
     post:
       operationId: createTrigger
-      summary: Create a new optimizer definition
+      summary: Create a new optimizer
       tags:
         - Create, update, or delete optimizer definitions
       parameters:
@@ -639,7 +639,7 @@ paths:
   /triggers/filtered-list:
     post:
       operationId: getFilteredTriggersList
-      summary: Retrieve a filtered list of optimizer definitions
+      summary: Retrieve a filtered list of optimizers
       tags:
         - Retrieve optimizer definitions
       parameters:
