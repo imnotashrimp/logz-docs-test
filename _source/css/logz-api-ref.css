@@ -17,3 +17,8 @@ iframe.header-frame {
   height: 69px;
   background-color: white;
 }
+
+/*  hide redoc search bar */
+div[role=search] {
+  display: none;
+}
