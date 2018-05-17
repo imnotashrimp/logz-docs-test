@@ -71,6 +71,10 @@ tags:
   - name: Retrieve audit trail
     description: Retrieve a list of all event types stored in the audit trail
 
+# ::::: CLOUDTRAIL TAGS
+  - name: Retrieve account CloudTrails
+  - name: Create, update, or delete CloudTrails
+
 x-tagGroups:
   - name: Accounts
     tags:
@@ -84,6 +88,10 @@ x-tagGroups:
   - name: Audit trail
     tags:
       - Retrieve audit trail
+  - name: CloudTrail
+    tags:
+      - Retrieve account CloudTrails
+      - Create, update, or delete CloudTrails
   - name: Optimizers
     tags:
       - Retrieve optimizer definitions
@@ -580,6 +588,124 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/AuditTrailFilteredResponse'
+          headers: {}
+
+# ::::: CLOUDTRAIL
+  /log-shipping/cloudtrails:
+    get:
+      operationId: getAccountCloudTrails
+      summary: Retrieve all account CloudTrails
+      tags:
+        - Retrieve account CloudTrails
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CloudTrailResponse'
+          headers: {}
+    post:
+      operationId: createCloudTrail
+      tags:
+        - Create, update, or delete CloudTrails
+      summary: Create new CloudTrail
+      description: ''
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/CloudTrailRequest'
+        - name: X-API-TOKEN
+          in: header
+          description: Authentication Api Token
+          required: false
+          type: string
+        - name: X-AUTH-TOKEN
+          in: header
+          description: Authentication User Session
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/IdBean'
+  /log-shipping/cloudtrails/{id}:
+    get:
+      operationId: getCloudTrail
+      summary: Retrieve CloudTrail by ID
+      tags:
+        - Retrieve account CloudTrails
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/CloudTrailResponse'
+          headers: {}
+    put:
+      operationId: updateCloudTrail
+      summary: Update CloudTrail
+      tags:
+        - Create, update, or delete CloudTrails
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/CloudTrailRequest'
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/MessageBean'
+          headers: {}
+    delete:
+      operationId: deleteCloudTrail
+      summary: Delete a CloudTrail
+      tags:
+        - Create, update, or delete CloudTrails
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: X-API-TOKEN
+          in: header
+          description: Authentication Api Token
+          required: false
+          type: string
+        - name: X-AUTH-TOKEN
+          in: header
+          description: Authentication User Session
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/MessageBean'
           headers: {}
 
 
@@ -1240,3 +1366,46 @@ definitions:
         type: boolean
       includeFiltersData:
         type: boolean
+
+# ::::: CLOUDTRAIL DEFINITIONS
+  CloudTrailResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      accessKey:
+        type: string
+      bucket:
+        type: string
+      prefix:
+        type: string
+      active:
+        type: boolean
+  IdBean:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        readOnly: true
+        minimum: 1
+  CloudTrailRequest:
+    type: object
+    properties:
+      accessKey:
+        type: string
+      secretKey:
+        type: string
+      bucket:
+        type: string
+      prefix:
+        type: string
+      active:
+        type: boolean
+  MessageBean:
+    type: object
+    properties:
+      message:
+        type: string
+        readOnly: true
