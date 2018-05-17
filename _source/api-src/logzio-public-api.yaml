@@ -67,6 +67,10 @@ tags:
   - name: Search logs
     description: Use the /search resource to run search queries on your Logz.io data. The query language used is Elasticsearch Search API DSL, with some limitations. To ensure system performance, we've restricted some options from the Elasticsearch defaults.
 
+# ::::: AUDIT TRAIL TAGS
+  - name: Retrieve audit trail
+    description: Retrieve a list of all event types stored in the audit trail
+
 x-tagGroups:
   - name: Accounts
     tags:
@@ -77,6 +81,9 @@ x-tagGroups:
       - Retrieve alert definitions
       # - Retrieve triggered alerts
       - Create, update, or delete alert definitions
+  - name: Audit trail
+    tags:
+      - Retrieve audit trail
   - name: Optimizers
     tags:
       - Retrieve optimizer definitions
@@ -543,6 +550,39 @@ paths:
             $ref: '#/definitions/PageResponseSearchBasedTrigger'
           headers: {}
 
+# ::::: AUDIT TRAIL
+  /audit-trail/event-types:
+    post:
+      operationId: listAccountAuditTrails
+      summary: Retrieve event types that are in the audit trail
+      tags:
+        - Retrieve audit trail
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/AuditTrailEventTypesResponse'
+          headers: {}
+  /audit-trail:
+    post:
+      operationId: listAccountAuditTrails
+      summary: Retrieve filtered audit trail
+      tags:
+        - Retrieve audit trail
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/AuditTrailFilterRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/AuditTrailFilteredResponse'
+          headers: {}
+
+
 
 definitions:
 # ::::: ACCOUNTS DEFINITIONS
@@ -773,294 +813,6 @@ definitions:
     type: boolean
     description: If document size is attached to logs, `true`. Otherwise, `false`.
     example: true
-
-# ::::: ALERTS DEFINITIONS
-  # AlertResponse:
-  #   type: object
-  #   properties:
-  #     alertId:
-  #       type: integer
-  #       format: int32
-  #       example: 88888
-  #     lastUpdated:
-  #       type: string
-  #       format: date-time
-  #       example: 2017-07-16'T'12:22:28.301'Z'
-  #     lastUpdatedBy:
-  #       type: string
-  #       example: myuser@my.organization.com
-  #     title:
-  #       type: string
-  #       example: Error level logs
-  #     description:
-  #       type: string
-  #       example: Capture ERROR level logs in the given time range
-  #     query_string:
-  #       type: string
-  #       example: loglevel:ERROR
-  #     filter:
-  #       type: string
-  #       example: {\"bool\":{\"must\":[{\"match\":{\"type\":\"mytype\"}}],\"must_not\":[]}}
-  #     operation:
-  #       type: string
-  #       enum:
-  #         - LESS_THAN
-  #         - GREATER_THAN
-  #         - LESS_THAN_OR_EQUALS
-  #         - GREATER_THAN_OR_EQUALS
-  #         - EQUALS
-  #         - NOT_EQUALS
-  #       example: GREATER_THAN
-  #     searchTimeFrameMinutes:
-  #       type: integer
-  #       format: int32
-  #       example: 5
-  #     notificationEmails:
-  #       type: array
-  #       items:
-  #         type: string
-  #       example: [ "me@myorganization.com", "us@myorganization.com", "them@myorganization.com" ]
-  #     isEnabled:
-  #       type: boolean
-  #       example: true
-  #     suppressNotificationsMinutes:
-  #       type: integer
-  #       format: int32
-  #       example: 0
-  #     valueAggregationType:
-  #       type: string
-  #       enum:
-  #         - SUM
-  #         - MIN
-  #         - MAX
-  #         - AVG
-  #         - COUNT
-  #         - NONE
-  #       example: NONE
-  #     valueAggregationField:
-  #       type: string
-  #       example: null
-  #     groupByAggregationFields:
-  #       type: array
-  #       items:
-  #         type: string
-  #       example: null
-  #     alertNotificationEndpoints:
-  #       type: array
-  #       items:
-  #         type: integer
-  #         format: int32
-  #       example: [ 0 ]
-  #     severityThresholdTiers:
-  #       type: array
-  #       items:
-  #         $ref: '#/definitions/SeverityThresholdTier'
-  # AlertRequest:
-  #   type: object
-  #   required:
-  #     - notificationEmails
-  #     - query_string
-  #     - severity
-  #     - title
-  #   properties:
-  #     title:
-  #       type: string
-  #       description: Title for the new alert
-  #       example: Error level logs
-  #     description:
-  #       type: string
-  #       description: Complete description of the alert
-  #       example: Capture ERROR level logs in the given time range
-  #     query_string:
-  #       type: string
-  #       description: Elasticsearch query
-  #       example: loglevel:ERROR
-  #     filter:
-  #       type: string
-  #       description: Filter to be performed on `query_string`
-  #       example: {"bool":{"must":[{"match":{"type":"mytype"}}],"must_not":[]}}
-  #     operation:
-  #       type: string
-  #       enum:
-  #         - LESS_THAN
-  #         - GREATER_THAN
-  #         - LESS_THAN_OR_EQUALS
-  #         - GREATER_THAN_OR_EQUALS
-  #         - EQUALS
-  #         - NOT_EQUALS
-  #       description: With `searchTimeFrameMinutes` and `valueAggregationType`, sets the conditions for triggering this alert.
-  #       example: GREATER_THAN
-  #     searchTimeFrameMinutes:
-  #       type: integer
-  #       format: int32
-  #       description: Evaluated time frame, in minutes. Used in combination with `operation` and `valueAggregationType`.
-  #       example: 5
-  #     notificationEmails:
-  #       type: array
-  #       items:
-  #         type: string
-  #       description: Array of email addresses to receive notifications
-  #       example: [ "you@yourcompany.com", "them@yourcompany.com" ]
-  #     isEnabled:
-  #       type: boolean
-  #       default: true
-  #     suppressNotificationsMinutes:
-  #       type: integer
-  #       format: int32
-  #       minimum: 5
-  #       description: |
-  #         If this alert has been triggered: The amount of time, in minutes, until a notification will be sent to alert endpoints.
-  #
-  #         **Note:** This setting only affects notifications. If alert conditions are met, alerts will continue to be triggered and logged during the suppression period.
-  #       example: 10
-  #     valueAggregationType:
-  #       type: string
-  #       enum:
-  #         - SUM
-  #         - MIN
-  #         - MAX
-  #         - AVG
-  #         - COUNT
-  #         - NONE
-  #     valueAggregationField:
-  #       type: string
-  #     groupByAggregationFields:
-  #       type: array
-  #       items:
-  #         type: string
-  #       maxItems: 3
-  #       minItems: 0
-  #     alertNotificationEndpoints:
-  #       type: array
-  #       items:
-  #         type: integer
-  #         format: int32
-  #     severityThresholdTiers:
-  #       type: array
-  #       items:
-  #         $ref: '#/definitions/SeverityThresholdTier'
-  #       description: Sets threshold values for high, medium, and low severity alerts.
-  # NotificationEndpointResponse:
-  #   type: object
-  #   properties:
-  #     id:
-  #       type: integer
-  #       format: int32
-  #     type:
-  #       type: string
-  #     description:
-  #       type: string
-  #     title:
-  #       type: string
-  #     createdDate:
-  #       type: string
-  #       format: date-time
-  #     modifiedDate:
-  #       type: string
-  #       format: date-time
-  # SeverityThresholdTier:
-  #   type: object
-  #   properties:
-  #     severity:
-  #       type: string
-  #       enum:
-  #         - LOW
-  #         - MEDIUM
-  #         - HIGH
-  #       description: Severity level
-  #       example: HIGH
-  #     threshold:
-  #       type: number
-  #       format: double
-  #       description: Threshold for this severity
-  #       example: 2.0
-  # TriggeredAlertsRequest:
-  #   type: object
-  #   properties:
-  #     from:
-  #       type: integer
-  #       format: int32
-  #       minimum: 0
-  #       description: First record to be returned. First record is `0`.
-  #       example: 5
-  #     search:
-  #       type: string
-  #       description: Partial or complete alert name to filter by. Not case-sensitive.
-  #       example:
-  #     severity:
-  #       type: array
-  #       items:
-  #         type: string
-  #         enum:
-  #           - LOW
-  #           - MEDIUM
-  #           - HIGH
-  #       description: Severity of the triggered alerts, evaluated using 'or' logic. For example, `[ "MEDIUM", "LOW" ]` returns triggered alerts with medium and low severity.
-  #       example: [ "MEDIUM", "LOW" ]
-  #     size:
-  #       type: integer
-  #       format: int32
-  #       minimum: 1
-  #       description: Size of page to return, in number of records ??confirm this is true
-  #       example: 8
-  #     sortBy:
-  #       type: string
-  #       enum:
-  #         - DATE
-  #         - SEVERITY
-  #       description: Sort this list by `DATE` or `SEVERITY`. Used in combination with `sortOrder`.
-  #       example: SEVERITY
-  #     sortOrder:
-  #       type: string
-  #       enum:
-  #         - ASC
-  #         - DESC
-  #       description: |
-  #         Used in combination with `sortBy`.
-  #
-  #         If sorting by `DATE`, use `ASC` to sort from earliest to latest. Otherwise, use `DESC`.
-  #
-  #         If sorting by `SEVERITY`, use `ASC` to sort from low to high. Otherwise, use `DESC`.
-  #       example: ASC
-  # PageResponseTriggeredAlert:
-  #   type: object
-  #   properties:
-  #     from:
-  #       type: integer
-  #       format: int32
-  #       minimum: 0
-  #       maximum: 2147483647
-  #     pageSize:
-  #       type: integer
-  #       format: int32
-  #       minimum: 0
-  #       maximum: 500
-  #     results:
-  #       type: array
-  #       items:
-  #         $ref: '#/definitions/TriggeredAlert'
-  #     total:
-  #       type: integer
-  #       format: int64
-  #       minimum: 0
-  #       maximum: 500
-  # TriggeredAlert:
-  #   type: object
-  #   properties:
-  #     alertId:
-  #       type: integer
-  #       format: int32
-  #     eventDate:
-  #       type: integer
-  #       format: int64
-  #     name:
-  #       type: string
-  #     severity:
-  #       type: string
-  #       enum:
-  #         - LOW
-  #         - MEDIUM
-  #         - HIGH
 
 # ::::: TRIGGERS DEFINITIONS
   SearchBasedTrigger:
@@ -1374,3 +1126,117 @@ definitions:
         enum:
           - ASC
           - DESC
+
+# ::::: AUDIT TRAIL DEFINITIONS
+  AuditTrailEventTypesResponse:
+    type: object
+    properties:
+      eventTypes:
+        type: array
+        items:
+          type: string
+  AuditEventData:
+    type: object
+    properties:
+      auditEventUser:
+        $ref: '#/definitions/AuditEventUser'
+      date:
+        type: integer
+        format: int64
+      auditEventTypeTitle:
+        type: string
+      ip:
+        type: string
+      geoLocation:
+        type: string
+      extraDataList:
+        type: array
+        items:
+          $ref: '#/definitions/AuditEventExtraData'
+      valid:
+        type: boolean
+  AuditEventExtraData:
+    type: object
+    properties:
+      fieldName:
+        type: string
+      oldValue:
+        type: string
+      newValue:
+        type: string
+  AuditEventTypeData:
+    type: object
+    properties:
+      auditEventType:
+        type: string
+      auditEventTypeTitle:
+        type: string
+  AuditEventUser:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      fullName:
+        type: string
+      deleted:
+        type: boolean
+      userToken:
+        type: boolean
+  AuditTrailFilteredResponse:
+    type: object
+    properties:
+      pageSize:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 500
+      from:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 2147483647
+      total:
+        type: integer
+        format: int64
+        minimum: 0
+        maximum: 500
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/AuditEventData'
+      auditEventUsersList:
+        type: array
+        items:
+          $ref: '#/definitions/AuditEventUser'
+      auditEventTypesList:
+        type: array
+        items:
+          $ref: '#/definitions/AuditEventTypeData'
+  AuditTrailFilterRequest:
+    type: object
+    properties:
+      size:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 500
+      from:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 2147483647
+      auditEventUser:
+        $ref: '#/definitions/AuditEventUser'
+      auditEventType:
+        type: string
+      fromDate:
+        type: integer
+        format: int64
+      toDate:
+        type: integer
+        format: int64
+      sortDescending:
+        type: boolean
+      includeFiltersData:
+        type: boolean
