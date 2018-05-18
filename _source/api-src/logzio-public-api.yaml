@@ -75,6 +75,12 @@ tags:
   - name: Retrieve account CloudTrails
   - name: Create, update, or delete CloudTrails
 
+# ::::: NOTIFICATION ENDPOINT TAGS
+  - name: Retrieve endpoints
+  - name: Create endpoints
+  - name: Update endpoints
+  - name: Delete endpoints
+
 x-tagGroups:
   - name: Accounts
     tags:
@@ -92,6 +98,12 @@ x-tagGroups:
     tags:
       - Retrieve account CloudTrails
       - Create, update, or delete CloudTrails
+  - name: Notification endpoints
+    tags:
+      - Retrieve endpoints
+      - Create endpoints
+      - Update endpoints
+      - Delete endpoints
   - name: Optimizers
     tags:
       - Retrieve optimizer definitions
@@ -708,6 +720,360 @@ paths:
             $ref: '#/definitions/MessageBean'
           headers: {}
 
+# ::::: NOTIFICATION ENDPOINTS
+  /endpoints/slack:
+    post:
+      operationId: createSlack
+      summary: Create Slack endpoint
+      tags:
+        - Create endpoints
+      description: ''
+      parameters:
+        - name: test
+          in: query
+          required: false
+          type: boolean
+          default: false
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/SlackEndpointUpsertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EndpointUpsertResponse'
+  '/endpoints/slack/{id}':
+    put:
+      tags:
+        - Update endpoints
+      summary: Update Slack endpoint
+      description: ''
+      operationId: updateSlack
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: test
+          in: query
+          required: false
+          type: boolean
+          default: false
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/SlackEndpointUpsertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EndpointUpsertResponse'
+  /endpoints/custom:
+    post:
+      tags:
+        - Create endpoints
+      summary: Create custom endpoint
+      description: ''
+      operationId: createCustom
+      parameters:
+        - name: test
+          in: query
+          required: false
+          type: boolean
+          default: false
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/CustomEndpointUpsertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EndpointUpsertResponse'
+  '/endpoints/custom/{id}':
+    put:
+      tags:
+        - Update endpoints
+      summary: Update custom endpoint
+      description: ''
+      operationId: updateCustom
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: test
+          in: query
+          required: false
+          type: boolean
+          default: false
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/CustomEndpointUpsertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EndpointUpsertResponse'
+  /endpoints/pager-duty:
+    post:
+      tags:
+        - Create endpoints
+      summary: Create PagerDuty endpoint
+      description: ''
+      operationId: createPagerDuty
+      parameters:
+        - name: test
+          in: query
+          required: false
+          type: boolean
+          default: false
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/PagerDutyEndpointUpsertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EndpointUpsertResponse'
+  '/endpoints/pager-duty/{id}':
+    put:
+      tags:
+        - Update endpoints
+      summary: Update PagerDuty endpoint
+      description: ''
+      operationId: updatePagerDuty
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: test
+          in: query
+          required: false
+          type: boolean
+          default: false
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/PagerDutyEndpointUpsertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EndpointUpsertResponse'
+  /endpoints/big-panda:
+    post:
+      tags:
+        - Create endpoints
+      summary: Create BigPanda endpoint
+      description: ''
+      operationId: createBigPanda
+      parameters:
+        - name: test
+          in: query
+          required: false
+          type: boolean
+          default: false
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/BigPandaEndpointUpsertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EndpointUpsertResponse'
+  '/endpoints/big-panda/{id}':
+    put:
+      tags:
+        - Update endpoints
+      summary: Update BigPanda endpoint
+      description: ''
+      operationId: updateBigPanda
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: test
+          in: query
+          required: false
+          type: boolean
+          default: false
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/BigPandaEndpointUpsertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EndpointUpsertResponse'
+  /endpoints/data-dog:
+    post:
+      tags:
+        - Create endpoints
+      summary: Create Datadog endpoint
+      description: ''
+      operationId: createDataDog
+      parameters:
+        - name: test
+          in: query
+          required: false
+          type: boolean
+          default: false
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/DatadogEndpointUpsertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EndpointUpsertResponse'
+  '/endpoints/data-dog/{id}':
+    put:
+      tags:
+        - Update endpoint
+      summary: Update Datadog endpoint
+      description: ''
+      operationId: updateDataDog
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: test
+          in: query
+          required: false
+          type: boolean
+          default: false
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/DatadogEndpointUpsertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EndpointUpsertResponse'
+  /endpoints/victorops:
+    post:
+      tags:
+        - Create endpoints
+      summary: Create VictorOps endpoint
+      description: ''
+      operationId: createVictorops
+      parameters:
+        - name: test
+          in: query
+          required: false
+          type: boolean
+          default: false
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/VictoropsEndpointUpsertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EndpointUpsertResponse'
+  '/endpoints/victorops/{id}':
+    put:
+      tags:
+        - Update endpoints
+      summary: Update VictorOps endpoint
+      description: ''
+      operationId: updateVictorops
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: test
+          in: query
+          required: false
+          type: boolean
+          default: false
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/VictoropsEndpointUpsertRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/EndpointUpsertResponse'
+  /endpoints/{id}:
+    get:
+      tags:
+        - Retrieve endpoints
+      summary: Retrieve endpoint by ID
+      description: ''
+      operationId: get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Endpoint'
+    delete:
+      tags:
+        - Delete endpoints
+      summary: Delete an endpoint
+      description: ''
+      operationId: delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: successful operation
+  /endpoints:
+    get:
+      tags:
+        - Retrieve endpoints
+      summary: Retrieve all account endpoints
+      description: ''
+      operationId: list
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Endpoint'
 
 
 definitions:
@@ -1409,3 +1775,110 @@ definitions:
       message:
         type: string
         readOnly: true
+
+# ::::: NOTIFICATION ENDPOINTS DEFINITIONS
+  EndpointUpsertResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+  SlackEndpointUpsertRequest:
+    type: object
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+      url:
+        type: string
+  CustomEndpointUpsertRequest:
+    type: object
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+      url:
+        type: string
+      method:
+        type: string
+      headers:
+        type: string
+      bodyTemplate:
+        type: object
+        additionalProperties:
+          type: object
+  PagerDutyEndpointUpsertRequest:
+    type: object
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+      serviceKey:
+        type: string
+  BigPandaEndpointUpsertRequest:
+    type: object
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+      apiToken:
+        type: string
+      appKey:
+        type: string
+  DatadogEndpointUpsertRequest:
+    type: object
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+      apiKey:
+        type: string
+  VictoropsEndpointUpsertRequest:
+    type: object
+    required:
+      - messageType
+      - routingKey
+      - serviceApiKey
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+      routingKey:
+        type: string
+      messageType:
+        type: string
+      serviceApiKey:
+        type: string
+  RefreshEndpointsRequest:
+    type: object
+    properties:
+      endpointIds:
+        type: array
+        items:
+          type: integer
+          format: int32
+  Endpoint:
+    type: object
+    properties:
+      endpointType:
+        type: string
+        enum:
+          - BigPanda
+          - Slack
+          - Datadog
+          - Custom
+          - PagerDuty
+          - VictorOps
+      id:
+        type: integer
+        format: int32
+      title:
+        type: string
+      description:
+        type: string
