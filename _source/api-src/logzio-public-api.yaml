@@ -43,13 +43,13 @@ security:
   - API key: []
 
 tags:
-# ::::: ACCOUNTS TAGS
+  # ::::: ACCOUNTS TAGS
   - name: Retrieve accounts
     description: Retreive partial or detailed account information
   - name: Create, update, or delete accounts
     description: Make a new account, or modify an existing account
 
-# ::::: TRIGGERS - ALERTS TAGS
+  # ::::: TRIGGERS - ALERTS TAGS
   - name: Retrieve alert definitions
     description: Retrieve a list of alert definitions. Each item in the list returns the alert query and settings.
   # - name: Retrieve triggered alerts
@@ -57,25 +57,25 @@ tags:
   - name: Create, update, or delete alert definitions
     description: Make a new alert definition, or modify an existing alert definition
 
-# ::::: TRIGGERS - OPTIMIZER TAGS
+  # ::::: TRIGGERS - OPTIMIZER TAGS
   - name: Retrieve optimizer definitions
     description: Retrieve a list of optimizer definitions. Each item in the list returns the optimizer query and settings.
   - name: Create, update, or delete optimizer definitions
     description: Make a new optimizer definition, or modify an existing optimizer definition
 
-# ::::: SEARCH TAGS
+  # ::::: SEARCH TAGS
   - name: Search logs
     description: Use the /search resource to run search queries on your Logz.io data. The query language used is Elasticsearch Search API DSL, with some limitations. To ensure system performance, we've restricted some options from the Elasticsearch defaults.
 
-# ::::: AUDIT TRAIL TAGS
+  # ::::: AUDIT TRAIL TAGS
   - name: Retrieve audit trail
     description: Retrieve a list of all event types stored in the audit trail
 
-# ::::: CLOUDTRAIL TAGS
+  # ::::: CLOUDTRAIL TAGS
   - name: Retrieve account CloudTrails
   - name: Create, update, or delete CloudTrails
 
-# ::::: NOTIFICATION ENDPOINT TAGS
+  # ::::: NOTIFICATION ENDPOINT TAGS
   - name: Retrieve endpoints
   - name: Create endpoints
   - name: Update endpoints
@@ -114,7 +114,7 @@ x-tagGroups:
 
 
 paths:
-# ::::: ACCOUNTS
+  # ::::: ACCOUNTS
   /account-management/time-based-accounts:
     get:
       summary: Retrieve sub accounts
@@ -272,7 +272,7 @@ paths:
         200:
           description: successful operation
 
-# ::::: SEARCH
+  # ::::: SEARCH
   /search:
     post:
       summary: Run an Elasticsearch query
@@ -360,7 +360,7 @@ paths:
               `Our service is temporarily unavailable.`
             example: Our service is temporarily unavailable.
 
-# ::::: TRIGGERS (ALERTS & OPTIMIZERS)
+  # ::::: TRIGGERS (ALERTS & OPTIMIZERS)
   /triggers/alerts/{id}:
     get:
       operationId: getAlert
@@ -570,7 +570,7 @@ paths:
             $ref: '#/definitions/PageResponseSearchBasedTrigger'
           headers: {}
 
-# ::::: AUDIT TRAIL
+  # ::::: AUDIT TRAIL
   /audit-trail/event-types:
     post:
       operationId: listAccountAuditTrails
@@ -602,7 +602,7 @@ paths:
             $ref: '#/definitions/AuditTrailFilteredResponse'
           headers: {}
 
-# ::::: CLOUDTRAIL
+  # ::::: CLOUDTRAIL
   /log-shipping/cloudtrails:
     get:
       operationId: getAccountCloudTrails
@@ -720,7 +720,7 @@ paths:
             $ref: '#/definitions/MessageBean'
           headers: {}
 
-# ::::: NOTIFICATION ENDPOINTS
+  # ::::: NOTIFICATION ENDPOINTS
   /endpoints/slack:
     post:
       operationId: createSlack
@@ -1077,7 +1077,7 @@ paths:
 
 
 definitions:
-# ::::: ACCOUNTS DEFINITIONS
+  # ::::: ACCOUNTS DEFINITIONS
   AccountUtilizationSettings:
     type: object
     description: Account settings for writing utilization metrics
@@ -1306,7 +1306,7 @@ definitions:
     description: If document size is attached to logs, `true`. Otherwise, `false`.
     example: true
 
-# ::::: TRIGGERS DEFINITIONS
+  # ::::: TRIGGERS DEFINITIONS
   SearchBasedTrigger:
     type: object
     required:
@@ -1619,7 +1619,7 @@ definitions:
           - ASC
           - DESC
 
-# ::::: AUDIT TRAIL DEFINITIONS
+  # ::::: AUDIT TRAIL DEFINITIONS
   AuditTrailEventTypesResponse:
     type: object
     properties:
@@ -1733,7 +1733,7 @@ definitions:
       includeFiltersData:
         type: boolean
 
-# ::::: CLOUDTRAIL DEFINITIONS
+  # ::::: CLOUDTRAIL DEFINITIONS
   CloudTrailResponse:
     type: object
     properties:
@@ -1776,7 +1776,7 @@ definitions:
         type: string
         readOnly: true
 
-# ::::: NOTIFICATION ENDPOINTS DEFINITIONS
+  # ::::: NOTIFICATION ENDPOINTS DEFINITIONS
   EndpointUpsertResponse:
     type: object
     properties:
