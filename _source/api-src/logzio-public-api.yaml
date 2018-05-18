@@ -88,6 +88,11 @@ tags:
   - name: Retrieve tokens and filters
   - name: Create, update, or delete tokens and filters
 
+  # ::::: SNAPSHOTS TAGS
+  # - name: Retrieve snapshots
+  # - name: Create, update, or delete snapshots
+  - name: Create and retrieve Kibana shapshots
+
 x-tagGroups:
   - name: Accounts
     tags:
@@ -108,6 +113,9 @@ x-tagGroups:
     tags:
       - Search logs
       - Import or export Kibana objects
+      # - Retrieve snapshots
+      # - Create, update, or delete snapshots
+      - Create and retrieve Kibana shapshots
   - name: Notification endpoints
     tags:
       - Retrieve endpoints
@@ -121,10 +129,8 @@ x-tagGroups:
   - name: Shared tokens
     tags:
     - Retrieve tokens and filters
-    - Create, update, or delete tokens and filters
-
-
-
+    # - Create, update, or delete tokens and filters
+#
 paths:
   # ::::: ACCOUNTS
   /account-management/time-based-accounts:
@@ -1324,6 +1330,44 @@ paths:
             $ref: '#/definitions/SharedToken'
           headers: {}
 
+  # ::::: SNAPSHOTS
+  /snapshotter:
+    post:
+      tags:
+        - Create and retrieve Kibana shapshots
+      summary: Create a snapshot
+      description: ''
+      operationId: createSnapshot
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/SnapshotCreateRequest'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SnapshotCreateResponse'
+  /snapshotter/{snapshotId}:
+    get:
+      tags:
+        - Create and retrieve Kibana shapshots
+      summary: Retrieve snapshot by ID
+      description: ''
+      operationId: getSnapshot
+      parameters:
+        - name: snapshotId
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SnapshotGetResponse'
+
 
 definitions:
   # ::::: ACCOUNTS DEFINITIONS
@@ -2294,3 +2338,144 @@ definitions:
         items:
           type: integer
           format: int32
+
+  # SNAPSHOTS DEFINITIONS
+  SnapshotCreateResponse:
+    type: object
+    properties:
+      snapshotId:
+        type: integer
+        format: int32
+  SnapshotCreateRequest:
+    type: object
+    required:
+      - snapshotTimeZone
+      - snapshotType
+      - timeFrameFrom
+      - timeFrameTo
+    properties:
+      snapshotType:
+        type: string
+        enum:
+          - DASHBOARD
+          - VISUALIZATION
+          - SAVED_SEARCH
+      snapshotSavedObjectId:
+        type: string
+      slackWebhookUrls:
+        type: array
+        items:
+          type: string
+      endpoints:
+        type: array
+        items:
+          type: integer
+          format: int32
+      emails:
+        type: array
+        items:
+          type: string
+      message:
+        type: string
+      timeFrameFrom:
+        type: integer
+        format: int64
+      timeFrameTo:
+        type: integer
+        format: int64
+      snapshotTimeZone:
+        type: string
+      queryString:
+        type: string
+      darkTheme:
+        type: boolean
+  SnapshotGetResponse:
+    type: object
+    properties:
+      snapshotId:
+        type: integer
+        format: int32
+      accountId:
+        type: integer
+        format: int32
+      snapshotType:
+        type: string
+        enum:
+          - DASHBOARD
+          - VISUALIZATION
+          - SAVED_SEARCH
+      status:
+        type: string
+        enum:
+          - SUCCESS
+          - FAILED
+          - IN_PROGRESS
+      snapshotSavedObjectName:
+        type: string
+      imageUrl:
+        type: string
+      appLinkUrl:
+        type: string
+      message:
+        type: string
+      timeFrameFrom:
+        type: integer
+        format: int64
+      timeFrameTo:
+        type: integer
+        format: int64
+      snapshotTimeZone:
+        type: string
+  SnapshotNotification:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      type:
+        type: string
+        enum:
+          - EMAIL
+          - SLACK
+      address:
+        type: string
+      status:
+        type: string
+        enum:
+          - PENDING
+          - IN_WORK
+          - NEED_RETRY
+          - FAILED
+          - SUCCESS
+  SnapshotRequest:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      snapshotType:
+        type: string
+        enum:
+          - DASHBOARD
+          - VISUALIZATION
+          - SAVED_SEARCH
+      snapshotSavedObjectName:
+        type: string
+      snapshotUrl:
+        type: string
+      appLinkUrl:
+        type: string
+      recipients:
+        type: array
+        items:
+          $ref: '#/definitions/SnapshotNotification'
+      message:
+        type: string
+      timeFrameFrom:
+        type: integer
+        format: int64
+      timeFrameTo:
+        type: integer
+        format: int64
+      snapshotTimeZone:
+        type: string
