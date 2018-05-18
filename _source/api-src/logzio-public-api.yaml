@@ -659,10 +659,6 @@ paths:
         - Create, update, or delete CloudTrails
       summary: Create new CloudTrail
       description: ''
-      consumes:
-        - application/json
-      produces:
-        - application/json
       parameters:
         - in: body
           name: body
@@ -729,10 +725,6 @@ paths:
       summary: Delete a CloudTrail
       tags:
         - Create, update, or delete CloudTrails
-      consumes:
-        - application/json
-      produces:
-        - application/json
       parameters:
         - name: id
           in: path
@@ -1205,28 +1197,14 @@ paths:
       summary: Delete a filter
       tags:
         - Create, update, or delete tokens and filters
-      consumes:
-        - application/json
-      produces:
-        - application/json
       parameters:
         - name: id
           in: path
           required: true
           type: integer
           format: int32
-        - name: X-API-TOKEN
-          in: header
-          description: Authentication Api Token
-          required: false
-          type: string
-        - name: X-AUTH-TOKEN
-          in: header
-          description: Authentication User Session
-          required: false
-          type: string
       responses:
-        default:
+        200:
           description: successful operation
   /shared-tokens/{id}:
     get:
@@ -1280,7 +1258,7 @@ paths:
           type: integer
           format: int32
       responses:
-        default:
+        200:
           description: successful operation
   /shared-tokens:
     get:
@@ -1288,21 +1266,6 @@ paths:
       summary: Retrieve all tokens
       tags:
         - Retrieve tokens and filters
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: X-API-TOKEN
-          in: header
-          description: Authentication Api Token
-          required: false
-          type: string
-        - name: X-AUTH-TOKEN
-          in: header
-          description: Authentication User Session
-          required: false
-          type: string
       responses:
         200:
           description: successful operation
