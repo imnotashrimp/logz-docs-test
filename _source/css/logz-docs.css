@@ -10,7 +10,7 @@ div.big-container {
   grid-template-columns: 300px 500px 1fr;
   grid-template-rows: auto, auto, auto;
   grid-template-areas:
-    "toc breadcrumbs breadcrumbs"
+    "toc breadcrumbs community"
     "toc content related"
     "footer footer footer";
   grid-column-gap: 20px;
@@ -545,11 +545,17 @@ li.tocify-focus {
   transition-duration: 0.5s;
 }
 
-/* ===== BREADCRUMBS & GITHUB BUTTONS ===== */
+/* ===== BREADCRUMBS & COMMUNITY BUTTONS ===== */
 
 div.breadcrumbs-container {
   grid-area: breadcrumbs;
+}
 
+div.community-container {
+  grid-area: community;
+}
+
+div.breadcrumbs-container, div.community-container {
   /*  flex */
   display: flex;
   flex-direction: row;
@@ -566,14 +572,15 @@ div.breadcrumbs-container {
 nav.breadcrumbs li.breadcrumb-item+.breadcrumb-item::before {
    padding-right: 0.3rem;
    padding-left: 0.3rem;
+   color: #bfbfbf;
    content: "/";
 }
 
-div.github-icons li {
+div.community-container li {
   margin-right: .75rem;
 }
 
-div.github-icons a svg {
+div.community-container a svg {
   vertical-align: text-bottom;
   fill: currentColor;
 }
