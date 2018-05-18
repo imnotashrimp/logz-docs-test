@@ -128,7 +128,7 @@ paths:
         - Retrieve accounts
       operationId: getAll
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             type: array
@@ -150,7 +150,7 @@ paths:
           schema:
             $ref: '#/definitions/TimeBasedAccountUpsertRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/TimeBasedAccountCreationResponse'
@@ -185,7 +185,7 @@ paths:
         - Retrieve accounts
       operationId: getAllDetailedTimeBasedAccount
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             type: array
@@ -210,7 +210,7 @@ paths:
           description: ID of the account to be retrieved
           x-example: 99999
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/DetailedTimeBasedAccount'
@@ -232,7 +232,7 @@ paths:
           description: ID of the account to be retrieved
           x-example: 99999
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/TimeBasedAccount'
@@ -465,7 +465,7 @@ paths:
           schema:
             $ref: '#/definitions/FilteredAlertsRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/PageResponseSearchBasedTrigger'
@@ -482,7 +482,7 @@ paths:
           type: integer
           format: int32
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/SearchBasedTrigger'
@@ -504,7 +504,7 @@ paths:
           type: integer
           format: int32
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/SearchBasedTrigger'
@@ -521,7 +521,7 @@ paths:
           type: integer
           format: int32
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/SearchBasedTrigger'
@@ -533,7 +533,7 @@ paths:
       tags:
         - Retrieve optimizer definitions
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             type: array
@@ -552,7 +552,7 @@ paths:
           schema:
             $ref: '#/definitions/SearchBasedTrigger'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/SearchBasedTrigger'
@@ -570,7 +570,7 @@ paths:
           schema:
             $ref: '#/definitions/FilteredTriggersRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/PageResponseSearchBasedTrigger'
@@ -584,7 +584,7 @@ paths:
       tags:
         - Retrieve audit trail
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/AuditTrailEventTypesResponse'
@@ -602,7 +602,7 @@ paths:
           schema:
             $ref: '#/definitions/AuditTrailFilterRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/AuditTrailFilteredResponse'
@@ -616,7 +616,7 @@ paths:
       tags:
         - Retrieve account CloudTrails
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             type: array
@@ -650,7 +650,7 @@ paths:
           required: false
           type: string
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/IdBean'
@@ -667,7 +667,7 @@ paths:
           type: integer
           format: int32
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/CloudTrailResponse'
@@ -689,7 +689,7 @@ paths:
           type: integer
           format: int32
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/MessageBean'
@@ -720,7 +720,7 @@ paths:
           required: false
           type: string
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/MessageBean'
@@ -746,7 +746,7 @@ paths:
           schema:
             $ref: '#/definitions/SlackEndpointUpsertRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
@@ -774,7 +774,7 @@ paths:
           schema:
             $ref: '#/definitions/SlackEndpointUpsertRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
@@ -797,7 +797,7 @@ paths:
           schema:
             $ref: '#/definitions/CustomEndpointUpsertRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
@@ -825,7 +825,7 @@ paths:
           schema:
             $ref: '#/definitions/CustomEndpointUpsertRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
@@ -848,7 +848,7 @@ paths:
           schema:
             $ref: '#/definitions/PagerDutyEndpointUpsertRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
@@ -876,7 +876,7 @@ paths:
           schema:
             $ref: '#/definitions/PagerDutyEndpointUpsertRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
@@ -899,7 +899,7 @@ paths:
           schema:
             $ref: '#/definitions/BigPandaEndpointUpsertRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
@@ -927,7 +927,7 @@ paths:
           schema:
             $ref: '#/definitions/BigPandaEndpointUpsertRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
@@ -950,7 +950,7 @@ paths:
           schema:
             $ref: '#/definitions/DatadogEndpointUpsertRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
@@ -978,7 +978,7 @@ paths:
           schema:
             $ref: '#/definitions/DatadogEndpointUpsertRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
@@ -1001,7 +1001,7 @@ paths:
           schema:
             $ref: '#/definitions/VictoropsEndpointUpsertRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
@@ -1029,7 +1029,7 @@ paths:
           schema:
             $ref: '#/definitions/VictoropsEndpointUpsertRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
@@ -1047,7 +1047,7 @@ paths:
           type: integer
           format: int32
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/Endpoint'
@@ -1074,7 +1074,7 @@ paths:
       description: ''
       operationId: list
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             type: array
@@ -1096,7 +1096,7 @@ paths:
           schema:
             $ref: '#/definitions/KibanaExportRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/KibanaExportResponse'
@@ -1114,7 +1114,7 @@ paths:
           schema:
             $ref: '#/definitions/KibanaImportRequest'
       responses:
-        '200':
+        200:
           description: successful operation
           schema:
             $ref: '#/definitions/KibanaImportResponse'
