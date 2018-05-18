@@ -81,6 +81,9 @@ tags:
   - name: Update endpoints
   - name: Delete endpoints
 
+  # ::::: KIBANA IMPORT/EXPORT TAGS
+  - name: Import or export Kibana objects
+
 x-tagGroups:
   - name: Accounts
     tags:
@@ -98,6 +101,9 @@ x-tagGroups:
     tags:
       - Retrieve account CloudTrails
       - Create, update, or delete CloudTrails
+  - name: Kibana
+    tags:
+      - Import or export Kibana objects
   - name: Notification endpoints
     tags:
       - Retrieve endpoints
@@ -1075,6 +1081,44 @@ paths:
             items:
               $ref: '#/definitions/Endpoint'
 
+  # ::::: KIBANA IMPORT/EXPORT
+  /kibana/export:
+    post:
+      tags:
+        - Import or export Kibana objects
+      summary: Export Kibana objects
+      description: ''
+      operationId: exportSavedObjects
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/KibanaExportRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/KibanaExportResponse'
+  /kibana/import:
+    post:
+      tags:
+        - Import or export Kibana objects
+      summary: Import Kibana objects
+      description: ''
+      operationId: importSavedObjects
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/KibanaImportRequest'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/KibanaImportResponse'
+
 
 definitions:
   # ::::: ACCOUNTS DEFINITIONS
@@ -1882,3 +1926,64 @@ definitions:
         type: string
       description:
         type: string
+
+  # ::::: KIBANA IMPORT/EXPORT DEFINITIONS
+  KibanaExportResponse:
+    type: object
+    properties:
+      kibanaVersion:
+        type: string
+        readOnly: true
+      hits:
+        type: array
+        readOnly: true
+        items:
+          type: object
+  KibanaExportRequest:
+    type: object
+    required:
+      - type
+    properties:
+      type:
+        type: string
+        enum:
+          - none
+          - search
+          - visualization
+          - dashboard
+  KibanaImportResponse:
+    type: object
+    properties:
+      created:
+        type: array
+        readOnly: true
+        items:
+          type: string
+      updated:
+        type: array
+        readOnly: true
+        items:
+          type: string
+      ignored:
+        type: array
+        readOnly: true
+        items:
+          type: string
+      failed:
+        type: array
+        readOnly: true
+        items:
+          type: string
+  KibanaImportRequest:
+    type: object
+    properties:
+      kibanaVersion:
+        type: string
+      override:
+        type: boolean
+      hits:
+        type: array
+        items:
+          type: object
+          additionalProperties:
+            type: object
