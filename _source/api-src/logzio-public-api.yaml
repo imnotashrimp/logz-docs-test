@@ -96,7 +96,6 @@ x-tagGroups:
   - name: Alerts
     tags:
       - Retrieve alert definitions
-      # - Retrieve triggered alerts
       - Create, update, or delete alert definitions
   - name: Audit trail
     tags:
@@ -105,8 +104,9 @@ x-tagGroups:
     tags:
       - Retrieve account CloudTrails
       - Create, update, or delete CloudTrails
-  - name: Kibana
+  - name: Elasticsearch and Kibana
     tags:
+      - Search logs
       - Import or export Kibana objects
   - name: Notification endpoints
     tags:
@@ -118,9 +118,6 @@ x-tagGroups:
     tags:
       - Retrieve optimizer definitions
       - Create, update, or delete optimizer definitions
-  - name: Search
-    tags:
-      - Search logs
   - name: Shared tokens
     tags:
     - Retrieve tokens and filters
