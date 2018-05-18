@@ -63,7 +63,7 @@ tags:
   - name: Create, update, or delete optimizer definitions
     description: Make a new optimizer definition, or modify an existing optimizer definition
 
-  # ::::: SEARCH TAGS
+  # ::::: SEARCH, SCROLL TAGS
   - name: Search logs
     description: Use the /search resource to run search queries on your Logz.io data. The query language used is Elasticsearch Search API DSL, with some limitations. To ensure system performance, we've restricted some options from the Elasticsearch defaults.
 
@@ -278,7 +278,7 @@ paths:
         200:
           description: successful operation
 
-  # ::::: SEARCH
+  # ::::: SEARCH, SCROLL
   /search:
     post:
       summary: Run an Elasticsearch query
@@ -365,6 +365,24 @@ paths:
             description: >-
               `Our service is temporarily unavailable.`
             example: Our service is temporarily unavailable.
+  /scroll:
+    post:
+      summary: Run a paginated Elasticsearch query
+      tags:
+        - Search logs
+      description: ''
+      operationId: scroll
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/ScrollRequest'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ScrollResponse'
 
   # ::::: TRIGGERS (ALERTS & OPTIMIZERS)
   /triggers/alerts/{id}:
@@ -1987,3 +2005,48 @@ definitions:
           type: object
           additionalProperties:
             type: object
+
+  # ::::: SEARCH, SCROLL DEFINITIONS
+  ScrollResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+        readOnly: true
+      scrollId:
+        type: string
+        readOnly: true
+      hits:
+        type: string
+        readOnly: true
+  ScrollRequest:
+    type: object
+    properties:
+      query:
+        type: object
+        additionalProperties:
+          type: object
+      size:
+        type: integer
+        format: int32
+      from:
+        type: integer
+        format: int32
+        minimum: 0
+      sort:
+        type: array
+        items:
+          type: object
+      _source:
+        type: object
+        additionalProperties:
+          type: object
+      post_filter:
+        type: object
+        additionalProperties:
+          type: object
+      scroll_id:
+        type: string
+      scroll:
+        type: string
