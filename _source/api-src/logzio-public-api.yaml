@@ -219,7 +219,7 @@ paths:
           curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/detailed -H 'X-API-TOKEN: {API key}'
   /account-management/time-based-accounts/detailed/{id}:
     get:
-      summary: Retrieve detailed account information by account ID
+      summary: Retrieve detailed account information by ID
       tags:
         - Retrieve sub accounts
       operationId: getDetailedTimeBasedAccount
@@ -279,7 +279,6 @@ paths:
           required: false
           schema:
             $ref: '#/definitions/TimeBasedAccountUpsertRequest'
-          description: "??"
       responses:
         200:
           description: successful operation
@@ -1547,7 +1546,7 @@ definitions:
         example: dev group 8
   SubAccountRelation:
     type: object
-    description: List of sub accounts
+    description: Properties of the sub accounts related to this main account
     properties:
       ownerAccountId:
         type: integer
@@ -1710,6 +1709,7 @@ definitions:
       name:
         type: string
         description: Name of the alert
+        example: 404 errors
       description:
         type: string
         description: Detailed description of the alert
