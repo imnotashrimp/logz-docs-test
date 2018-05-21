@@ -16,13 +16,4 @@
         </ul>
   </nav>
 </div>
-{% if site.public == true %}
-  <div class="community-container">
-    <ul class="horizontal-list">
-      <li class="icon"><a href="{{ site.github_repo_url }}/fork">{% octicon repo-forked %} Fork</a></li>
-      <li class="icon"><a href="{{ site.github_repo_url }}/issues">{% octicon issue-opened %} Issue</a></li>
-      <li class="icon"><a href="">{% octicon pencil %} Edit</a></li>
-    </ul>
-  </div>
-{% endif %}
 {% endunless %}

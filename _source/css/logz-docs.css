@@ -10,7 +10,7 @@ div.big-container {
   grid-template-columns: 300px 500px 1fr;
   grid-template-rows: auto, auto, auto;
   grid-template-areas:
-    "search breadcrumbs community"
+    "toc blank community"
     "toc content related"
     "footer footer footer";
   grid-column-gap: 20px;
