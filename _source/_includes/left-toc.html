@@ -2,19 +2,26 @@
   {% assign sidebar = site.data.toc %}
   <ul id="docnavsidebar" class="parent">
       {% for parent in sidebar.firstLevel %}
-      <li><a href="#">{{ parent.title }}</a>
+      <li>
+        {% if parent.url %}<a href="{{ parent.url | prepend:site.baseurl }}">{{ parent.title }}</a>
+        {% else %}<span style="color: yellow;">{{ parent.title }}</span>{% endif %}
           <ul class="child">
               {% for child in parent.secondLevel %}
-              <li><a href="{{ child.url | prepend:site.baseurl }}">{{child.title}}</a>
+              <li>
+                {% if child.url %}<a href="{{ child.url | prepend:site.baseurl }}">{{child.title}}</a>
+                {% else %}<span style="color: yellow;">{{ child.title }}</span>{% endif %}
+
                 <ul class="grandchild">
                   {% for grandchild in child.thirdLevel %}
-                  <li><a href="{{ grandchild.url | remove: "/" }}">{{grandchild.title}}</a>
+                  <li>
+                    {% if grandchild.url %}<a href="{{ grandchild.url | prepend:site.baseurl }}">{{grandchild.title}}</a>
+                    {% else %}<span style="color: yellow;">{{ grandchild.title }}</span>{% endif %}
                   </li>
                   {% endfor %}
                 </ul>
               </li>
               {% endfor %}
-            </ul> <!-- /.child -->
+            </ul>
       </li>
       {% endfor %}
   </ul>

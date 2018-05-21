@@ -15,7 +15,7 @@ firstLevel:
     url: /getting-started/quickstart/
     thirdLevel:
     - title: Ship sample logs with Filebeat
-      url: /getting-started/quickstart/ship-sample-logs-with-filebeat.html
+      url: /placeholder.html
     - title: Discover data in Kibana
     - title: Install ELK Apps
     - title: Explore Insights
