@@ -2,8 +2,6 @@
 layout: article
 title: Credits
 collection: about
-this-page-toc: true
-menus: about
 ---
 
 ## Here's the open source stuff we used
