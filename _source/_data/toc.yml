@@ -5,6 +5,8 @@
 #     thirdLevel (in filetree: #anchor)
 # Each entry should contain 'title' and 'url'
 firstLevel:
+
+  # ===== GETTING STARTED =====
 - title: Getting Started
 
   secondLevel:
@@ -20,6 +22,8 @@ firstLevel:
     - title: Install ELK Apps
     - title: Explore Insights
 
+
+  # ===== SHIP AND PARSE LOGS =====
 - title: Ship and parse logs
   secondLevel:
   - title: Log shipping
@@ -30,10 +34,10 @@ firstLevel:
     - title: Data Parsing Wizard
     - title: Field mapping
 
+  # ===== MONITOR LOGS =====
 - title: Monitor logs
   secondLevel:
   - title: Kibana
-    url: kibana.html
     thirdLevel:
     - title: The Kibana UI
     - title: Discover
@@ -54,9 +58,11 @@ firstLevel:
     - title: Application Insights
     - title: Cognitive Insights
 
+  # ===== ACCOUNT TOOLS =====
 - title: Account tools
   secondLevel:
-  - title: Accounts and usage
+  - title: Manage accounts and usage
+    url: /account-settings/accounts-and-usage/
     thirdLevel:
     - title: Manage accounts, usage, and billing
     - title: Archive and restore
@@ -69,14 +75,18 @@ firstLevel:
     - title: Manage other users
     - title: Manage shared tokens
 
+  # ===== INTEGRATIONS =====
 - title: Integrations
 
+
+  # ===== DEVELOPER CENTER =====
 - title: Developer center
   secondLevel:
   - title: Quickstarts
     thirdLevel:
     - title: Create API token & make a test call
-  - title: API reference
+  - title: Logz.io Public API
+    url: /developer-center/logzio-public-api.html
   - title: API cookbook
     thirdLevel:
     - title: Create alert
@@ -86,4 +96,5 @@ firstLevel:
     - title: Allocate account volume
     - title: Create a user
 
-title: Troubleshooting
+  # ===== TROUBLESHOOTING =====
+- title: Troubleshooting
