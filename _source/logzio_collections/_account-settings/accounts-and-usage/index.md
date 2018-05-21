@@ -2,8 +2,6 @@
 layout: article
 title: Manage accounts and usage
 collection: account-settings
-this-page-toc: true
-menus: account-settings
 ---
 
 Thou surly doghearted bladder! Thou wimpled pox-marked whey-face! Thou qualling milk-livered measle! You are a tosser, wanker, git and mankey! A nutter, a lazy sod, a cream faced loon! [here's a link](#).

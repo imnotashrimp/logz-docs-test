@@ -2,11 +2,6 @@
 layout: article
 title: Getting started
 collection: getting-started
-permalink: /getting-started/
-this-page-toc: true
-menus:
-  header:
-    identifier: getting-started
 ---
 
 Welcome to the Logz.io Documentation Portal! Here, you'll learn how to parse and analyze your log data in our hosted ELK stack.
