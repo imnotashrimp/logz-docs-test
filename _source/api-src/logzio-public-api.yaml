@@ -780,7 +780,7 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
-  '/endpoints/slack/{id}':
+  /endpoints/slack/{id}:
     put:
       tags:
         - Update endpoints
@@ -831,7 +831,7 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
-  '/endpoints/custom/{id}':
+  /endpoints/custom/{id}:
     put:
       tags:
         - Update endpoints
@@ -882,7 +882,7 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
-  '/endpoints/pager-duty/{id}':
+  /endpoints/pager-duty/{id}:
     put:
       tags:
         - Update endpoints
@@ -933,7 +933,7 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
-  '/endpoints/big-panda/{id}':
+  /endpoints/big-panda/{id}:
     put:
       tags:
         - Update endpoints
@@ -984,7 +984,7 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
-  '/endpoints/data-dog/{id}':
+  /endpoints/data-dog/{id}:
     put:
       tags:
         - Update endpoint
@@ -1035,7 +1035,7 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
-  '/endpoints/victorops/{id}':
+  /endpoints/victorops/{id}:
     put:
       tags:
         - Update endpoints
