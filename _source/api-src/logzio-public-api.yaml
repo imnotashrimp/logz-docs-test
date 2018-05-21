@@ -12,7 +12,7 @@ info:
 
     ### Updates and improvements
 
-    We update this document regularly to reflect changes to the Logz.io API. If you'd like to suggest corrections or improvements to this document, please email us at [support@logz.io](mailto:support@logz.io) or click **Edit** at the top of this page.
+    We update this document regularly to reflect changes to the Logz.io API. If you'd like to suggest corrections or improvements to this document, please email us at [help@logz.io](mailto:help@logz.io) or submit a ticket in the GitHub repository.
 
     # Authentication and rate limiting
 
@@ -44,10 +44,10 @@ security:
 
 tags:
   # ::::: ACCOUNTS TAGS
-  - name: Retrieve accounts
-    description: Retreive partial or detailed account information
-  - name: Create, update, or delete accounts
-    description: Make a new account, or modify an existing account
+  - name: Retrieve sub accounts
+    description: Retrieve account information on sub accounts
+  - name: Create, update, or delete sub accounts
+    description: Make a new sub account, or modify an existing sub account
 
   # ::::: TRIGGERS - ALERTS TAGS
   - name: Retrieve alert definitions
@@ -100,8 +100,8 @@ tags:
 x-tagGroups:
   - name: Accounts
     tags:
-      - Retrieve accounts
-      - Create, update, or delete accounts
+      - Retrieve sub accounts
+      - Create, update, or delete sub accounts
   - name: Alerts
     tags:
       - Retrieve alert definitions
@@ -143,9 +143,10 @@ paths:
   # ::::: ACCOUNTS
   /account-management/time-based-accounts:
     get:
-      summary: Retrieve sub accounts
+      summary: Retrieve all sub accounts
+      description: Returns a list of sub accounts as an array of JSON objects.
       tags:
-        - Retrieve accounts
+        - Retrieve sub accounts
       operationId: getAll
       responses:
         200:
@@ -156,12 +157,13 @@ paths:
               $ref: '#/definitions/TimeBasedAccount'
       x-code-samples:
       - lang: curl
-        source: |
+        source: >-
           curl --request GET --url https://api.logz.io/v1/account-management/time-based-accounts --header 'X-API-TOKEN: {API key}'
     post:
-      summary: Create a time-based account
+      summary: Create a sub account
+      description: Creates a new time-based sub account.
       tags:
-        - Create, update, or delete accounts
+        - Create, update, or delete sub accounts
       operationId: createTimeBasedAccount
       parameters:
         - in: body
@@ -176,12 +178,12 @@ paths:
             $ref: '#/definitions/TimeBasedAccountCreationResponse'
       x-code-samples:
       - lang: curl
-        source: |
+        source: >-
           curl -X POST \
             https://api.logz.io/v1/account-management/time-based-accounts \
             -H 'X-API-TOKEN: {API key}' \
             -d '{
-            "email": "support@logz.io",
+            "email": "help@logz.io",
             "accountName": "AWS Lambda svr 3",
             "maxDailyGB": 5,
             "retentionDays": 5,
@@ -202,7 +204,7 @@ paths:
       summary: Retrieve all time-based accounts
       description: This endpoint retrieves detailed information on the time-based accounts, which includes the main account and any sub accounts
       tags:
-        - Retrieve accounts
+        - Retrieve sub accounts
       operationId: getAllDetailedTimeBasedAccount
       responses:
         200:
@@ -213,13 +215,13 @@ paths:
               $ref: '#/definitions/DetailedTimeBasedAccount'
       x-code-samples:
       - lang: curl
-        source: |
+        source: >-
           curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/detailed -H 'X-API-TOKEN: {API key}'
   /account-management/time-based-accounts/detailed/{id}:
     get:
       summary: Retrieve detailed account information by account ID
       tags:
-        - Retrieve accounts
+        - Retrieve sub accounts
       operationId: getDetailedTimeBasedAccount
       parameters:
         - name: id
@@ -241,7 +243,7 @@ paths:
     get:
       summary: Retrieve account by ID
       tags:
-        - Retrieve accounts
+        - Retrieve sub accounts
       operationId: get
       parameters:
         - name: id
@@ -262,7 +264,7 @@ paths:
     put:
       summary: Update a time-based account
       tags:
-        - Create, update, or delete accounts
+        - Create, update, or delete sub accounts
       operationId: updateTimeBasedAccount
       parameters:
         - name: id
@@ -284,7 +286,7 @@ paths:
     delete:
       summary: Delete a time-based account
       tags:
-        - Create, update, or delete accounts
+        - Create, update, or delete sub accounts
       operationId: deleteTimeBasedAccount
       parameters:
         - name: id
@@ -1638,9 +1640,11 @@ definitions:
         type: integer
         format: int32
         description: ID of the account
+        example: 99999
       accountToken:
         type: string
         description: Account token (unique to this account)
+        example: x93afghvexbn841h45vkjn5
   TimeBasedAccountUpsertRequest:
     type: object
     required:
@@ -1650,7 +1654,7 @@ definitions:
         type: string
         pattern: "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$"
         description: Account administrator's email address
-        example: support@logz.io
+        example: help@logz.io
       accountName:
         type: string
         description: Name of the account
