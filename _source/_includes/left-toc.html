@@ -1,41 +1,24 @@
 <nav class="all-pages-toc">
-  <ul class="parent">
-    {% for parent in site.data.toc.parents %}
-    <li class="{% if parent.url == page.url %}active-page{% endif %}">
-      {% if parent.url %}
-      <a href="{{ site.baseurl }}/{{ parent.url }}" title="Go to {{ parent.title }}">{{ parent.title }}</a>
-      {% else %}
-      <span style="color: yellow">{{ parent.title }}</span>
-      {% endif %}
-
-      {% if parent.children %}
-      <ul class="child">
-        {% for child in parent.children %}
-          <li class="{% if child.url == page.url %}active-page{% endif %}">
-            {% if child.url %}
-            <a href="{{ site.baseurl }}/{{ parent.url }}/{{ child.url }}" title="Go to {{ child.title }}">{{ child.title }}</a>
-            {% else %}
-            <span style="color: yellow">{{ child.title }}</span>
-            {% endif %}
-
-            {% if child.grandchildren %}
-              <ul class="grandchild">
-              {% for grandchild in child.grandchildren %}
-                <li class="{% if grandchild.url == page.url %}active-page{% endif %}">
-                  {% if grandchild.url %}
-                  <a href="{{ site.baseurl }}/{{ parent.url }}/{{ child.url }}/{{ grandchild.url }}" title="Go to {{ grandchild.title }}">{{ grandchild.title }}</a>
-                  {% else %}
-                  <span style="color: yellow">{{ grandchild.title }}</span>
-                  {% endif %}
-                </li> <!-- /ul.grandchild > li -->
+  {% assign sidebar = site.data.toc %}
+  <ul id="docnavsidebar" class="parent">
+      {% for parent in sidebar.firstLevel %}
+      <li><a href="#">{{ parent.title }}</a>
+          <ul class="child">
+              {% for child in parent.secondLevel %}
+              <li><a href="{{ child.url | prepend:site.baseurl }}">{{child.title}}</a>
+                <ul class="grandchild">
+                  {% for grandchild in child.thirdLevel %}
+                  <li><a href="{{ grandchild.url | remove: "/" }}">{{grandchild.title}}</a>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </li>
               {% endfor %}
-              </ul> <!-- /ul.grandchild -->
-            {% endif %}
-          </li> <!-- /ul.child > li -->
-        {% endfor %}
-      </ul> <!-- /ul.child -->
-      {% endif %}
-    </li> <!-- /ul.parent > li -->
-    {% endfor %}
-  </ul> <!-- /ul.parent -->
+            </ul> <!-- /.child -->
+      </li>
+      {% endfor %}
+  </ul>
+
+  <script>$("li.open").parents('li').toggleClass("open");</script>
+
 </nav>
