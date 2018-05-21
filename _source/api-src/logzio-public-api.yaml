@@ -155,7 +155,7 @@ paths:
             items:
               $ref: '#/definitions/TimeBasedAccount'
       x-code-samples:
-      - lang: Shell
+      - lang: curl
         source: |
           curl --request GET --url https://api.logz.io/v1/account-management/time-based-accounts --header 'X-API-TOKEN: {API key}'
     post:
@@ -175,7 +175,7 @@ paths:
           schema:
             $ref: '#/definitions/TimeBasedAccountCreationResponse'
       x-code-samples:
-      - lang: Shell
+      - lang: curl
         source: |
           curl -X POST \
             https://api.logz.io/v1/account-management/time-based-accounts \
@@ -212,7 +212,7 @@ paths:
             items:
               $ref: '#/definitions/DetailedTimeBasedAccount'
       x-code-samples:
-      - lang: Shell
+      - lang: curl
         source: |
           curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/detailed -H 'X-API-TOKEN: {API key}'
   /account-management/time-based-accounts/detailed/{id}:
@@ -235,7 +235,7 @@ paths:
           schema:
             $ref: '#/definitions/DetailedTimeBasedAccount'
       x-code-samples:
-      - lang: Shell
+      - lang: curl
         source: "curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/detailed/99999 -H 'X-API-TOKEN: {API key}'"
   /account-management/time-based-accounts/{id}:
     get:
@@ -257,7 +257,7 @@ paths:
           schema:
             $ref: '#/definitions/TimeBasedAccount'
       x-code-samples:
-      - lang: Shell
+      - lang: curl
         source: "curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/99999 -H 'X-API-TOKEN: {API key}'"
     put:
       summary: Update a time-based account
