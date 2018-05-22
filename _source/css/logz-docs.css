@@ -2,6 +2,7 @@
 /* Roboto (body) and Titillium (heading) */
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
 
 
 /* ===== PAGE LAYOUT ===== */
@@ -40,7 +41,7 @@ header {
   z-index: 100;
   top: 0px;
   width: auto;
-  margin: 0 auto 1rem auto;
+  margin: 0 auto;
   padding: 0 50px;
   height: 45px;
   background-color: white;
@@ -66,6 +67,7 @@ footer {
 div.toc-container {
   grid-area: toc;
   background-color: #fafafa;
+  padding-left: 1rem;
 }
 
 div.full-width {
@@ -151,8 +153,7 @@ h1, h2, h3, h4, h5, .site-title, .post-title {
 }
 
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
-  padding-top: 0;
-  margin-top: 0;
+  margin-top: 1rem;
 }
 
 h1, .site-title, .post-title {
@@ -504,64 +505,73 @@ a.atom-feed {
 /* ===== ALL-PAGES TOC STYLING ===== */
 
 nav.all-pages-toc {
-  color: #263238;
+  /* positioning */
+  display: block;
+  height: 100%;
   margin: 0;
-}
+  top: 0;
 
-ul.parent+li {
-  text-transform: uppercase;
-}
-
-ul.parent {
-  font-size: 1.1rem;
-  font-weight: 400;
-  padding-left: 1rem;
-
-}
-
-ul.parent > li {
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-ul.child {
-  font-size: .9rem;
-  padding-left: .5rem;
-  margin-top: .5rem;
-}
-
-ul.child > li {
-  margin-bottom: .5rem;
-}
-
-nav.all-pages-toc, nav.all-pages-toc a {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  line-height: 1.25rem;
+  /* text */
   color: #263238;
-}
-
-/* mark the active page */
-.toc-active > a {
-  background-color: #e1e1e1;
+  font-family: 'Montserrat', sans-serif;
+  /* font-weight: 200; */
 }
 
 .all-pages-toc ul {
   list-style: none;
-  width: 200px;
+  padding: 0;
 }
 
-/* ===== BREADCRUMBS & GITHUB BUTTONS ===== */
-
-div.breadcrumbs-container {
-  grid-area: breadcrumbs;
+nav.all-pages-toc ul.parent {
+  font-size: 1rem;
+  text-transform: uppercase;
 }
+
+nav.all-pages-toc ul.child {
+  font-size: .75rem;
+}
+
+nav.all-pages-toc ul.grandchild {
+  text-transform: none;
+  margin-left: .5rem;
+}
+
+nav.all-pages-toc span {
+  display: block;
+}
+
+nav.all-pages-toc ul.parent span {
+  margin-top: 1.5rem;
+}
+
+nav.all-pages-toc ul.child span {
+  margin-top: .75rem;
+  margin-bottom: .25rem;
+}
+
+nav.all-pages-toc ul.grandchild span {
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+}
+
+li.toc-active > a {
+  display: block;
+  background-color: #e1e1e1;
+  padding-left: .5rem;
+  margin-left: -.5rem;
+}
+
+nav.all-pages-toc a {
+  color: #263238;
+}
+
+/* ===== GITHUB BUTTONS ===== */
 
 div.community-container {
   grid-area: community;
 }
 
-div.breadcrumbs-container, div.community-container {
+div.community-container {
   /*  flex */
   display: flex;
   flex-direction: row;
@@ -571,15 +581,8 @@ div.breadcrumbs-container, div.community-container {
 
   /* position & style */
   width: 100%;
-  margin: 0 auto;
+  margin: 1rem auto 0 auto;
   font-size: .8rem;
-}
-
-nav.breadcrumbs li.breadcrumb-item+.breadcrumb-item::before {
-   padding-right: 0.3rem;
-   padding-left: 0.3rem;
-   color: #bfbfbf;
-   content: "/";
 }
 
 div.community-container li {
