@@ -253,8 +253,6 @@ div.search-container {
   vertical-align: middle;
   white-space: nowrap;
   position: relative;
-  margin: 0;
-  padding: 0;
   height: 35px;
 }
 
@@ -457,6 +455,7 @@ nav.site-links, nav.site-actions {
 nav.site-links li, nav.site-actions li {
   display: inline-block;
   padding: .25rem;
+  vertical-align: middle;
 }
 
 nav.site-links li {
@@ -506,6 +505,7 @@ a.atom-feed {
 nav.all-pages-toc {
   background-color: gray;
   color: white;
+  margin: 0;
 }
 
 ul.parent+li {
