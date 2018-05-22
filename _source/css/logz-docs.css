@@ -65,6 +65,7 @@ footer {
 
 div.toc-container {
   grid-area: toc;
+  background-color: #fafafa;
 }
 
 div.full-width {
@@ -503,8 +504,7 @@ a.atom-feed {
 /* ===== ALL-PAGES TOC STYLING ===== */
 
 nav.all-pages-toc {
-  background-color: gray;
-  color: white;
+  color: #263238;
   margin: 0;
 }
 
@@ -516,6 +516,7 @@ ul.parent {
   font-size: 1.1rem;
   font-weight: 400;
   padding-left: 1rem;
+
 }
 
 ul.parent > li {
@@ -533,26 +534,21 @@ ul.child > li {
   margin-bottom: .5rem;
 }
 
-.all-pages-toc, .all-pages-toc a{
+nav.all-pages-toc, nav.all-pages-toc a {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   line-height: 1.25rem;
-  color: white;
+  color: #263238;
 }
 
 /* mark the active page */
-.active-page > a {
-  /* color: #009cbd; */
-  color: white;
+.toc-active > a {
+  background-color: #e1e1e1;
 }
 
 .all-pages-toc ul, .this-page-toc ul {
   list-style: none;
   width: 200px;
-}
-
-/* indent nested ul */
-ul.child {
 }
 
 /* ===== BREADCRUMBS & GITHUB BUTTONS ===== */
