@@ -546,7 +546,7 @@ nav.all-pages-toc, nav.all-pages-toc a {
   background-color: #e1e1e1;
 }
 
-.all-pages-toc ul, .this-page-toc ul {
+.all-pages-toc ul {
   list-style: none;
   width: 200px;
 }
