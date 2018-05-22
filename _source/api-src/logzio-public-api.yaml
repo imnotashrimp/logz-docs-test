@@ -201,8 +201,8 @@ paths:
           }'
   /account-management/time-based-accounts/detailed:
     get:
-      summary: Retrieve all time-based accounts
-      description: This endpoint retrieves detailed information on the time-based accounts, which includes the main account and any sub accounts
+      summary: Retrieve detailed information on all sub accounts
+      description: This endpoint retrieves all time-based sub accounts, returned as an array of objects. Each sub account is its own object.
       tags:
         - Retrieve sub accounts
       operationId: getAllDetailedTimeBasedAccount
@@ -220,6 +220,7 @@ paths:
   /account-management/time-based-accounts/detailed/{id}:
     get:
       summary: Retrieve detailed account information by ID
+      description: This endpoint takes an account ID as the only path parameter and returns detailed account information.
       tags:
         - Retrieve sub accounts
       operationId: getDetailedTimeBasedAccount
