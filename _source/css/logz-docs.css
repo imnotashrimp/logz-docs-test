@@ -2,15 +2,15 @@
 /* Roboto (body) and Titillium (heading) */
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
 
 
 /* ===== PAGE LAYOUT ===== */
 div.big-container {
   display: grid;
   grid-template-columns: 300px 500px 1fr;
-  grid-template-rows: auto, auto, auto;
+  grid-template-rows: auto, auto;
   grid-template-areas:
-    "toc blank community"
     "toc content related"
     "footer footer footer";
   grid-column-gap: 20px;
@@ -41,9 +41,9 @@ header {
   z-index: 100;
   top: 0px;
   width: auto;
-  margin: 0 auto 1rem auto;
-  padding: 0 10px;
-  height: 60px;
+  margin: 0 auto;
+  padding: 0 50px;
+  height: 45px;
   background-color: white;
   border-bottom: 1px solid #dddddd;
 }
@@ -58,7 +58,6 @@ footer {
 
   /* position & style */
   width: 100%;
-  max-width: 1240px !important;
   margin: 1rem auto 0 auto;
   font-size: .8rem;
   border-top: 1px solid #dddddd;
@@ -67,6 +66,8 @@ footer {
 
 div.toc-container {
   grid-area: toc;
+  background-color: #fafafa;
+  padding-left: 1rem;
 }
 
 div.full-width {
@@ -92,9 +93,9 @@ div.card-container {
   grid-gap: 10px;
 }
 
-div.algolia-search-widget.home-page {
+/* div.algolia-search-widget.home-page {
   grid-area: search;
-}
+} */
 
 /* ===== DOCS HOME CARDS ===== */
 div.half-card-container {
@@ -152,8 +153,7 @@ h1, h2, h3, h4, h5, .site-title, .post-title {
 }
 
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
-  padding-top: 0;
-  margin-top: 0;
+  margin-top: 1rem;
 }
 
 h1, .site-title, .post-title {
@@ -245,6 +245,35 @@ ul.horizontal-list {
 
 ul.horizontal-list li {
   display: inline;
+}
+
+/* ===== SEARCH ===== */
+
+div.search-container {
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+  height: 35px;
+}
+
+div.search-container input.addsearch {
+  height: 35px;
+  width: 270px;
+  background: #e0e0e0;
+  border: none;
+  border-radius: 3px;
+  font-size: 10pt;
+  float: left;
+  color: #63717f;
+  padding-left: 30px;
+}
+
+div.search-container svg {
+  position: absolute;
+  top: 35%;
+  margin-left: 10px;
+  vertical-align: middle;
+  z-index: 1;
 }
 
 /* ===== FEATURE BOXES ===== */
@@ -421,17 +450,18 @@ div.info-box.tip > p::before {
 /* ===== SITE HEADER ===== */
 
 nav.site-links, nav.site-actions {
-  font-size: .9rem;
+  font-size: .85rem;
 }
 
 nav.site-links li, nav.site-actions li {
   display: inline-block;
-  padding: .25rem;
+  padding: 1rem;
+  vertical-align: middle;
 }
 
 nav.site-links li {
   margin: auto 1rem;
-  width: 140px;
+  width: 1fr;
 }
 
 nav.site-actions li {
@@ -446,10 +476,11 @@ nav.site-links a, nav.site-actions a {
 }
 
 li.free-trial-btn a {
-  background-color: rgb(255, 192, 4);
+  /* background-color: rgb(255, 192, 4);
   color: white;
   padding: 6px 20px;
-  border-radius: 3px;
+  border-radius: 3px; */
+  display: none;
 }
 
 /* ===== SITE FOOTER ===== */
@@ -474,68 +505,73 @@ a.atom-feed {
 /* ===== ALL-PAGES TOC STYLING ===== */
 
 nav.all-pages-toc {
-  background-color: gray;
-  color: white;
+  /* positioning */
+  display: block;
+  height: 100%;
+  margin: 0;
+  top: 0;
+
+  /* text */
+  color: #263238;
+  font-family: 'Montserrat', sans-serif;
+  /* font-weight: 200; */
 }
 
-ul.parent+li {
+.all-pages-toc ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav.all-pages-toc ul.parent {
+  font-size: 1rem;
   text-transform: uppercase;
 }
 
-ul.parent {
-  font-size: 1.1rem;
-  font-weight: 400;
-  padding-left: 1rem;
+nav.all-pages-toc ul.child {
+  font-size: .75rem;
 }
 
-ul.parent > li {
-  margin-top: 0;
-  margin-bottom: 20px;
+nav.all-pages-toc ul.grandchild {
+  text-transform: none;
+  margin-left: .5rem;
 }
 
-ul.child {
-  font-size: .9rem;
+nav.all-pages-toc span {
+  display: block;
+}
+
+nav.all-pages-toc ul.parent span {
+  margin-top: 1.5rem;
+}
+
+nav.all-pages-toc ul.child span {
+  margin-top: .75rem;
+  margin-bottom: .25rem;
+}
+
+nav.all-pages-toc ul.grandchild span {
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+}
+
+li.toc-active > a {
+  display: block;
+  background-color: #e1e1e1;
   padding-left: .5rem;
-  margin-top: .5rem;
+  margin-left: -.5rem;
 }
 
-ul.child > li {
-  margin-bottom: .5rem;
+nav.all-pages-toc a {
+  color: #263238;
 }
 
-.all-pages-toc, .all-pages-toc a{
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  line-height: 1.25rem;
-  color: white;
-}
-
-/* mark the active page */
-.active-page > a {
-  /* color: #009cbd; */
-  color: white;
-}
-
-.all-pages-toc ul, .this-page-toc ul {
-  list-style: none;
-  width: 200px;
-}
-
-/* indent nested ul */
-ul.child {
-}
-
-/* ===== BREADCRUMBS & GITHUB BUTTONS ===== */
-
-div.breadcrumbs-container {
-  grid-area: breadcrumbs;
-}
+/* ===== GITHUB BUTTONS ===== */
 
 div.community-container {
   grid-area: community;
 }
 
-div.breadcrumbs-container, div.community-container {
+div.community-container {
   /*  flex */
   display: flex;
   flex-direction: row;
@@ -545,15 +581,8 @@ div.breadcrumbs-container, div.community-container {
 
   /* position & style */
   width: 100%;
-  margin: 0 auto;
+  margin: 1rem auto 0 auto;
   font-size: .8rem;
-}
-
-nav.breadcrumbs li.breadcrumb-item+.breadcrumb-item::before {
-   padding-right: 0.3rem;
-   padding-left: 0.3rem;
-   color: #bfbfbf;
-   content: "/";
 }
 
 div.community-container li {
@@ -567,7 +596,7 @@ div.community-container a svg {
 
 /* ===== SEARCH ===== */
 
-.ais-search-box {
+/* .ais-search-box {
   max-width: 100%;
   margin-bottom: 15px;
 }
@@ -614,7 +643,7 @@ div#search-hits {
 
 .post-snippet img {
   display: none;
-}
+} */
 
 /* ===== RELATED LINKS ===== */
 
