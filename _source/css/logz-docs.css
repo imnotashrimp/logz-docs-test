@@ -247,6 +247,36 @@ ul.horizontal-list li {
   display: inline;
 }
 
+/* ===== SEARCH ===== */
+
+div.search-container {
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 35px;
+}
+
+div.search-container input.addsearch {
+  height: 35px;
+  width: 270px;
+  background: #dddddd;
+  border: none;
+  font-size: 10pt;
+  float: left;
+  color: #63717f;
+  padding-left: 30px;
+}
+
+div.search-container svg {
+  position: absolute;
+  top: 50%;
+  margin-left: 5px;
+  margin-top: -8px;
+  z-index: 1;
+}
+
 /* ===== FEATURE BOXES ===== */
 
 div.feature-box {
