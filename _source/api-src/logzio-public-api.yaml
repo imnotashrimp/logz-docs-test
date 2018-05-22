@@ -1466,18 +1466,17 @@ definitions:
   # ::::: ACCOUNTS DEFINITIONS
   AccountUtilizationSettings:
     type: object
-    description: Account settings for writing utilization metrics
+    description: Settings for logging metrics on your account utilization, such as used and expected data volume at current indexing rate.
     properties:
       frequencyMinutes:
         type: integer
         format: int32
         description: How often utilization metrics are written to logs, in minutes
+        example: 5
       utilizationEnabled:
         type: boolean
         description: If utilization metrics are written to logs, `true`. Otherwise, `false`.
-    example:
-      frequencyMinutes: 5
-      utilizationEnabled: true
+        example: true
   AccountView:
     type: object
     properties:
@@ -1647,7 +1646,10 @@ definitions:
   TimeBasedAccountUpsertRequest:
     type: object
     required:
+      - email
+      - accountName
       - sharingObjectsAccounts
+      - retentionDays
     properties:
       email:
         type: string
@@ -1663,10 +1665,12 @@ definitions:
         format: float
         description: Maximum daily usage, in GB
         example: 5
+        default: 1
       retentionDays:
         type: integer
         format: int32
         description: Data retention time, in days
+        minimum: 1
         example: 5
       searchable:
         $ref: "#/definitions/Searchable"
@@ -1675,8 +1679,10 @@ definitions:
       sharingObjectsAccounts:
         type: array
         items:
-          $ref: '#/definitions/SharingAccount'
-        description: Accounts that can access this account's data
+          type: integer
+          format: int32
+          example: [ 88888, 55555 ]
+        description: IDs of accounts that can access this account's data
       docSizeSetting:
         $ref: '#/definitions/DocSizeSetting'
       utilizationSettings:
@@ -1684,14 +1690,17 @@ definitions:
   Searchable:
     type: boolean
     description: If other accounts can search this account's logs, `true`. Otherwise, `false`.
+    default: false
     example: true
   Accessible:
     type: boolean
     description: If users of the main account can access this account, `true`. Otherwise, `false`.
+    default: false
     example: false
   DocSizeSetting:
     type: boolean
     description: If document size is attached to logs, `true`. Otherwise, `false`.
+    default: false
     example: true
 
   # ::::: TRIGGERS DEFINITIONS
