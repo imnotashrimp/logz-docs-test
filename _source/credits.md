@@ -1,7 +1,6 @@
 ---
 layout: article
 title: Credits
-collection: about
 ---
 
 ## Here's the open source stuff we used

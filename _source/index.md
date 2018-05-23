@@ -1,10 +1,6 @@
 ---
 layout: docs-home
-breadcrumbs: false
 title: Logz.io Docs
-menus:
-  header:
-    title: Docs Home
 ---
 {% if site.public == false %}
   <a href="{{ site.baseurl }}/developer-center/logzio-public-api.html">Logz.io API reference</a>

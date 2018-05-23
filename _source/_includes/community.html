@@ -11,7 +11,7 @@
     <ul class="horizontal-list">
       <li class="icon"><a href="{{ repo_path }}/fork">{% octicon repo-forked %} Fork</a></li>
       <li class="icon"><a href="{{ repo_path }}/issues">{% octicon issue-opened %} Issue</a></li>
-      {% if site.edit_enabled == true %}<li class="icon"><a href="{{ edit_path }}/{{ page.relative_path }}">{% octicon pencil %} Edit</a></li>{% endif %}
+      {% if site.edit_enabled == true and page.collection %}<li class="icon"><a href="{{ edit_path }}/{{ page.relative_path }}">{% octicon pencil %} Edit</a></li>{% endif %}
     </ul>
   </div>
 {% endif %}
