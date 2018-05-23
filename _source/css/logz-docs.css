@@ -524,13 +524,13 @@ nav.all-pages-toc {
 }
 
 nav.all-pages-toc ul.parent {
-  font-size: 1rem;
+  font-size: .85rem;
   text-transform: uppercase;
 }
 
 nav.all-pages-toc ul.child {
   text-transform: none;
-  font-size: .75rem;
+  font-size: .85rem;
 }
 
 nav.all-pages-toc ul.grandchild {
@@ -575,8 +575,8 @@ span.collapse-button {
   padding-right: 1.5rem;
 }
 
-span.collapse-button.down {
-
+ul.closed ul {
+  /* display: none; */
 }
 
 /* ===== GITHUB BUTTONS ===== */

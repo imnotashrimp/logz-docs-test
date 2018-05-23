@@ -5,11 +5,10 @@
       <li class="">
         <span class="toc-heading">
           {{ parent.title }}
-          <span class="collapse-button"><i class="fas fa-chevron-right"></i></span>
         </span>
 
           {% if parent.secondLevel %}
-          <ul class="child">
+          <ul class="child closed">
               {% for child in parent.secondLevel %}
               <li class="{%- if page.url == child.url -%}toc-active{%- endif -%}">
                 {% if child.url %}
