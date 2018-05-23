@@ -538,20 +538,20 @@ nav.all-pages-toc ul.grandchild {
   margin-left: .5rem;
 }
 
-nav.all-pages-toc span {
+nav.all-pages-toc span.toc-heading {
   display: block;
 }
 
-nav.all-pages-toc ul.parent span {
+nav.all-pages-toc ul.parent span.toc-heading {
   margin-top: 1.5rem;
 }
 
-nav.all-pages-toc ul.child span {
+nav.all-pages-toc ul.child span.toc-heading {
   margin-top: .75rem;
   margin-bottom: .25rem;
 }
 
-nav.all-pages-toc ul.grandchild span {
+nav.all-pages-toc ul.grandchild span.toc-heading {
   margin-top: .25rem;
   margin-bottom: .25rem;
 }
