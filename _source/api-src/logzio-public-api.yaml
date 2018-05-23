@@ -1400,7 +1400,7 @@ paths:
       tags:
         - Retrieve users
       summary: Retrieve all users
-      description: ''
+      description: Returns a list of users as an array of JSON objects.
       operationId: listUsers
       responses:
         200:
@@ -1409,6 +1409,9 @@ paths:
             type: array
             items:
               $ref: '#/definitions/User'
+      x-code-samples:
+        - lang: curl
+          source: "curl -X GET 'https://api.logz.io/v1/user-management' -H  'X-API-TOKEN: {API key}'"
     post:
       tags:
         - Create, update, or delete users
@@ -2646,20 +2649,30 @@ definitions:
       id:
         type: integer
         format: int32
+        description: ID of the user
+        example: 33265
       username:
         type: string
+        description: Email address used for signing in to Logz.io
+        example: me@company.com
       fullName:
         type: string
+        description: First and last name of the user
+        example: Stefan Urkel
       accountID:
         type: integer
         format: int32
+        description: ID of the account attached to the user
+        example: 55555
       roles:
         type: array
         items:
           type: integer
           format: int32
+        description: If the user is an account admin, `2`. If the user is a regular user, `3`.
       active:
         type: boolean
+        description: If the user is active, `true`. If the user is suspended, `false`.
   UserManagementUpsertResponse:
     type: object
     properties:
