@@ -282,7 +282,7 @@ paths:
           schema:
             $ref: '#/definitions/TimeBasedAccountUpsertRequest'
       responses:
-        200:
+        204:
           description: successful operation
       x-code-samples:
       - lang: curl
@@ -321,7 +321,7 @@ paths:
           description: ID of the account to be deleted.
           x-example: 99999
       responses:
-        200:
+        204:
           description: successful operation
       x-code-samples:
         - lang: curl
