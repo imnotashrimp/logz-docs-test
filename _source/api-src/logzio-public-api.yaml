@@ -329,7 +329,7 @@ paths:
   # ::::: SEARCH, SCROLL
   /search:
     post:
-      summary: Run a search query
+      summary: Run an Elasticsearch query
       description: >-
         Use the `/search` endpoint to query your account data using the Elasticsearch Search API DSL query language. To ensure system performance, we've restricted some options from the Elasticsearch defaults.
 
@@ -434,6 +434,10 @@ paths:
             description: >-
               `Our service is temporarily unavailable.`
             example: Our service is temporarily unavailable.
+      x-code-samples:
+        - lang: curl
+          source: >-
+            curl -X POST https://api.logz.io/v1/search -H 'X-API-TOKEN: {API key}' -d '{ "size": 0, "query": { "bool": { "must": [ { "range": { "@timestamp": { "gte": "now-5m", "lte": "now" } } }] } }, "aggs": { "byType": { "terms": { "field": "type", "size": 5 } } } }'
   /scroll:
     post:
       summary: Run a paginated Elasticsearch query
