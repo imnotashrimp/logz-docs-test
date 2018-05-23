@@ -81,16 +81,15 @@ tags:
   - name: Delete endpoints
 
   # ::::: KIBANA IMPORT/EXPORT TAGS
-  - name: Import or export Kibana objects
+  - name: Import or export objects
 
   # ::::: SHARED TOKEN TAGS
   - name: Retrieve tokens and filters
   - name: Create, update, or delete tokens and filters
 
   # ::::: SNAPSHOTS TAGS
-  # - name: Retrieve snapshots
-  # - name: Create, update, or delete snapshots
-  - name: Create and retrieve Kibana shapshots
+  - name: Retrieve snapshots
+  - name: Create snapshots
 
   # ::::: USER MANAGEMENT TAGS
   - name: Retrieve users
@@ -112,13 +111,16 @@ x-tagGroups:
     tags:
       - Retrieve account CloudTrails
       - Create, update, or delete CloudTrails
-  - name: Elasticsearch and Kibana
+  - name: Elasticsearch
     tags:
       - Search logs
-      - Import or export Kibana objects
-      # - Retrieve snapshots
-      # - Create, update, or delete snapshots
-      - Create and retrieve Kibana shapshots
+  - name: Kibana
+    tags:
+      - Import or export objects
+  - name: Logz.io snapshotter
+    tags:
+      - Retrieve snapshots
+      - Create snapshots
   - name: Notification endpoints
     tags:
       - Retrieve endpoints
@@ -1168,7 +1170,7 @@ paths:
   /kibana/export:
     post:
       tags:
-        - Import or export Kibana objects
+        - Import or export objects
       summary: Export Kibana objects
       description: ''
       operationId: exportSavedObjects
@@ -1186,7 +1188,7 @@ paths:
   /kibana/import:
     post:
       tags:
-        - Import or export Kibana objects
+        - Import or export objects
       summary: Import Kibana objects
       description: ''
       operationId: importSavedObjects
@@ -1358,7 +1360,7 @@ paths:
   /snapshotter:
     post:
       tags:
-        - Create and retrieve Kibana shapshots
+        - Create snapshots
       summary: Create a snapshot
       description: ''
       operationId: createSnapshot
@@ -1376,7 +1378,7 @@ paths:
   /snapshotter/{snapshotId}:
     get:
       tags:
-        - Create and retrieve Kibana shapshots
+        - Retrieve snapshots
       summary: Retrieve snapshot by ID
       description: ''
       operationId: getSnapshot
