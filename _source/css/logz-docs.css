@@ -57,11 +57,12 @@ footer {
   align-items: center;
 
   /* position & style */
-  width: 100%;
-  margin: 1rem auto 0 auto;
+  width: auto;
+  margin: 0 auto;
   font-size: .8rem;
   border-top: 1px solid #dddddd;
-  padding-top: 10px;
+  /* padding-top: 10px; */
+  padding: 10px 50px;
 }
 
 div.toc-container {
@@ -91,6 +92,7 @@ div.card-container {
   grid-template-rows: auto;
   align-items: stretch;
   grid-gap: 10px;
+  margin-top: 1rem;
 }
 
 /* div.algolia-search-widget.home-page {
