@@ -242,7 +242,8 @@ paths:
         source: "curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/detailed/99999 -H 'X-API-TOKEN: {API key}'"
   /account-management/time-based-accounts/{id}:
     get:
-      summary: Retrieve account by ID
+      summary: Retrieve sub account by ID
+      description: Returns account information and configuration as a JSON object.
       tags:
         - Retrieve sub accounts
       operationId: get
@@ -263,7 +264,7 @@ paths:
       - lang: curl
         source: "curl -X GET https://api.logz.io/v1/account-management/time-based-accounts/99999 -H 'X-API-TOKEN: {API key}'"
     put:
-      summary: Update a time-based account
+      summary: Update a sub account
       tags:
         - Create, update, or delete sub accounts
       operationId: updateTimeBasedAccount
@@ -283,8 +284,31 @@ paths:
       responses:
         200:
           description: successful operation
+      x-code-samples:
+      - lang: curl
+        source: >-
+          curl -X PUT \
+          https://api.logz.io/v1/account-management/time-based-accounts/88888 \
+          -H 'X-API-TOKEN: {API key}' \
+          -d '{
+            "email": "help@logz.io",
+            "accountName": "AWS Lambda svr 3",
+            "maxDailyGB": 5,
+            "retentionDays": 5,
+            "searchable": true,
+            "accessible": false,
+            "sharingObjectsAccounts": [
+                55555
+            ],
+            "docSizeSetting": true,
+            "utilizationSettings": {
+              "frequencyMinutes": 5,
+              "utilizationEnabled": true
+            }
+          }'
     delete:
-      summary: Delete a time-based account
+      summary: Delete a sub account
+      description: Using an account ID as the only parameter, this endpoint deletes a sub account.
       tags:
         - Create, update, or delete sub accounts
       operationId: deleteTimeBasedAccount
@@ -299,6 +323,9 @@ paths:
       responses:
         200:
           description: successful operation
+      x-code-samples:
+        - lang: curl
+          source: "curl -X DELETE https://api.logz.io/v1/account-management/time-based-accounts/88888 -H 'X-API-TOKEN: {API key}'"
 
   # ::::: SEARCH, SCROLL
   /search:
