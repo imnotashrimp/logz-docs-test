@@ -1,9 +1,17 @@
 {% if site.public == true %}
+  {%- capture repo_path -%}
+  {{site.github.org_url}}{{site.github.repo_name}}
+  {%- endcapture -%}
+
+  {%- capture edit_path -%}
+  {{ repo_path }}/tree{{site.github.edit_branch}}{{site.github.source_folder}}{{site.github.collections_folder}}
+  {%- endcapture -%}
+
   <div class="community-container">
     <ul class="horizontal-list">
-      <li class="icon"><a href="{{ site.github_repo_url }}/fork">{% octicon repo-forked %} Fork</a></li>
-      <li class="icon"><a href="{{ site.github_repo_url }}/issues">{% octicon issue-opened %} Issue</a></li>
-      {% if site.edit_enabled == true %}<li class="icon"><a href="">{% octicon pencil %} Edit</a></li>{% endif %}
+      <li class="icon"><a href="{{ repo_path }}/fork">{% octicon repo-forked %} Fork</a></li>
+      <li class="icon"><a href="{{ repo_path }}/issues">{% octicon issue-opened %} Issue</a></li>
+      {% if site.edit_enabled == true %}<li class="icon"><a href="{{ edit_path }}/{{ page.relative_path }}">{% octicon pencil %} Edit</a></li>{% endif %}
     </ul>
   </div>
 {% endif %}

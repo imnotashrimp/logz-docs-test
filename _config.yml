@@ -25,10 +25,17 @@ api_only: false
 facebook_url: https://www.facebook.com/logz.io
 twitter_url: https://twitter.com/logzio
 youtube_url: https://www.youtube.com/channel/UC9Rc1hpWHUju8O2rYHAUVXA
-github_url:  https://github.com/imnotashrimp
-github_repo_url: https://github.com/imnotashrimp/logz-docs-test
 google_plus_url: https://plus.google.com/+LogzIo/
 linkedin_url: https://www.linkedin.com/company/4831888
+
+# GitHub repository paths - Leave beginning slashes, unless field is empty.
+github:
+  org_url:  https://github.com/imnotashrimp # only edit username - leave base URL
+  repo_name: /logz-docs-test
+  edit_branch: /develop # which path do you want users to be able to edit?
+  source_folder: /_source # leave empty if root
+  collections_folder: /logzio_collections # leave empty if not using collections
+
 
 # if you wish to integrate disqus on pages set your shortname here
 disqus:
