@@ -540,6 +540,8 @@ nav.all-pages-toc ul.grandchild {
 
 nav.all-pages-toc span.toc-heading {
   display: block;
+  padding-left: .5rem;
+  margin-left: -.5rem;
 }
 
 nav.all-pages-toc ul.parent span.toc-heading {
@@ -560,13 +562,11 @@ nav.all-pages-toc ul.grandchild span.toc-heading {
 li.toc-active > span.toc-heading {
   display: block;
   background-color: #e1e1e1;
-  padding-left: .5rem;
-  margin-left: -.5rem;
 }
 
 nav.all-pages-toc a {
   color: #263238;
-  display: inline-block;
+  padding: .1rem .25rem .1rem 0;
 }
 
 span.collapse-button {
@@ -575,8 +575,16 @@ span.collapse-button {
   padding-right: 1.5rem;
 }
 
+ul.child li span.toc-heading:hover {
+  background-color: #e1e1e1;
+}
+
 ul.closed ul {
-  /* display: none; */
+  display: none;
+}
+
+ul.open ul {
+  display: block;
 }
 
 /* ===== GITHUB BUTTONS ===== */
