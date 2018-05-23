@@ -516,7 +516,6 @@ nav.all-pages-toc {
   /* text */
   color: #263238;
   font-family: 'Montserrat', sans-serif;
-  /* font-weight: 200; */
 }
 
 .all-pages-toc ul {
@@ -530,6 +529,7 @@ nav.all-pages-toc ul.parent {
 }
 
 nav.all-pages-toc ul.child {
+  text-transform: none;
   font-size: .75rem;
 }
 
@@ -556,7 +556,7 @@ nav.all-pages-toc ul.grandchild span.toc-heading {
   margin-bottom: .25rem;
 }
 
-li.toc-active > a {
+li.toc-active > span.toc-heading {
   display: block;
   background-color: #e1e1e1;
   padding-left: .5rem;
@@ -565,6 +565,17 @@ li.toc-active > a {
 
 nav.all-pages-toc a {
   color: #263238;
+  display: inline-block;
+}
+
+span.collapse-button {
+  display: inline;
+  float: right;
+  padding-right: 1.5rem;
+}
+
+span.collapse-button.down {
+
 }
 
 /* ===== GITHUB BUTTONS ===== */
