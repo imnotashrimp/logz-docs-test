@@ -65,7 +65,6 @@ tags:
 
   # ::::: SEARCH, SCROLL TAGS
   - name: Search logs
-    description: Use the /search resource to run search queries on your Logz.io data. The query language used is Elasticsearch Search API DSL, with some limitations. To ensure system performance, we've restricted some options from the Elasticsearch defaults.
 
   # ::::: AUDIT TRAIL TAGS
   - name: Retrieve audit trail
@@ -330,7 +329,28 @@ paths:
   # ::::: SEARCH, SCROLL
   /search:
     post:
-      summary: Run an Elasticsearch query
+      summary: Run a search query
+      description: >-
+        Use the `/search` endpoint to query your account data using the Elasticsearch Search API DSL query language. To ensure system performance, we've restricted some options from the Elasticsearch defaults.
+
+        * We support these top-level elements in the Elasticsearch Search API: `query`, `from`, `size`, `sort`, `_source`, `post_filter`, `aggs`, `aggregations`
+
+        * When using the `query_string` element, the `allow_leading_wildcard` field can't be set to `true`
+
+        * The `wildcard` element can't start with `*` or `?`
+
+        * Your query will run only on data sent today and yesterday. You can still specify a filter on `timestamp` to search a smaller time frame
+
+        * When using the `size` element for aggregations, the value must be ≤ `1000`
+
+        * Can't nest 2 or more bucket aggregations of these types: `date_histogram`, `geohash_grid`, `histogram`, `ip_ranges`, `significant_terms`, `terms`
+
+        * Can't sort or aggregate on the `message` field
+
+        * Aggregation type `significant_terms` can't be used
+
+        * `query` can't contain the `fuzzy_max_expansions`, `max_expansions`, or `max_determinized_states`
+
       tags:
         - Search logs
       parameters:
