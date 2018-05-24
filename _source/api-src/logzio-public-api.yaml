@@ -2081,10 +2081,16 @@ definitions:
       date:
         type: integer
         format: int64
+        description: Date of the audit event, as a Unix epoch integer.
+        example: 1527168668
       auditEventTypeTitle:
         type: string
+        description: The event type
+        example: Admin created a sub account
       ip:
         type: string
+        description: IP address of the client device that generated the event
+        example: 52.203.237.249
       geoLocation:
         type: string
       extraDataList:
@@ -2115,12 +2121,19 @@ definitions:
       id:
         type: integer
         format: int32
+        description: ID of the user
+        example: 5374
       fullName:
         type: string
+        description: User's first and last name
+        example: Larry Appleton
       deleted:
         type: boolean
+        description: If this user has been deleted, `true`. Otherwise, `false`.
+        example: false
       userToken:
         type: boolean
+        description: ??
   AuditTrailFilteredResponse:
     type: object
     properties:
