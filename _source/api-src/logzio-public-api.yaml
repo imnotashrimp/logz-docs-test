@@ -1183,7 +1183,7 @@ paths:
             $ref: '#/definitions/KibanaExportRequest'
       x-code-samples:
         - lang: curl
-          source: "curl -X POST 'https://api.logz.io/v1/kibana/export' -H  'X-API-TOKEN: {API key}' -d '{'type': 'visualization'}'"
+          source: "curl -X POST 'https://api.logz.io/v1/kibana/export' -H  'X-API-TOKEN: {API key}' -d \"{'type': 'visualization'}\""
       responses:
         200:
           description: successful operation
@@ -1194,7 +1194,7 @@ paths:
       tags:
         - Import or export objects
       summary: Import Kibana objects
-      description: ''
+      description: Use this endpoint to import Kibana search, visualization, or dashboard objects. You can export objects using the [/kibana/export](#operation/exportSavedObjects) endpoint.
       operationId: importSavedObjects
       parameters:
         - in: body
@@ -2383,7 +2383,7 @@ definitions:
       kibanaVersion:
         type: string
         readOnly: true
-        description: The version of Kibana running at the time of export
+        description: The version of Kibana used at the time of export
         example: 4.0.0-beta3
       hits:
         type: array
@@ -2411,6 +2411,8 @@ definitions:
         readOnly: true
         items:
           type: string
+          description: ID of the imported object
+          example: c245e530-fc60-11e7-b120-5320b1759c57
       updated:
         type: array
         readOnly: true
@@ -2431,8 +2433,12 @@ definitions:
     properties:
       kibanaVersion:
         type: string
+        description: The version of Kibana used at the time of export
+        example: 4.0.0-beta3
       override:
         type: boolean
+        description: To overwrite an existing object with the same `_id`, `true`. Otherwise, `false`.
+        example: false
       hits:
         type: array
         items:
