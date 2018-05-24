@@ -111,7 +111,7 @@ x-tagGroups:
     tags:
       - Retrieve account CloudTrails
       - Create, update, or delete CloudTrails
-  - name: Elasticsearch
+  - name: Search and scroll logs
     tags:
       - Search logs
   - name: Kibana
@@ -745,7 +745,7 @@ paths:
   /log-shipping/cloudtrails/{id}:
     get:
       operationId: getCloudTrail
-      summary: Retrieve CloudTrail by ID
+      summary: Retrieve a CloudTrail by ID
       tags:
         - Retrieve account CloudTrails
       parameters:
@@ -754,6 +754,7 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ??
       responses:
         200:
           description: successful operation
@@ -1168,7 +1169,11 @@ paths:
       tags:
         - Import or export objects
       summary: Export Kibana objects
-      description: ''
+      description: >-
+        This endpoint exports the configuration of Kibana objects. All objects of a single type (search, visualization, or dashboard) are returned as an array of JSON objects. For example, if you export `visualization`, each visualization is returned as a JSON object.
+
+
+        You can import objects using the [/kibana/import](#operation/importSavedObjects) endpoint.
       operationId: exportSavedObjects
       parameters:
         - in: body
@@ -1176,6 +1181,9 @@ paths:
           required: false
           schema:
             $ref: '#/definitions/KibanaExportRequest'
+      x-code-samples:
+        - lang: curl
+          source: "curl -X POST 'https://api.logz.io/v1/kibana/export' -H  'X-API-TOKEN: {API key}' -d '{'type': 'visualization'}'"
       responses:
         200:
           description: successful operation
@@ -2375,11 +2383,14 @@ definitions:
       kibanaVersion:
         type: string
         readOnly: true
+        description: The version of Kibana running at the time of export
+        example: 4.0.0-beta3
       hits:
         type: array
         readOnly: true
         items:
           type: object
+        description: Exported Kibana objects
   KibanaExportRequest:
     type: object
     required:
@@ -2388,10 +2399,10 @@ definitions:
       type:
         type: string
         enum:
-          - none
           - search
           - visualization
           - dashboard
+        description: The object type to export
   KibanaImportResponse:
     type: object
     properties:
