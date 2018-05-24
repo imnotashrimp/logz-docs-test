@@ -67,6 +67,7 @@ footer {
 
 div.toc-container {
   grid-area: toc;
+  align-self: stretch;
   background-color: #fafafa;
   padding-left: 1rem;
 }
