@@ -579,7 +579,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/SearchBasedTrigger'
-          headers: {}
     put:
       operationId: updateTrigger
       summary: Update an optimizer
@@ -601,7 +600,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/SearchBasedTrigger'
-          headers: {}
     delete:
       operationId: deleteTrigger
       summary: Delete an optimizer
@@ -618,7 +616,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/SearchBasedTrigger'
-          headers: {}
   /triggers:
     get:
       operationId: getAllTriggers
@@ -632,7 +629,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/SearchBasedTrigger'
-          headers: {}
     post:
       operationId: createTrigger
       summary: Create a new optimizer
@@ -649,7 +645,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/SearchBasedTrigger'
-          headers: {}
   /triggers/filtered-list:
     post:
       operationId: getFilteredTriggersList
@@ -667,7 +662,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/PageResponseSearchBasedTrigger'
-          headers: {}
 
   # ::::: AUDIT TRAIL
   /audit-trail/event-types:
@@ -682,7 +676,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/AuditTrailEventTypesResponse'
-          headers: {}
       x-code-samples:
         - lang: curl
           source: "curl -X POST 'https://api.logz.io/v1/audit-trail/event-types' -H  'X-API-TOKEN: {API key}'"
@@ -703,7 +696,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/AuditTrailFilteredResponse'
-          headers: {}
 
   # ::::: CLOUDTRAIL
   /log-shipping/cloudtrails:
@@ -719,7 +711,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CloudTrailResponse'
-          headers: {}
     post:
       operationId: createCloudTrail
       tags:
@@ -764,7 +755,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/CloudTrailResponse'
-          headers: {}
     put:
       operationId: updateCloudTrail
       summary: Update CloudTrail
@@ -786,7 +776,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/MessageBean'
-          headers: {}
     delete:
       operationId: deleteCloudTrail
       summary: Delete a CloudTrail
@@ -813,7 +802,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/MessageBean'
-          headers: {}
 
   # ::::: NOTIFICATION ENDPOINTS
   /endpoints/slack:
@@ -1223,7 +1211,6 @@ paths:
             uniqueItems: true
             items:
               $ref: '#/definitions/QueryFilter'
-          headers: {}
     post:
       operationId: createFilter
       summary: Create a filter
@@ -1240,7 +1227,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/QueryFilter'
-          headers: {}
   /shared-tokens/filters/{id}:
     get:
       operationId: getFilter
@@ -1258,7 +1244,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/QueryFilter'
-          headers: {}
     delete:
       operationId: deleteFilter
       summary: Delete a filter
@@ -1290,7 +1275,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/SharedToken'
-          headers: {}
     put:
       operationId: updateToken
       summary: Update a token
@@ -1312,7 +1296,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/SharedToken'
-          headers: {}
     delete:
       operationId: deleteToken
       summary: Delete a token
@@ -1341,7 +1324,6 @@ paths:
             uniqueItems: true
             items:
               $ref: '#/definitions/SharedToken'
-          headers: {}
     post:
       operationId: createToken
       summary: Create a token
@@ -1358,7 +1340,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/SharedToken'
-          headers: {}
 
   # ::::: SNAPSHOTS
   /snapshotter:
