@@ -674,7 +674,7 @@ paths:
     post:
       operationId: listAccountAuditTrails
       summary: Retrieve event types in the audit trail
-      description: Returns a single array of strings. Each string is an event type that appears in the account's audit trail.
+      description: Returns an array of strings. Each string is an event type that appears in the account's audit trail. Each event type is shown once, no matter how many times it occurs in the acconut's audit trail.
       tags:
         - Retrieve audit trail
       responses:
@@ -689,7 +689,7 @@ paths:
   /audit-trail:
     post:
       operationId: listAccountAuditTrails
-      summary: Retrieve filtered audit trail
+      summary: Retrieve a filtered list of audit trail events
       tags:
         - Retrieve audit trail
       parameters:
@@ -2090,7 +2090,8 @@ definitions:
         type: array
         items:
           type: string
-        description: Event types in the account's audit trail
+        description: Event types in the audit trail
+        example: [ "Added user", "Admin created a sub account", "Changed password", "Failed login", "Login", "Logz.io admin has enabled a sawmill configuration", "Suspended user", "User created a token", "User installed an ELK app" ]
   AuditEventData:
     type: object
     properties:
