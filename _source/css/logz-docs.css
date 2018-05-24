@@ -519,49 +519,51 @@ nav.all-pages-toc {
   font-family: 'Montserrat', sans-serif;
 }
 
-.all-pages-toc ul {
+nav.all-pages-toc ul {
   list-style: none;
   padding: 0;
 }
 
-nav.all-pages-toc ul.parent {
+ul.toc-parent {
   font-size: .85rem;
   text-transform: uppercase;
 }
 
-nav.all-pages-toc ul.child {
+ul.toc-child {
   text-transform: none;
   font-size: .85rem;
 }
 
-nav.all-pages-toc ul.grandchild {
+ul.toc-grandchild {
   text-transform: none;
-  margin-left: .5rem;
+  font-size: .75rem;
+  margin-left: 1.25rem;
+  display: none;
 }
 
-nav.all-pages-toc span.toc-heading {
+span.toc-heading {
   display: block;
   padding-left: .5rem;
   margin-left: -.5rem;
 }
 
-nav.all-pages-toc ul.parent span.toc-heading {
-  padding-top: 1.5rem;
+ul.toc-parent span.toc-heading {
+  margin-top: 2rem;
+  margin-bottom: 0;
 }
 
-nav.all-pages-toc ul.child span.toc-heading {
-  margin-top: .5rem;
-  padding-top: .25rem;
-  padding-bottom: .25rem;
+ul.toc-child span.toc-heading {
+  margin-top: 0;
+  padding-top: .1rem;
+  padding-bottom: .1rem;
 }
 
-nav.all-pages-toc ul.grandchild span.toc-heading {
+ul.toc-grandchild span.toc-heading {
   padding-top: .25rem;
   padding-bottom: .25rem;
 }
 
 li.toc-active > span.toc-heading {
-  display: block;
   background-color: #e1e1e1;
 }
 
@@ -576,18 +578,21 @@ span.collapse-button {
   padding-right: 1.5rem;
 }
 
-ul.child li span.toc-heading:hover {
+span.collapse-button path {
+  transform: rotate(0deg);
+  transition: all .1s ease-out;
+  transform-origin: center;
+}
+
+span.collapse-button.show path {
+  transform: rotate(90deg);
+  transition: all .1s ease-out;
+  transform-origin: center;
+}
+
+ul.toc-child li span.toc-heading:hover {
   background-color: #e1e1e1;
 }
-
-ul.closed ul {
-  display: none;
-}
-
-ul.open ul {
-  display: block;
-}
-
 /* ===== GITHUB BUTTONS ===== */
 
 div.community-container {
