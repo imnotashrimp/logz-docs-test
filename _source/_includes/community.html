@@ -4,7 +4,7 @@
   {%- endcapture -%}
 
   {%- capture edit_path -%}
-  {{ repo_path }}/tree{{site.github.edit_branch}}{{site.github.source_folder}}{{site.github.collections_folder}}
+  {{ repo_path }}/tree{{site.github.edit_branch}}{{site.source | remove_first: "."}}{{site.github.collections_folder}}
   {%- endcapture -%}
 
   <div class="community-container">

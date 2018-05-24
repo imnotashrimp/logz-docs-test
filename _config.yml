@@ -33,7 +33,6 @@ github:
   org_url:  https://github.com/imnotashrimp # only edit username - leave base URL
   repo_name: /logz-docs-test
   edit_branch: /develop # which path do you want users to be able to edit?
-  source_folder: /_source # leave empty if root
   collections_folder: /logzio_collections # leave empty if not using collections
 
 
@@ -92,12 +91,6 @@ exclude:
 # Don't mess with these, unless you're willing to move a lot of files around.
 source: ./_source
 destination: ./_site
-
-# ===== BREADCRUMBS =====
-breadcrumbs:
-  root:
-    hide: true  # show breadcrumbs on root/home page
-    image: true # Show image or title text
 
 # ===== SEARCH =====
 addsearch_key: 1ba69fa167bc606aaf17e3ec81fb7695
