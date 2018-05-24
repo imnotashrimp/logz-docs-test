@@ -1,10 +1,10 @@
 {% if site.public == true %}
   {%- capture repo_path -%}
-  {{site.github.org_url}}{{site.github.repo_name}}
+  {{site.github.org_url | append: site.github.repo_name}}
   {%- endcapture -%}
 
   {%- capture edit_path -%}
-  {{ repo_path }}/tree{{site.github.edit_branch}}{{site.source | remove_first: "."}}{{site.github.collections_folder}}
+  {{ repo_path | append: "/tree" | append: site.github.edit_branch }}{{site.source | remove_first: "."}}{% if site.collections_dir %}{{site.collections_dir | prepend: "/" }}{% endif %}
   {%- endcapture -%}
 
   <div class="community-container">

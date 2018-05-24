@@ -33,7 +33,6 @@ github:
   org_url:  https://github.com/imnotashrimp # only edit username - leave base URL
   repo_name: /logz-docs-test
   edit_branch: /develop # which path do you want users to be able to edit?
-  collections_folder: /logzio_collections # leave empty if not using collections
 
 
 # if you wish to integrate disqus on pages set your shortname here
