@@ -17,9 +17,8 @@
         {%- if page.contributors -%}
           <span class="contributor-list"><i class="fas fa-users"></i>
             {%- for contributor in page.contributors -%}
-            {%- assign thisContributor = site.data.contributors[contributor] -%}
-              <a href="https://www.github.com/{{ thisContributor.github }}">{{ thisContributor.name }}</a>
-              {%- unless forloop.last -%},&nbsp;{%- endunless -%}
+              <a href="https://www.github.com/{{ contributor }}">{{ site.data.contributors[contributor].name }}</a>
+              {%- unless forloop.last -%},&nbsp;&nbsp;{%- endunless -%}
             {%- endfor -%}
           </span>
         {%- endif -%}

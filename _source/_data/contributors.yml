@@ -1,7 +1,9 @@
+# This file contains github and name information of all contributors to docs.
+# The first level is the contributor's GitHub username.
+# Second level contains the contributor's name, as they want it shown on the site.
+
 imnotashrimp:
   name: Shalom Boroda
-  github: imnotashrimp
 
 proudboffin:
   name: Daniel Berman
-  github: proudboffin

@@ -231,7 +231,7 @@ p code {
 
 div.highlight *, p code {
   font-size: .9rem;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 pre.highlight {
