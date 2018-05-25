@@ -499,10 +499,15 @@ footer li {
 
 div.social-icons li.icon {
   font-size: 1.25rem;
+  text-align: center;
+}
+
+div.social-icons a {
+  color: currentColor;
 }
 
 a.atom-feed {
-  color: orange;
+  color: orange !important;
 }
 
 /* ===== ALL-PAGES TOC STYLING ===== */

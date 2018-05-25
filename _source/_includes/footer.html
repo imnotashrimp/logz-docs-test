@@ -1,7 +1,7 @@
 <footer>
   <div class="copyright-footer">
     <ul class="horizontal-list">
-      <li>&copy; 2018 Logz.io, all rights reserved.</li>
+      {% if site.copyright %}<li>&copy; {{ site.copyright }}</li>{% endif %}
       <li><a href="https://logz.io/about-us/privacy-policy/" target="_top">Privacy policy</a></li>
       <li><a href="https://logz.io/about-us/terms-of-use/" target="_top">Terms of use</a></li>
       {% if site.public == true %}<li><a href="{{ site.baseurl }}/credits.html" target="_top">Credits & contributors</a></li>{% endif %}
@@ -16,6 +16,7 @@
       <li class="icon"><a href="{{ site.google_plus_url }}" target="_top"><i class="fab fa-google-plus-g"></i></a></li>
       <li class="icon"><a href="{{ site.linkedin_url }}" target="_top"><i class="fab fa-linkedin-in"></i></a></li>
       <li class="icon"><a class="atom-feed" href="{{ site.baseurl }}/feed.xml" target="_top"><i class="fas fa-rss-square"></i></a></li>
+      <li class="icon"><a href="{{ site.github.org_url }}" target="_top"><i class="fab fa-github"></i></a></li>
     </ul>
   </div>
 </footer>
