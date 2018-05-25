@@ -8,10 +8,24 @@
   {%- endcapture -%}
 
   <div class="community-container">
-    <ul class="horizontal-list">
-      <li class="icon"><a href="{{ repo_path }}/fork">{% octicon repo-forked %} Fork</a></li>
-      <li class="icon"><a href="{{ repo_path }}/issues">{% octicon issue-opened %} Issue</a></li>
-      {% if site.edit_enabled == true and page.collection %}<li class="icon"><a href="{{ edit_path }}/{{ page.relative_path }}">{% octicon pencil %} Edit</a></li>{% endif %}
-    </ul>
-  </div>
+    {% if site.edit_enabled == true and page.collection %}
+    <a href="{{ edit_path }}/{{ page.relative_path }}">
+      <span class="community button edit">
+        {% octicon pencil %} Edit
+      </span>
+    </a>
+    {% endif %}
+
+    <a href="{{ repo_path }}/issues">
+      <span class="community button issue">
+        {% octicon issue-opened %} Issue
+      </span>
+    </a>
+
+  <!-- <a href=""> -->
+    <span class="community button">
+      Slack placeholder
+    </span>
+  <!-- </a> -->
+</div>
 {% endif %}

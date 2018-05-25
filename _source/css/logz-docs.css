@@ -384,7 +384,7 @@ div.info-box > p {
 gotcha (orange)   #ffa64c
 warning (red)     #d94141
 tip (green)       #5abf4d
-note (blue)       #2e97e5  2e97e5   */
+note (blue)       #2e97e5   */
 
 /* .warning */
 div.info-box.warning {
@@ -593,33 +593,43 @@ span.collapse-button.show path {
 ul.toc-child li span.toc-heading:hover {
   background-color: #e1e1e1;
 }
+
 /* ===== GITHUB BUTTONS ===== */
 
 div.community-container {
   grid-area: community;
+  margin: 2rem auto 0 auto;
 }
 
-div.community-container {
-  /*  flex */
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-
-  /* position & style */
-  width: 100%;
-  margin: 1rem auto 0 auto;
-  font-size: .8rem;
+div.community-container a {
+  display: inline-block;
+  margin-right: 5px;
 }
 
-div.community-container li {
-  margin-right: .75rem;
-}
-
-div.community-container a svg {
-  vertical-align: text-bottom;
+span.community.button svg {
+  vertical-align: middle;
   fill: currentColor;
+  margin-right: 3px;
+}
+
+span.community.button {
+  border-radius: 3px;
+  border: 1px solid currentColor;
+  font-family: "Roboto", sans-serif;
+  font-size: 11px;
+  padding: 3px 5px;
+}
+
+span.community.button * {
+  vertical-align: middle;
+}
+
+span.community.button.edit {
+  color: #2e97e5;
+}
+
+span.community.button.issue {
+  color: #d94141;
 }
 
 /* ===== SEARCH ===== */
