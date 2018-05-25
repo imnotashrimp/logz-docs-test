@@ -47,7 +47,7 @@ google_analytics_id: 'UA-117595536-1'
 # ===== COLLECTIONS =====
 # Collections are the highest-level categories of Logz.io content.
 
-collections_dir: logzio_collections # all collections are contained in this directory
+collections_dir: logzio_content # all collections are contained in this directory
 
 collections:
   getting-started:
