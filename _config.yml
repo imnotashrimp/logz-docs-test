@@ -39,6 +39,13 @@ github:
   repo_name: /logz-docs-test
   edit_branch: /develop # which branch do you want users to edit?
 
+<<<<<<< HEAD
+=======
+# Slackin - shows Slack community button
+slackin_enabled: false
+
+
+>>>>>>> set slack button visibility with config parameter
 # if you wish to integrate disqus on pages set your shortname here
 disqus:
   shortname: 'sboroda'
