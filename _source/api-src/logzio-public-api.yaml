@@ -134,7 +134,7 @@ x-tagGroups:
   - name: Shared tokens
     tags:
       - Retrieve tokens and filters
-    # - Create, update, or delete tokens and filters
+      - Create, update, or delete tokens and filters
   - name: Users
     tags:
       - Retrieve users
@@ -1372,7 +1372,8 @@ paths:
   /shared-tokens:
     get:
       operationId: getAllTokens
-      summary: Retrieve all tokens
+      summary: Retrieve all shared tokens
+      description: Returns an array of JSON objects, where each object shows information for one token.
       tags:
         - Retrieve tokens and filters
       responses:
@@ -1383,6 +1384,9 @@ paths:
             uniqueItems: true
             items:
               $ref: '#/definitions/SharedToken'
+      x-code-samples:
+        - lang: curl
+          source: "curl -X GET 'https://api.logz.io/v1/shared-tokens' -H  'accept: application/json' -H  'content-type: application/json' -H  'X-API-TOKEN: <shared token>'"
     post:
       operationId: createToken
       summary: Create a token
@@ -1399,6 +1403,9 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/SharedToken'
+      x-code-samples:
+        - lang: curl
+          source: "curl -X POST 'https://api.logz.io/v1/shared-tokens' -H  'accept: application/json' -H  'content-type: application/json' -H  'X-API-TOKEN: <shared token>' -d {  'tokenName': 'Support shared token', 'filters':[339]}"
 
   # ::::: SNAPSHOTS
   /snapshotter:
@@ -2585,27 +2592,40 @@ definitions:
       id:
         type: integer
         format: int32
+        description: ID of the shared token
+        example: 1241
       name:
         type: string
+        description: Descriptive name of the token
+        example: Snapshotting token
       token:
         type: string
+        description: The token
+        example: 6c36edf51-cf93883aa35-5bc6ce6-7bcfe60d87-7387853f0
       filters:
         type: array
         uniqueItems: true
         items:
           type: integer
           format: int32
+        description: Array of filter IDs attached to each token. If no filter is attached, `null`.
+        example: [339, 340]
   CreateSharedTokenRequest:
     type: object
     properties:
       tokenName:
         type: string
+        default: string
+        description: Name of the token
+        example: Support team token
       filters:
         type: array
         uniqueItems: true
         items:
           type: integer
           format: int32
+        description: IDs of filters to attach to the token
+        example: [ 339 ]
   UpdateSharedTokenRequest:
     type: object
     required:
