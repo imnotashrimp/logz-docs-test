@@ -28,10 +28,9 @@
   {% endif %}
 
   {%- feed_meta -%}
-  {%- if jekyll.environment == 'production' and site.google_analytics and page.layout != "api-ref" -%}
-    {%- include google-analytics.html -%}
-    {% include zendesk-widget.html %}
+  {%- if jekyll.environment == 'production' -%}
+    {%- if site.google_analytics_id -%}{%- include google-analytics.html -%}{%- endif -%}
+    {%- if site.intercom_app_id -%}{%- include intercom.html -%}{%- endif -%}
   {%- endif -%}
   {% seo %}
-
 </head>

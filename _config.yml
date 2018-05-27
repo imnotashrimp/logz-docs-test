@@ -36,14 +36,16 @@ github:
   repo_name: /logz-docs-test
   edit_branch: /develop # which path do you want users to be able to edit?
 
-
 # if you wish to integrate disqus on pages set your shortname here
 disqus:
   shortname: 'sboroda'
   site_url: 'imnotashrimp.github.com'
 
-# if you use google analytics, add your tracking id here
+# if you use google analytics, add your tracking id here. To disable, remove or comment out the line
 google_analytics_id: 'UA-117595536-1'
+
+# if you use Intercom, add app id here. To disable, remove or comment out the line
+intercom_app_id: bkz9ugqv
 
 # ===== COLLECTIONS =====
 # Collections are the highest-level categories of Logz.io content.
