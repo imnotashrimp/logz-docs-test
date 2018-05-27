@@ -1,22 +1,29 @@
 {% unless page.related-links == false %}
 <div class="related-links-container">
   {% include community.html %}
+
   <div class="tags">
     <span>Tags</span>
+    {% for tag in page.tags %}
+    {% assign relatedlinks = site.pages | where:"tags",page.tag %}
+    <p>Tag: {{ tag }}</p>
     <ul>
-      <li>tag 1</li>
-      <li>tag 2</li>
-      <li>tag 3</li>
+      {% for link in relatedLinks %}
+      <li>{{ link.page.title }}</li>
+      {% endfor %}
     </ul>
-  </div>
+    {% endfor %}
 
-  <div class="related-docs">
-    <span>Related docs</span>
-    <ul>
-      <li>related docs 1</li>
-      <li>related docs 2</li>
-      <li>related docs 3</li>
-    </ul>
+    <span>Loop test</span>
+    {% for thisCollection in site.collections%}
+    <p>Collection: {{ thisCollection.label }}</p>
+    {% for thisPage in thisCollection.docs %}
+    <p>{{ thisPage.title }}</p>
+    <ul>{% for pageTag in thisPage.tags %}
+      <li>tag: {{ pageTag }}</li>
+    {% endfor %}</ul>
+    {% endfor %}
+    {% endfor %}
   </div>
 
   <div class="related-blog">
