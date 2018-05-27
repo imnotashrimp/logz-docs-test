@@ -1499,7 +1499,7 @@ paths:
       tags:
         - Create, update, or delete users
       summary: Update a user
-      description: ''
+      description: Use this endpoint to update an existing user's details or permissions.
       operationId: updateUser
       parameters:
         - in: body
@@ -1512,6 +1512,10 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ID of the user
+      x-code-samples:
+        - lang: curl
+          source: "curl -X PUT 'https://api.logz.io/v1/user-management/12345'  -H  'X-API-TOKEN: {API key}' -d '{  'username': 'drvenkman@gbusters.com',  'fullName': 'Peter Venkman',  'accountID': 13485,  'roles': [ 2 ]}'"
       responses:
         200:
           description: successful operation
@@ -1655,7 +1659,7 @@ definitions:
       ownerAccountId:
         type: integer
         format: int32
-        description: ID of the owner account
+        description: ID of the main account
         example: 88765
       subAccountId:
         type: integer
@@ -1705,6 +1709,7 @@ definitions:
       email:
         type: string
         description: Email address of the user who created the account
+        example: them@mycompany.com
       accountName:
         type: string
         description: Name of the account
@@ -2778,7 +2783,7 @@ definitions:
         items:
           type: integer
           format: int32
-        description: If the user is an account admin, `2`. If the user is a regular user, `3`.
+        description: For admin access, `2`. For user access, `3`.
         example: [3]
       active:
         type: boolean
@@ -2790,6 +2795,8 @@ definitions:
       id:
         type: integer
         format: int32
+        description: ID of the account
+        example: 13485
   UserManagementUpsertRequest:
     type: object
     required:
@@ -2800,13 +2807,20 @@ definitions:
         type: string
         pattern: >-
           ^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,})$
+        description: Email address used for signing in to Logz.io
+        example: drvenkman@gbusters.com
       fullName:
         type: string
+        description: User's first and last name
+        example: Peter Venkman
       accountID:
         type: integer
         format: int32
+        description: ID of the account attached to the user
       roles:
         type: array
         items:
           type: integer
           format: int32
+        description: For admin access, `2`. For user access, `3`.
+        example: [2]
