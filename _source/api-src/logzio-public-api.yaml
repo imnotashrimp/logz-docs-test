@@ -1207,6 +1207,50 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/KibanaImportResponse'
+      x-code-samples:
+        - lang: curl
+          source: >-
+            {
+              "kibanaVersion": "4.0.0-beta3",
+              "override": true,
+              "hits": [
+                {
+                  "_index": "logzioCustomerKibanaIndex",
+                  "_type": "search",
+                  "_id": "c245e530-fc60-11e7-b120-5320b1759c57",
+                  "_score": 1,
+                  "_source": {
+                    "title": "example-saved-query",
+                    "description": "",
+                    "hits": 0,
+                    "columns": [
+                      "message"
+                    ],
+                    "sort": [
+                      "@timestamp",
+                      "desc"
+                    ],
+                    "version": 1,
+                    "kibanaSavedObjectMeta": {
+                      "searchSourceJSON": "{\"index\":\"[logzioCustomerIndex]YYMMDD\",\"highlightAll\":true,\"version\":true,\"query\":{\"query_string\":{\"query\":\"example-saved-query\"}},\"filter\":[]}"
+                    },
+                    "_createdBy": {
+                      "userId": 1,
+                      "fullName": "testadmin@logz.io",
+                      "username": "testadmin@logz.io"
+                    },
+                    "_createdAt": 1516287816456,
+                    "_updatedBy": {
+                      "userId": 1,
+                      "fullName": "testadmin@logz.io",
+                      "username": "testadmin@logz.io"
+                    },
+                    "_updatedAt": 1516287816456
+                  }
+                }
+              ]
+            }
+
 
   # ::::: SHARED TOKENS
   /shared-tokens/filters:
@@ -1426,6 +1470,9 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/UserManagementUpsertResponse'
+      x-code-samples:
+        - lang: curl
+          source: "curl -X POST 'https://api.logz.io/v1/user-management' -H  'X-API-TOKEN: {API key}' -d '{  'username': 'me@mycompany.com',  'fullName': 'Shalom the Mighty',  'accountID': 11111,  'roles': [ 2 ]}'"
   /user-management/{id}:
     get:
       tags:
@@ -2411,33 +2458,43 @@ definitions:
         readOnly: true
         items:
           type: string
-          description: ID of the imported object
-          example: c245e530-fc60-11e7-b120-5320b1759c57
+          example: E-commerce-App-Transactions-overtime
+        description: Name of Kibana objects that were created
       updated:
         type: array
         readOnly: true
         items:
           type: string
+          example: HTTP-Response-over-time
+        description: Names of the Kibana objects that were overwritten. Objects are shown here only if `override` was `true` in the import call.
       ignored:
         type: array
         readOnly: true
         items:
           type: string
+          example: Transaction-overtime
+        description: Names of the Kibana objects that were not overwritten. Objects are shown here only if `override` was `false` in the import call.
       failed:
         type: array
         readOnly: true
         items:
           type: string
+          example: Apache-Response-Over-Time
+        description: Names of the Kibana objects that could not be created, updated, or ignored.
   KibanaImportRequest:
     type: object
     properties:
       kibanaVersion:
         type: string
-        description: The version of Kibana used at the time of export
+        description: The version of Kibana used at the time of export. This must match the current version of Kibana that you're importing to.
         example: 4.0.0-beta3
       override:
         type: boolean
-        description: To overwrite an existing object with the same `_id`, `true`. Otherwise, `false`.
+        description: >-
+          To update an existing object with the same ID, `true`. Otherwise, `false`.
+
+
+          If override is `true`, response message shows overwritten objects as `updated`. If override is `false`, no existing objects are updated, and response message shows these objects as `ignored`.
         example: false
       hits:
         type: array
@@ -2445,6 +2502,11 @@ definitions:
           type: object
           additionalProperties:
             type: object
+        description: >-
+          Each JSON object in the array represents a discrete Kibana object.
+
+
+          **Note:** As a best practice, import only objects that were exported from Kibana.
 
   # ::::: SEARCH, SCROLL DEFINITIONS
   ScrollResponse:
