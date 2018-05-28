@@ -23,3 +23,23 @@ iframe.header-frame {
 div[role=search] {
   display: none;
 }
+
+
+/* Override redoc capitalization, and text & link colors
+  These are temporary workarounds until redoc documents theming  */
+  
+ul[role=navigation] label {
+  text-transform: none;
+}
+
+ul[role=navigation] label[type=group] {
+  text-transform: uppercase;
+}
+
+h1 {
+  color: #296386 !important;
+}
+
+a {
+  color: #009cbd !important;
+}
