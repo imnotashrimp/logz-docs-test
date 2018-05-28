@@ -84,8 +84,10 @@ tags:
   - name: Import or export objects
 
   # ::::: SHARED TOKEN TAGS
-  - name: Retrieve tokens and filters
-  - name: Create, update, or delete tokens and filters
+  - name: Retrieve shared tokens
+  - name: Create, update, or delete shared tokens
+  - name: Retrieve token filters
+  - name: Create, update, or delete token filters
 
   # ::::: SNAPSHOTS TAGS
   - name: Retrieve snapshots
@@ -133,8 +135,12 @@ x-tagGroups:
       - Create, update, or delete optimizer definitions
   - name: Shared tokens
     tags:
-      - Retrieve tokens and filters
-      - Create, update, or delete tokens and filters
+      - Retrieve shared tokens
+      - Create, update, or delete shared tokens
+  - name: Token filters
+    tags:
+      - Retrieve token filters
+      - Create, update, or delete token filters
   - name: Users
     tags:
       - Retrieve users
@@ -1261,7 +1267,7 @@ paths:
       operationId: getAllFilters
       summary: Retrieve token filters
       tags:
-        - Retrieve tokens and filters
+        - Retrieve token filters
       responses:
         200:
           description: successful operation
@@ -1274,7 +1280,7 @@ paths:
       operationId: createFilter
       summary: Create a filter
       tags:
-        - Create, update, or delete tokens and filters
+        - Create, update, or delete token filters
       parameters:
         - in: body
           name: body
@@ -1289,9 +1295,9 @@ paths:
   /shared-tokens/filters/{id}:
     get:
       operationId: getFilter
-      summary: Retrieve a filter by ID
+      summary: Retrieve a token filter by ID
       tags:
-        - Retrieve tokens and filters
+        - Retrieve token filters
       parameters:
         - name: id
           in: path
@@ -1307,7 +1313,7 @@ paths:
       operationId: deleteFilter
       summary: Delete a filter
       tags:
-        - Create, update, or delete tokens and filters
+        - Create, update, or delete token filters
       parameters:
         - name: id
           in: path
@@ -1320,25 +1326,62 @@ paths:
   /shared-tokens/{id}:
     get:
       operationId: getToken
-      summary: Retrieve a token by ID
+      summary: Retrieve a shared token by ID
+      description: >-
+        Returns a shared token as a JSON object.
+
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Retrieve tokens and filters
+        - Retrieve shared tokens
       parameters:
         - name: id
           in: path
           required: true
           type: integer
           format: int32
+          description: ID of the shared token
+      x-code-samples:
+        - lang: curl
+          source: "curl -X GET 'https://api.logz.io/v1/shared-tokens/1242' -H  'accept: application/json' -H  'content-type: application/json' -H  'X-API-TOKEN: <API token>'"
       responses:
         200:
           description: successful operation
           schema:
             $ref: '#/definitions/SharedToken'
+        400:
+          description: not found
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: token with id 12345 not found for account 54321
+                description: The shared token or query filter could not be found
+        403:
+          description: forbidden
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Insufficient privileges
+                description: Insufficient privileges. Contact our Support Team for access to this API feature.
+        503:
+          description: service temporarily unavailable. please try again.
     put:
       operationId: updateToken
-      summary: Update a token
+      summary: Update a shared token
+      description: >-
+        Use this endpoint change the filters attached to a shared token.
+
+
+        <span style="color: red">**Warning:**</span> Updating a shared token can change the behavior of your integrations. As a best practice, test all integrations when updating or deleting shared tokens or filters.
+
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete tokens and filters
+        - Create, update, or delete shared tokens
       parameters:
         - name: id
           in: path
@@ -1350,32 +1393,91 @@ paths:
           required: false
           schema:
             $ref: '#/definitions/UpdateSharedTokenRequest'
+      x-code-samples:
+        - lang: curl
+          source: "curl -X PUT 'https://api.logz.io/v1/shared-tokens/1242' -H  'accept: application/json' -H  'content-type: application/json' -H  'X-API-TOKEN: <API token>' -d '{ \"filters\":[339]}'"
       responses:
         200:
           description: successful operation
           schema:
             $ref: '#/definitions/SharedToken'
+        400:
+          description: not found
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: token with id 12345 not found for account 54321
+                description: The shared token or query filter could not be found
+        403:
+          description: forbidden
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Insufficient privileges
+                description: Insufficient privileges. Contact our Support Team for access to this API feature.
+        503:
+          description: service temporarily unavailable. please try again.
     delete:
       operationId: deleteToken
-      summary: Delete a token
+      summary: Delete a shared token
+      description: >-
+        Use this endpoint delete a shared token.
+
+
+        <span style="color: red">**Warning:**</span> Deleting a shared token can change the behavior of your integrations. As a best practice, test all integrations when updating or deleting shared tokens or filters.
+
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete tokens and filters
+        - Create, update, or delete shared tokens
       parameters:
         - name: id
           in: path
           required: true
           type: integer
           format: int32
+          description: ID of the shared token
+      x-code-samples:
+        - lang: curl
+          source: "curl -X DELETE 'https://api.logz.io/v1/shared-tokens/1250' -H  'accept: application/json' -H  'content-type: application/json' -H  'X-API-TOKEN: <API token>'"
       responses:
-        200:
+        204:
           description: successful operation
+        400:
+          description: not found
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: token with id 12345 not found for account 54321
+                description: The shared token or query filter could not be found
+        403:
+          description: forbidden
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Insufficient privileges
+                description: Insufficient privileges. Contact our Support Team for access to this API feature.
+        503:
+          description: service temporarily unavailable. please try again.
   /shared-tokens:
     get:
       operationId: getAllTokens
       summary: Retrieve all shared tokens
-      description: Returns an array of JSON objects, where each object shows information for one token.
+      description: >-
+        Returns an array of JSON objects, where each object shows information for one token.
+
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Retrieve tokens and filters
+        - Retrieve shared tokens
       responses:
         200:
           description: successful operation
@@ -1384,14 +1486,39 @@ paths:
             uniqueItems: true
             items:
               $ref: '#/definitions/SharedToken'
+        400:
+          description: not found
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: token with id 12345 not found for account 54321
+                description: The shared token or query filter could not be found
+        403:
+          description: forbidden
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Insufficient privileges
+                description: Insufficient privileges. Contact our Support Team for access to this API feature.
+        503:
+          description: service temporarily unavailable. please try again.
       x-code-samples:
         - lang: curl
           source: "curl -X GET 'https://api.logz.io/v1/shared-tokens' -H  'accept: application/json' -H  'content-type: application/json' -H  'X-API-TOKEN: <shared token>'"
     post:
       operationId: createToken
-      summary: Create a token
+      summary: Create a shared token
+      description: >-
+        Use this endpoint to create a new shared token.
+
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete tokens and filters
+        - Create, update, or delete shared tokens
       parameters:
         - in: body
           name: body
@@ -1403,6 +1530,26 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/SharedToken'
+        400:
+          description: not found
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: token with id 12345 not found for account 54321
+                description: The shared token or query filter could not be found
+        403:
+          description: forbidden
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Insufficient privileges
+                description: Insufficient privileges. Contact our Support Team for access to this API feature.
+        503:
+          description: service temporarily unavailable. please try again.
       x-code-samples:
         - lang: curl
           source: "curl -X POST 'https://api.logz.io/v1/shared-tokens' -H  'accept: application/json' -H  'content-type: application/json' -H  'X-API-TOKEN: <shared token>' -d {  'tokenName': 'Support shared token', 'filters':[339]}"
@@ -2601,7 +2748,7 @@ definitions:
       token:
         type: string
         description: The token
-        example: 6c36edf51-cf93883aa35-5bc6ce6-7bcfe60d87-7387853f0
+        example: 6c36edf51-cf93883aa35-5bc6ce6-7bcfe60d87
       filters:
         type: array
         uniqueItems: true
@@ -2637,6 +2784,9 @@ definitions:
         items:
           type: integer
           format: int32
+          description: ID of the filter
+          example: 339
+        description: IDs of filters to attach to the token. To remove all filters, use an empty array `[]`.
 
   # ::::: SNAPSHOTS DEFINITIONS
   SnapshotCreateResponse:
