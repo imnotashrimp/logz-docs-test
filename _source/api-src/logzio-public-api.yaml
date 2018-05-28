@@ -2174,7 +2174,7 @@ definitions:
         type: string
   TriggerOn:
     type: object
-    discriminator: type
+    # discriminator: type
     properties:
       type:
         type: string
@@ -2193,7 +2193,7 @@ definitions:
         $ref: '#/definitions/Target'
   Format:
     type: object
-    discriminator: type
+    # discriminator: type
   Target:
     type: object
     properties:
