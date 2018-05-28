@@ -45,30 +45,22 @@ security:
 tags:
   # ::::: ACCOUNTS TAGS
   - name: Retrieve sub accounts
-    description: Retrieve account information on sub accounts
   - name: Create, update, or delete sub accounts
-    description: Make a new sub account, or modify an existing sub account
 
   # ::::: TRIGGERS - ALERTS TAGS
   - name: Retrieve alert definitions
-    description: Retrieve a list of alert definitions. Each item in the list returns the alert query and settings.
   # - name: Retrieve triggered alerts
-  #   description: Retrieve a list of alerts triggered in your accounts.
   - name: Create, update, or delete alert definitions
-    description: Make a new alert definition, or modify an existing alert definition
 
   # ::::: TRIGGERS - OPTIMIZER TAGS
   - name: Retrieve optimizer definitions
-    description: Retrieve a list of optimizer definitions. Each item in the list returns the optimizer query and settings.
   - name: Create, update, or delete optimizer definitions
-    description: Make a new optimizer definition, or modify an existing optimizer definition
 
   # ::::: SEARCH, SCROLL TAGS
   - name: Search logs
 
   # ::::: AUDIT TRAIL TAGS
   - name: Retrieve audit trail
-    description: Retrieve a list of all event types stored in the audit trail
 
   # ::::: CLOUDTRAIL TAGS
   - name: Retrieve account CloudTrails
@@ -113,16 +105,9 @@ x-tagGroups:
     tags:
       - Retrieve account CloudTrails
       - Create, update, or delete CloudTrails
-  - name: Search and scroll logs
-    tags:
-      - Search logs
   - name: Kibana
     tags:
       - Import or export objects
-  - name: Logz.io snapshotter
-    tags:
-      - Retrieve snapshots
-      - Create snapshots
   - name: Notification endpoints
     tags:
       - Retrieve endpoints
@@ -133,10 +118,17 @@ x-tagGroups:
     tags:
       - Retrieve optimizer definitions
       - Create, update, or delete optimizer definitions
+  - name: Search and scroll logs
+    tags:
+      - Search logs
   - name: Shared tokens
     tags:
       - Retrieve shared tokens
       - Create, update, or delete shared tokens
+  - name: Snapshotter
+    tags:
+      - Retrieve snapshots
+      - Create snapshots
   - name: Token filters
     tags:
       - Retrieve token filters
