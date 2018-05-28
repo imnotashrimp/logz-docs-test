@@ -1257,9 +1257,17 @@ paths:
   /shared-tokens/filters:
     get:
       operationId: getAllFilters
-      summary: Retrieve token filters
+      summary: Retrieve all token filters
+      description: >-
+        Returns an array of JSON objects, where each object shows information for one token filter.
+
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
         - Retrieve token filters
+      x-code-samples:
+        - lang: curl
+          source: "curl -X GET 'https://api.logz.io/v1/shared-tokens/filters' -H  'accept: application/json' -H  'content-type: application/json' -H  'X-API-TOKEN: <API key>'"
       responses:
         200:
           description: successful operation
@@ -1268,9 +1276,34 @@ paths:
             uniqueItems: true
             items:
               $ref: '#/definitions/QueryFilter'
+        400:
+          description: not found
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: token with id 12345 not found for account 54321
+                description: The shared token or query filter could not be found
+        403:
+          description: forbidden
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Insufficient privileges
+                description: Insufficient privileges. Contact our Support Team for access to this API feature.
+        503:
+          description: service temporarily unavailable. please try again.
     post:
       operationId: createFilter
-      summary: Create a filter
+      summary: Create a token filter
+      description: >-
+        Use this endpoint to create a new token filter.
+
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
         - Create, update, or delete token filters
       parameters:
@@ -1284,10 +1317,35 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/QueryFilter'
+        400:
+          description: not found
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: token with id 12345 not found for account 54321
+                description: The shared token or query filter could not be found
+        403:
+          description: forbidden
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Insufficient privileges
+                description: Insufficient privileges. Contact our Support Team for access to this API feature.
+        503:
+          description: service temporarily unavailable. please try again.
   /shared-tokens/filters/{id}:
     get:
       operationId: getFilter
       summary: Retrieve a token filter by ID
+      description: >-
+        Returns a token filter as a JSON object.
+
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
         - Retrieve token filters
       parameters:
@@ -1296,14 +1354,46 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ID of the token filter
+      x-code-samples:
+        - lang: curl
+          source: "curl -X GET 'https://api.logz.io/v1/shared-tokens/filters/345' -H  'accept: application/json' -H  'content-type: application/json' -H  'X-API-TOKEN: <API key>'"
       responses:
         200:
           description: successful operation
           schema:
             $ref: '#/definitions/QueryFilter'
+        400:
+          description: not found
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: token with id 12345 not found for account 54321
+                description: The shared token or query filter could not be found
+        403:
+          description: forbidden
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Insufficient privileges
+                description: Insufficient privileges. Contact our Support Team for access to this API feature.
+        503:
+          description: service temporarily unavailable. please try again.
     delete:
       operationId: deleteFilter
-      summary: Delete a filter
+      summary: Delete a token filter
+      description: >-
+        Use this endpoint delete a token filter.
+
+
+        <span style="color: red">**Warning:**</span> Deleting a token filter can change the behavior of your integrations. As a best practice, test all integrations when updating or deleting shared tokens or filters.
+
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
         - Create, update, or delete token filters
       parameters:
@@ -1312,9 +1402,33 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ID of the token filter
+      x-code-samples:
+        - lang: curl
+          source: "curl -X DELETE 'https://api.logz.io/v1/shared-tokens/filters/345' -H  'accept: application/json' -H  'content-type: application/json' -H  'X-API-TOKEN: <API key>'"
       responses:
         200:
           description: successful operation
+        400:
+          description: not found
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: token with id 12345 not found for account 54321
+                description: The shared token or query filter could not be found
+        403:
+          description: forbidden
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Insufficient privileges
+                description: Insufficient privileges. Contact our Support Team for access to this API feature.
+        503:
+          description: service temporarily unavailable. please try again.
   /shared-tokens/{id}:
     get:
       operationId: getToken
@@ -2717,14 +2831,20 @@ definitions:
       id:
         type: integer
         format: int32
+        description: ID of the token filter
+        example: 339
       field:
         type: string
         pattern: '^[a-zA-Z0-9_@.-]+$'
+        description: The field to be filtered
       value:
         type: string
         pattern: '^[a-zA-Z0-9_@.-]+$'
+        description: The filter query
       description:
         type: string
+        description: Name of the filter
+        example: 503 responses
   SharedToken:
     type: object
     properties:
