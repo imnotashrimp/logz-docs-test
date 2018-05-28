@@ -121,18 +121,16 @@ x-tagGroups:
   - name: Search and scroll logs
     tags:
       - Search logs
-  - name: Shared tokens
+  - name: Shared tokens and filters
     tags:
       - Retrieve shared tokens
+      - Retrieve token filters
       - Create, update, or delete shared tokens
+      - Create, update, or delete token filters
   - name: Snapshotter
     tags:
       - Retrieve snapshots
       - Create snapshots
-  - name: Token filters
-    tags:
-      - Retrieve token filters
-      - Create, update, or delete token filters
   - name: Users
     tags:
       - Retrieve users
