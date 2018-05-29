@@ -514,6 +514,7 @@ paths:
     get:
       operationId: getAllAlerts
       summary: Retrieve all alert definitions
+      description: Use this endpoint to see all alert definitions in an account. This endpoint returns an array of JSON objects, with each object showing all the available details for an alert definition.
       tags:
         - Retrieve alert definitions
       responses:
@@ -2092,6 +2093,7 @@ definitions:
       description:
         type: string
         description: Detailed description of the alert
+        example: Trigger alert if more than 50 404 errors in 1 minute
       enabled:
         type: boolean
         description: If this alert is enabled, `true`. Otherwise, `false`.
@@ -2118,7 +2120,7 @@ definitions:
     properties:
       queryString:
         type: string
-        description: Elasticsearch query used by the alert
+        description: Search query used by the alert
         example: loglevel:ERROR
       filter:
         type: string
@@ -2130,9 +2132,12 @@ definitions:
           type: string
         maxItems: 3
         minItems: 0
+        description: Field to group results by
+        example: geoip.country_name
       periodInMinutes:
         type: integer
         format: int32
+        description: The time period for the threshold to be passed, in minutes.
       source:
         $ref: '#/definitions/TriggerSearchSources'
       metricsAggregations:
@@ -2144,18 +2149,25 @@ definitions:
     properties:
       allTimelessIndices:
         type: boolean
+        description: If you want this alert to query all timeless accounts, `true`. Otherwise, `false`.
       timelessIndices:
         type: array
         items:
           type: integer
           format: int32
+          description: ID of timeless account
+        description: Array of timeless account IDs to query
+        example: [ 33654, 15322 ]
       allSubAccounts:
         type: boolean
+        description: If you want this alert to query all sub accounts, `true`. Otherwise, `false`.
       subAccountsIds:
         type: array
         items:
           type: integer
           format: int32
+        description: Array of sub account IDs to query.
+        example: [ 12332, 78997 ]
   Aggregation:
     type: object
     properties:
@@ -2169,8 +2181,12 @@ definitions:
           - COUNT
           - UNIQUE_COUNT
           - NONE
+        description: With `fieldToAggregateOn`, this defines the aggregate function to be used.
+        example: UNIQUE_COUNT
       fieldToAggregateOn:
         type: string
+        description: With `aggregationType`, this defines the field to be aggregated.
+        example: request
   TriggerOn:
     type: object
     # discriminator: type
@@ -2180,6 +2196,7 @@ definitions:
         enum:
           - CONDITION
           - SCHEDULE
+        description: If this alert will trigger using a threshold per time period, `CONDITION`. If this alert will trigger at scheduled time intervals, `SCHEDULE`.
   TriggerOutput:
     type: object
     required:
