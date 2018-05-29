@@ -2,28 +2,60 @@
 <div class="related-links-container">
   {% include community.html %}
 
-  <div class="tags">
-    <span>Tags</span>
-    {% for tag in page.tags %}
-    {% assign relatedlinks = site.pages | where:"tags",page.tag %}
-    <p>Tag: {{ tag }}</p>
-    <ul>
-      {% for link in relatedLinks %}
-      <li>{{ link.page.title }}</li>
-      {% endfor %}
-    </ul>
-    {% endfor %}
+<p>
+1. loop through documents (site.documents) <br />
+2. grab all docs with at least 2 related tags <br />
+3. sort list by number of common tags (primary) and alphabetical (secondary)
+===== SEE INSTRUCTIONS FROM HERE:
+https://stackoverflow.com/questions/25348389/jekyll-and-liquid-show-related-posts-by-amount-of-equal-tags-2
+</p>
 
+
+{% comment %} the maximum number of related to posts
+              to be printed {% endcomment %}
+{% assign maxRelated = 5 %}
+
+{% comment %} the minimum number of common tags
+              to have for a post to be considered
+              as a related post {% endcomment %}
+{% assign minCommonTags =  2 %}
+
+{% assign maxRelatedCounter = 0 %}
+
+  <div class="tags">
     <span>Loop test</span>
-    {% for thisCollection in site.collections%}
-    <p>Collection: {{ thisCollection.label }}</p>
-    {% for thisPage in thisCollection.docs %}
-    <p>{{ thisPage.title }}</p>
-    <ul>{% for pageTag in thisPage.tags %}
-      <li>tag: {{ pageTag }}</li>
-    {% endfor %}</ul>
-    {% endfor %}
-    {% endfor %}
+    <p><i>results should show here</i></p>
+
+<ol>
+    {% for doc in site.documents %}
+    {% comment %} Loop through each page in a collection (site.documents)
+                  {% endcomment %}
+
+        <li>doc: {{ doc.title }}
+          <ol>
+      {% for thatTag in doc.tags %}
+
+        <li> tag {{ forloop.index }}: {{ thatTag }}
+
+          <ol>
+        {% assign commonTags = 0 %}
+        {% for thisTag in page.tags %}
+          <li>tag {{ forloop.index }}: {{ thisTag }}<br />
+          {% if thisTag == thatTag %}MATCH {% break %}
+          {% else %} --no match-- {% endif %}
+          </li>
+        {% endfor %}
+          </ol>
+
+      </li>
+      {% endfor %}
+      </ol>
+
+    </li>
+    {% endfor%}
+</ol>
+
+    <hr>
   </div>
 
   <div class="related-blog">
