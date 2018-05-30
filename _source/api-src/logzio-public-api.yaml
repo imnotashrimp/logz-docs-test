@@ -986,8 +986,8 @@ paths:
     put:
       tags:
         - Update endpoints
-      summary: Update PagerDuty endpoint
-      description: ''
+      summary: Update a PagerDuty endpoint
+      description: Using this API endpoint, you can update a PagerDuty notification endpoint or send a test message to PagerDuty
       operationId: updatePagerDuty
       parameters:
         - name: id
@@ -995,16 +995,25 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ID of the notification endpoint
         - name: test
           in: query
           required: false
           type: boolean
           default: false
+          description: >-
+            To send a test message to the endpoint, `true`. Otherwise, `false`.
+
+
+            **Note:** If set to `true`, the notification endpoint is not updated. To update the endpoint, you need to send the API request where `test=false`.
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/PagerDutyEndpointUpsertRequest'
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X PUT "https://api.logz.io/v1/endpoints/pager-duty/271" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{  \"title\": \"Updated PagerDuty endpoint\", \"description\": \"Sends notifications to PagerDuty\", \"serviceKey\": \"78c3b6cf0a884a538410fe281227eb0b\"}"'
       responses:
         200:
           description: successful operation
@@ -1045,8 +1054,8 @@ paths:
     put:
       tags:
         - Update endpoints
-      summary: Update BigPanda endpoint
-      description: ''
+      summary: Update a BigPanda endpoint
+      description: Using this API endpoint, you can update a BigPanda notification endpoint or send a test message to BigPanda
       operationId: updateBigPanda
       parameters:
         - name: id
@@ -1054,16 +1063,25 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ID of the notification endpoint
         - name: test
           in: query
           required: false
           type: boolean
           default: false
+          description: >-
+            To send a test message to the endpoint, `true`. Otherwise, `false`.
+
+
+            **Note:** If set to `true`, the notification endpoint is not updated. To update the endpoint, you need to send the API request where `test=false`.
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/BigPandaEndpointUpsertRequest'
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X PUT "https://api.logz.io/v1/endpoints/big-panda/272" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{\"title\": \"Updated BigPanda endpoint\", \"description\": \"Sends notifications to BigPanda\", \"apiToken\": \"94ad63254a1397a51a1ae340c4f10890\", \"appKey\": \"c687f9231619d7d7b959f33e4cc821a5\"}"'
       responses:
         200:
           description: successful operation
@@ -1103,9 +1121,9 @@ paths:
   /endpoints/data-dog/{id}:
     put:
       tags:
-        - Update endpoint
+        - Update endpoints
       summary: Update Datadog endpoint
-      description: ''
+      description: Using this API endpoint, you can update a Datadog notification endpoint or send a test message to Datadog
       operationId: updateDataDog
       parameters:
         - name: id
@@ -1113,16 +1131,25 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ID of the notification endpoint
         - name: test
           in: query
           required: false
           type: boolean
           default: false
+          description: >-
+            To send a test message to the endpoint, `true`. Otherwise, `false`.
+
+
+            **Note:** If set to `true`, the notification endpoint is not updated. To update the endpoint, you need to send the API request where `test=false`.
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/DatadogEndpointUpsertRequest'
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X PUT "http://endpoints/data-dog/273" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>" -d "{\"title\": \"Updated Datadog endpoint\", \"description\": \"Sends notifications to Datadog\", \"apiKey\": \"c687f9231619d7d7b959f33e4cc821a5\"}"'
       responses:
         200:
           description: successful operation
@@ -1132,8 +1159,8 @@ paths:
     post:
       tags:
         - Create endpoints
-      summary: Create VictorOps endpoint
-      description: ''
+      summary: Create a VictorOps endpoint
+      description: Using this API endpoint, you can create a new VictorOps notification endpoint or send a test message to VictorOps.
       operationId: createVictorops
       parameters:
         - name: test
@@ -1141,11 +1168,19 @@ paths:
           required: false
           type: boolean
           default: false
+          description: >-
+            To send a test message to the endpoint, `true`. Otherwise, `false`.
+
+
+            **Note:** If set to `true`, the notification endpoint is not created. To create the endpoint, you need to send the API request where `test=false`.
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/VictoropsEndpointUpsertRequest'
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X POST "https://api.logz.io/v1/endpoints/victorops" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{  \"title\": \"New VictorOps endpoint\",  \"description\": \"Sends notifications to VictorOps\",  \"routingKey\": \"devops\",  \"messageType\": \"WARNING\",  \"serviceApiKey\": \"c687f9231619d7d7b959f33e4cc821a5\"}"'
       responses:
         200:
           description: successful operation
@@ -1179,6 +1214,9 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
+      x-sample-codes:
+        - lang: cURL
+          source: 'curl -X PUT "https://api.logz.io/v1/endpoints/victorops/274" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{\"title\": \"New VictorOps endpoint\", \"description\": \"Sends notifications to VictorOps\", \"routingKey\": \"devops\", \"messageType\": \"WARNING\", \"serviceApiKey\": \"c687f9231619d7d7b959f33e4cc821a5\"}"'
   /endpoints/{id}:
     get:
       tags:
@@ -2310,9 +2348,13 @@ definitions:
       id:
         type: integer
         format: int32
+        description: ID of the notification endpoint
+        example: 240
       accountId:
         type: integer
         format: int32
+        description: ID of the owner account
+        example: 88888
       type:
         type: string
         enum:
@@ -2734,7 +2776,7 @@ definitions:
       title:
         type: string
         description: Name of the endpoint
-        example: New PagerDuty endpoint
+        example: PagerDuty endpoint
       description:
         type: string
         description: Detailed description of the endpoint
@@ -2749,7 +2791,7 @@ definitions:
       title:
         type: string
         description: Name of the endpoint
-        example: New BigPanda endpoint
+        example: BigPanda endpoint
       description:
         type: string
         description: Detailed description of the endpoint
@@ -2768,7 +2810,7 @@ definitions:
       title:
         type: string
         description: Name of the endpoint
-        example: New Datadog endpoint
+        example: Datadog endpoint
       description:
         type: string
         description: Detailed description of the endpoint
@@ -2786,14 +2828,24 @@ definitions:
     properties:
       title:
         type: string
+        description: Name of the endpoint
+        example: VictorOps endpoint
       description:
         type: string
+        description: Detailed description of the endpoint
+        example: Sends notifications to VictorOps
       routingKey:
         type: string
+        description: Alert routing key from VictorOps
+        example: devops
       messageType:
         type: string
+        description: VictorOps REST API `message_type`. For more information, see [VictorOps knowledge base](https://help.victorops.com/knowledge-base/victorops-restendpoint-integration/).
+        example: WARNING
       serviceApiKey:
         type: string
+        description: API key from VictorOps
+        example: c687f9231619d7d7b959f33e4cc821a5
   RefreshEndpointsRequest:
     type: object
     properties:
