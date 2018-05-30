@@ -1,15 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700');
-@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
-
-
 body {
   margin: 0;
   padding: 0;
-}
-
-p {
-  font-family: 'Nunito Sans', sans-serif !important;
-  font-weight: 300;
 }
 
 iframe {
@@ -34,7 +25,7 @@ div[role=search] {
 }
 
 
-/* Override redoc capitalization, and text & link colors
+/* Override redoc styles
   These are temporary workarounds until redoc documents theming  */
 
 ul[role=navigation] label {
@@ -43,6 +34,11 @@ ul[role=navigation] label {
 
 ul[role=navigation] label[type=group] {
   text-transform: uppercase;
+}
+
+p {
+  font-weight: 300 !important;
+  font-size: 14px !important;
 }
 
 h1, h2 {
