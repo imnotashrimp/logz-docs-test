@@ -1122,7 +1122,7 @@ paths:
     put:
       tags:
         - Update endpoints
-      summary: Update Datadog endpoint
+      summary: Update a Datadog endpoint
       description: Using this API endpoint, you can update a Datadog notification endpoint or send a test message to Datadog
       operationId: updateDataDog
       parameters:
