@@ -808,21 +808,29 @@ paths:
   /endpoints/slack:
     post:
       operationId: createSlack
-      summary: Create Slack endpoint
+      summary: Create a Slack endpoint
       tags:
         - Create endpoints
-      description: ''
+      description: Use this API endpoint to create a new notification endpoint for Slack or send a test message.
       parameters:
         - name: test
           in: query
           required: false
           type: boolean
           default: false
+          description: >-
+            To send a test message to the endpoint, `true`. Otherwise, `false`.
+
+
+            **Note:** If set to `true`, the notification endpoint is not created. To create the endpoint, you need to send the API request where `test=false`.
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/SlackEndpointUpsertRequest'
+      x-code-samples:
+        - lang: curl
+          source: "curl -X POST 'https://api.logz.io/v1/endpoints/slack?test=false' -H  'accept: application/json' -H  'content-type: application/json' -H  'X-API-TOKEN: <API key>' -d \"{  'title': 'New Slack endpoint',  'description': 'Sends notifications to #logzio-alerts channel',  'url': 'https://hooks.slack.com/services/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'}\""
       responses:
         200:
           description: successful operation
@@ -860,8 +868,8 @@ paths:
     post:
       tags:
         - Create endpoints
-      summary: Create custom endpoint
-      description: ''
+      summary: Create a custom notification endpoint
+      description: Creates a new notification endpoint for a custom integration, or sends a test message.
       operationId: createCustom
       parameters:
         - name: test
@@ -869,6 +877,11 @@ paths:
           required: false
           type: boolean
           default: false
+          description: >-
+            To send a test message to the endpoint, `true`. Otherwise, `false`.
+
+
+            **Note:** If set to `true`, the notification endpoint is not created. To create the endpoint, you need to send the API request where `test=false`.
         - in: body
           name: body
           required: false
@@ -1115,15 +1128,19 @@ paths:
     get:
       tags:
         - Retrieve endpoints
-      summary: Retrieve endpoint by ID
-      description: ''
-      operationId: get
+      summary: Retrieve an endpoint by ID
+      description: Returns a JSON object representing a notification endpoint configured in the account.
+      operationId: getEndpointById
       parameters:
         - name: id
           in: path
           required: true
           type: integer
           format: int32
+          description: ID of the notification endpoint
+      x-code-samples:
+        - lang: curl
+          source: "curl -X GET 'https://api.logz.io/v1/endpoints/88' -H 'accept: application/json' -H 'X-API-TOKEN: <API key>'"
       responses:
         200:
           description: successful operation
@@ -1141,6 +1158,7 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ID of the notification endpoint
       responses:
         200:
           description: successful operation
@@ -1148,9 +1166,12 @@ paths:
     get:
       tags:
         - Retrieve endpoints
-      summary: Retrieve all account endpoints
-      description: ''
-      operationId: list
+      summary: Retrieve all notification endpoints
+      description: Returns an array of JSON objects. Each object represents a notification endpoint configured in the account.
+      operationId: getAllEndpoints
+      x-code-samples:
+        - lang: curl
+          source: "curl -X GET 'https://api.logz.io/v1/endpoints' -H 'accept: application/json' -H 'X-API-TOKEN: <API key>'"
       responses:
         200:
           description: successful operation
@@ -1836,7 +1857,7 @@ definitions:
   # ::::: ACCOUNTS DEFINITIONS
   AccountUtilizationSettings:
     type: object
-    description: Settings for logging metrics on your account utilization, such as used and expected data volume at current indexing rate.
+    description: Settings for logging metrics on your account utilization,&nbsp; such as used and expected data volume at current indexing rate.
     properties:
       frequencyMinutes:
         type: integer
@@ -2605,30 +2626,48 @@ definitions:
       id:
         type: integer
         format: int32
+        description: "ID of the notification endpoint. If the API call was made where `test=true`, then the endpoint is not created, and the response body contains `{\"id\": -1}`."
+        example: 88
   SlackEndpointUpsertRequest:
     type: object
     properties:
       title:
         type: string
+        description: Name of the endpoint
+        example: New Slack endpoint
       description:
         type: string
+        description: Detailed description of the endpoint
+        example: Sends notifications to logzio-alerts channel
       url:
         type: string
+        description: Your Slack webhook URL
+        example: https://hooks.slack.com/services/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
   CustomEndpointUpsertRequest:
     type: object
     properties:
       title:
         type: string
+        description: Name of the endpoint
+        example: My custom endpoint
       description:
         type: string
+        description: Detailed description of the endpoint
+        example: Sends notifications to my custom endpoint
       url:
         type: string
+        description: URL where the notification will be sent
+        example: https://my.custom-endpoint.com
       method:
         type: string
+        description: The HTTP used to send the notification
+        example: POST
       headers:
         type: string
+        description: Header parameters to be included in the HTTP request. Each parameter-value pair is comma-separated.
       bodyTemplate:
         type: object
+        description: JSON object that serves as the template for the message body.
         additionalProperties:
           type: object
   PagerDutyEndpointUpsertRequest:
@@ -2697,13 +2736,21 @@ definitions:
           - Custom
           - PagerDuty
           - VictorOps
+        description: The endpoint type that will receive alert messages
+        example: Slack
       id:
         type: integer
         format: int32
+        description: ID of the notification endpoint
+        example: 88
       title:
         type: string
+        description: Name of the endpoint
+        example: OpsGenie
       description:
         type: string
+        description: Detailed description of the endpoint
+        example: Endpoint for sending alerts to Slack
 
   # ::::: KIBANA IMPORT/EXPORT DEFINITIONS
   KibanaExportResponse:
