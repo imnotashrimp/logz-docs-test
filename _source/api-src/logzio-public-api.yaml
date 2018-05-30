@@ -2846,14 +2846,6 @@ definitions:
         type: string
         description: API key from VictorOps
         example: c687f9231619d7d7b959f33e4cc821a5
-  RefreshEndpointsRequest:
-    type: object
-    properties:
-      endpointIds:
-        type: array
-        items:
-          type: integer
-          format: int32
   Endpoint:
     type: object
     properties:
