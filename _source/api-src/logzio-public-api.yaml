@@ -697,6 +697,11 @@ paths:
     get:
       operationId: getAccountCloudTrails
       summary: Retrieve all CloudTrails in a S3 bucket
+      description: >-
+        ??
+
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
         - Retrieve account CloudTrails
       responses:
@@ -712,9 +717,13 @@ paths:
     post:
       operationId: createCloudTrail
       summary: Create a CloudTrail
+      description: >-
+        ??
+
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
         - Create, update, or delete CloudTrails
-      description: ??
       parameters:
         - in: body
           name: body
@@ -741,6 +750,10 @@ paths:
     get:
       operationId: getCloudTrail
       summary: Retrieve a CloudTrail by ID
+      description: >-
+        ??
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
         - Retrieve account CloudTrails
       parameters:
@@ -758,6 +771,11 @@ paths:
     put:
       operationId: updateCloudTrail
       summary: Update CloudTrail
+      description: >-
+        ??
+
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
         - Create, update, or delete CloudTrails
       parameters:
@@ -779,6 +797,11 @@ paths:
     delete:
       operationId: deleteCloudTrail
       summary: Delete a CloudTrail
+      description: >-
+        ??
+
+
+        **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
         - Create, update, or delete CloudTrails
       parameters:
