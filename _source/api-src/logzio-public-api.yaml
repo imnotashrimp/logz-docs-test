@@ -154,7 +154,7 @@ paths:
               $ref: '#/definitions/TimeBasedAccount'
       x-code-samples:
       - lang: cURL
-        source: 'curl --request GET --url "https://api.logz.io/v1/account-management/time-based-accounts" --header "X-API-TOKEN: <API key>"'
+        source: 'curl --request GET --url "https://api.logz.io/v1/account-management/time-based-accounts" --header "X-API-TOKEN: <API token>"'
     post:
       summary: Create a sub account
       description: Creates a new time-based sub account.
@@ -178,7 +178,7 @@ paths:
           curl -X POST \
             "https://api.logz.io/v1/account-management/time-based-accounts" \
             -H "accept: application/json" -H "content-type: application/json" \
-            -H "X-API-TOKEN: <API key>" \
+            -H "X-API-TOKEN: <API token>" \
             -d '{
             "email": "help@logz.io",
             "accountName": "AWS Lambda svr 3",
@@ -212,7 +212,7 @@ paths:
               $ref: '#/definitions/DetailedTimeBasedAccount'
       x-code-samples:
       - lang: cURL
-        source: 'curl -X GET "https://api.logz.io/v1/account-management/time-based-accounts/detailed" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API key>"'
+        source: 'curl -X GET "https://api.logz.io/v1/account-management/time-based-accounts/detailed" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API token>"'
   /account-management/time-based-accounts/detailed/{id}:
     get:
       summary: Retrieve detailed account information by ID
@@ -235,7 +235,7 @@ paths:
             $ref: '#/definitions/DetailedTimeBasedAccount'
       x-code-samples:
       - lang: cURL
-        source: 'curl -X GET "https://api.logz.io/v1/account-management/time-based-accounts/detailed/99999" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API key>"'
+        source: 'curl -X GET "https://api.logz.io/v1/account-management/time-based-accounts/detailed/99999" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API token>"'
   /account-management/time-based-accounts/{id}:
     get:
       summary: Retrieve sub account by ID
@@ -258,7 +258,7 @@ paths:
             $ref: '#/definitions/TimeBasedAccount'
       x-code-samples:
       - lang: cURL
-        source: 'curl -X GET "https://api.logz.io/v1/account-management/time-based-accounts/99999" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API key>"'
+        source: 'curl -X GET "https://api.logz.io/v1/account-management/time-based-accounts/99999" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API token>"'
     put:
       summary: Update a sub account
       tags:
@@ -286,7 +286,7 @@ paths:
           curl -X PUT \
           "https://api.logz.io/v1/account-management/time-based-accounts/88888" \
           -H "accept: application/json" -H "content-type: application/json" \
-          -H "X-API-TOKEN: <API key>" \
+          -H "X-API-TOKEN: <API token>" \
           -d '{
             "email": "help@logz.io",
             "accountName": "AWS Lambda svr 3",
@@ -322,7 +322,7 @@ paths:
           description: successful operation
       x-code-samples:
         - lang: cURL
-          source: 'curl -X DELETE "https://api.logz.io/v1/account-management/time-based-accounts/88888" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API key>"'
+          source: 'curl -X DELETE "https://api.logz.io/v1/account-management/time-based-accounts/88888" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API token>"'
 
   # ::::: SEARCH, SCROLL
   /search:
@@ -434,7 +434,7 @@ paths:
             example: Our service is temporarily unavailable.
       x-code-samples:
         - lang: cURL
-          source: 'curl -X POST "https://api.logz.io/v1/search" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API key>" -d "{ \"size\": 0, \"query\": { \"bool\": { \"must\": [ { \"range\": { \"@timestamp\": { \"gte\": \"now-5m\", \"lte\": \"now\" } } }] } }, \"aggs\": { \"byType\": { \"terms\": { \"field\": \"type\", \"size\": 5 } } } }"'
+          source: 'curl -X POST "https://api.logz.io/v1/search" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API token>" -d "{ \"size\": 0, \"query\": { \"bool\": { \"must\": [ { \"range\": { \"@timestamp\": { \"gte\": \"now-5m\", \"lte\": \"now\" } } }] } }, \"aggs\": { \"byType\": { \"terms\": { \"field\": \"type\", \"size\": 5 } } } }"'
   /scroll:
     post:
       summary: Run a paginated Elasticsearch query
@@ -673,7 +673,7 @@ paths:
             $ref: '#/definitions/AuditTrailEventTypesResponse'
       x-code-samples:
         - lang: cURL
-          source: 'curl -X POST "https://api.logz.io/v1/audit-trail/event-types" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API key>"'
+          source: 'curl -X POST "https://api.logz.io/v1/audit-trail/event-types" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API token>"'
   /audit-trail:
     post:
       operationId: listAccountAuditTrails
@@ -713,7 +713,7 @@ paths:
               $ref: '#/definitions/CloudTrailResponse'
       x-code-samples:
         - lang: cURL
-          source: 'curl -X GET "https://api.logz.io/v1/log-shipping/cloudtrails" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API key>"'
+          source: 'curl -X GET "https://api.logz.io/v1/log-shipping/cloudtrails" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API token>"'
     post:
       operationId: createCloudTrail
       summary: Create a CloudTrail
@@ -852,7 +852,7 @@ paths:
             $ref: '#/definitions/SlackEndpointUpsertRequest'
       x-code-samples:
         - lang: cURL
-          source: 'curl -X POST "https://api.logz.io/v1/endpoints/slack?test=false" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>" -d \"{  \"title\": \"New Slack endpoint\",  \"description\": \"Sends notifications to #logzio-alerts channel\",  \"url\": \"https://hooks.slack.com/services/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\"}"'
+          source: 'curl -X POST "https://api.logz.io/v1/endpoints/slack?test=false" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d \"{  \"title\": \"New Slack endpoint\",  \"description\": \"Sends notifications to #logzio-alerts channel\",  \"url\": \"https://hooks.slack.com/services/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\"}"'
       responses:
         200:
           description: successful operation
@@ -889,7 +889,7 @@ paths:
             $ref: '#/definitions/SlackEndpointUpsertRequest'
       x-code-samples:
         - lang: cURL
-          source: 'curl -X PUT "https://api.logz.io/v1/endpoints/slack/269?test=false" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>" -d "{  \"title\": \"New Slack endpoint\",  \"description\": \"Sends notifications to #logzio-alerts channel\",  \"url\": \"https://hooks.slack.com/services/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\"}"'
+          source: 'curl -X PUT "https://api.logz.io/v1/endpoints/slack/269?test=false" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{  \"title\": \"New Slack endpoint\",  \"description\": \"Sends notifications to #logzio-alerts channel\",  \"url\": \"https://hooks.slack.com/services/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\"}"'
       responses:
         200:
           description: successful operation
@@ -976,7 +976,7 @@ paths:
             $ref: '#/definitions/PagerDutyEndpointUpsertRequest'
       x-code-samples:
         - lang: cURL
-          source: 'curl -X POST "https://api.logz.io/v1/endpoints/pager-duty" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>" -d "{  \"title\": \"New PagerDuty endpoint\",  \"description\": \"Sends notifications to PagerDuty\",  \"serviceKey\": \"78c3b6cf0a884a538410fe281227eb0b\"}"'
+          source: 'curl -X POST "https://api.logz.io/v1/endpoints/pager-duty" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{  \"title\": \"New PagerDuty endpoint\",  \"description\": \"Sends notifications to PagerDuty\",  \"serviceKey\": \"78c3b6cf0a884a538410fe281227eb0b\"}"'
       responses:
         200:
           description: successful operation
@@ -1040,7 +1040,7 @@ paths:
             $ref: '#/definitions/EndpointUpsertResponse'
       x-code-samples:
         - lang: cURL
-          source: 'curl -X POST "https://api.logz.io/v1/endpoints/big-panda" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>" -d "{  \"title\": \"New BigPanda endpoint\",  \"description\": \"Sends notifications to BigPanda\",  \"apiToken\": \"94ad63254a1397a51a1ae340c4f10890\",  \"appKey\": \"c687f9231619d7d7b959f33e4cc821a5\"}"'
+          source: 'curl -X POST "https://api.logz.io/v1/endpoints/big-panda" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{  \"title\": \"New BigPanda endpoint\",  \"description\": \"Sends notifications to BigPanda\",  \"apiToken\": \"94ad63254a1397a51a1ae340c4f10890\",  \"appKey\": \"c687f9231619d7d7b959f33e4cc821a5\"}"'
   /endpoints/big-panda/{id}:
     put:
       tags:
@@ -1094,7 +1094,7 @@ paths:
             $ref: '#/definitions/DatadogEndpointUpsertRequest'
       x-code-samples:
         - lang: cURL
-          source: 'curl -X POST "https://api.logz.io/v1/endpoints/data-dog" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>" -d "{  \"title\": \"New Datadog endpoint\",  \"description\": \"Sends notifications to Datadog\",  \"apiKey\": \"c687f9231619d7d7b959f33e4cc821a5\"}"'
+          source: 'curl -X POST "https://api.logz.io/v1/endpoints/data-dog" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{  \"title\": \"New Datadog endpoint\",  \"description\": \"Sends notifications to Datadog\",  \"apiKey\": \"c687f9231619d7d7b959f33e4cc821a5\"}"'
       responses:
         200:
           description: successful operation
@@ -1195,7 +1195,7 @@ paths:
           description: ID of the notification endpoint
       x-code-samples:
         - lang: cURL
-          source: 'curl -X GET "https://api.logz.io/v1/endpoints/88" -H "accept: application/json" -H "X-API-TOKEN: <API key>"'
+          source: 'curl -X GET "https://api.logz.io/v1/endpoints/88" -H "accept: application/json" -H "X-API-TOKEN: <API token>"'
       responses:
         200:
           description: successful operation
@@ -1216,7 +1216,7 @@ paths:
           description: ID of the notification endpoint
       x-code-samples:
         - lang: cURL
-          source: 'curl -X DELETE "https://api.logz.io/v1/endpoints/269" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>"'
+          source: 'curl -X DELETE "https://api.logz.io/v1/endpoints/269" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>"'
       responses:
         204:
           description: successful operation
@@ -1229,7 +1229,7 @@ paths:
       operationId: getAllEndpoints
       x-code-samples:
         - lang: cURL
-          source: 'curl -X GET "https://api.logz.io/v1/endpoints" -H "accept: application/json" -H "X-API-TOKEN: <API key>"'
+          source: 'curl -X GET "https://api.logz.io/v1/endpoints" -H "accept: application/json" -H "X-API-TOKEN: <API token>"'
       responses:
         200:
           description: successful operation
@@ -1258,7 +1258,7 @@ paths:
             $ref: '#/definitions/KibanaExportRequest'
       x-code-samples:
         - lang: cURL
-          source: 'curl -X POST "https://api.logz.io/v1/kibana/export" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API key>" -d "{\"type\": \"visualization\"}"'
+          source: 'curl -X POST "https://api.logz.io/v1/kibana/export" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API token>" -d "{\"type\": \"visualization\"}"'
       responses:
         200:
           description: successful operation
@@ -1287,7 +1287,7 @@ paths:
           source: >-
             curl -X POST "https://api.logz.io/v1/kibana/import" \
             -H "accept: application/json" -H "content-type: application/json" \
-            -H "X-API-TOKEN: <API key>" \
+            -H "X-API-TOKEN: <API token>" \
             -d "{
               \"kibanaVersion\": \"4.0.0-beta3\",
               \"override\": true,
@@ -1344,7 +1344,7 @@ paths:
         - Retrieve token filters
       x-code-samples:
         - lang: cURL
-          source: 'curl -X GET "https://api.logz.io/v1/shared-tokens/filters" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>"'
+          source: 'curl -X GET "https://api.logz.io/v1/shared-tokens/filters" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>"'
       responses:
         200:
           description: successful operation
@@ -1434,7 +1434,7 @@ paths:
           description: ID of the token filter
       x-code-samples:
         - lang: cURL
-          source: 'curl -X GET "https://api.logz.io/v1/shared-tokens/filters/345" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>"'
+          source: 'curl -X GET "https://api.logz.io/v1/shared-tokens/filters/345" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>"'
       responses:
         200:
           description: successful operation
@@ -1482,7 +1482,7 @@ paths:
           description: ID of the token filter
       x-code-samples:
         - lang: cURL
-          source: 'curl -X DELETE "https://api.logz.io/v1/shared-tokens/filters/345" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>"'
+          source: 'curl -X DELETE "https://api.logz.io/v1/shared-tokens/filters/345" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>"'
       responses:
         200:
           description: successful operation
@@ -1691,7 +1691,7 @@ paths:
           description: service temporarily unavailable. please try again.
       x-code-samples:
         - lang: cURL
-          source: 'curl -X GET "https://api.logz.io/v1/shared-tokens" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>"'
+          source: 'curl -X GET "https://api.logz.io/v1/shared-tokens" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>"'
     post:
       operationId: createToken
       summary: Create a shared token
@@ -1735,7 +1735,7 @@ paths:
           description: service temporarily unavailable. please try again.
       x-code-samples:
         - lang: cURL
-          source: 'curl -X POST "https://api.logz.io/v1/shared-tokens" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>" -d "{ \"tokenName\": \"Support shared token\", \"filters\":[339]}"'
+          source: 'curl -X POST "https://api.logz.io/v1/shared-tokens" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{ \"tokenName\": \"Support shared token\", \"filters\":[339]}"'
 
   # ::::: SNAPSHOTS
   /snapshotter:
@@ -1792,7 +1792,7 @@ paths:
               $ref: '#/definitions/User'
       x-code-samples:
         - lang: cURL
-          source: 'curl -X GET "https://api.logz.io/v1/user-management" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API key>"'
+          source: 'curl -X GET "https://api.logz.io/v1/user-management" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API token>"'
     post:
       tags:
         - Create, update, or delete users
@@ -1812,7 +1812,7 @@ paths:
             $ref: '#/definitions/UserManagementUpsertResponse'
       x-code-samples:
         - lang: cURL
-          source: 'curl -X POST "https://api.logz.io/v1/user-management" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API key>" -d "{ \"username\": \"artvandelay@kramerica.com\",  \"fullName\": \"Art Vandelay\",  \"accountID\": 11111,  \"roles\": [ 2 ]}"'
+          source: 'curl -X POST "https://api.logz.io/v1/user-management" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API token>" -d "{ \"username\": \"artvandelay@kramerica.com\",  \"fullName\": \"Art Vandelay\",  \"accountID\": 11111,  \"roles\": [ 2 ]}"'
   /user-management/{id}:
     get:
       tags:
@@ -1834,7 +1834,7 @@ paths:
             $ref: '#/definitions/User'
       x-code-samples:
         - lang: cURL
-          source: 'curl -X GET "https://api.logz.io/v1/user-management/55555" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API key>"'
+          source: 'curl -X GET "https://api.logz.io/v1/user-management/55555" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API token>"'
     put:
       tags:
         - Create, update, or delete users
@@ -1855,7 +1855,7 @@ paths:
           description: ID of the user
       x-code-samples:
         - lang: cURL
-          source: 'curl -X PUT "https://api.logz.io/v1/user-management/12345"  -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API key>" -d "{ \"username\": \"drvenkman@gbusters.com\",  \"fullName\": \"Peter Venkman\",  \"accountID\": 13485,  \"roles\": [ 2 ]}"'
+          source: 'curl -X PUT "https://api.logz.io/v1/user-management/12345"  -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <API token>" -d "{ \"username\": \"drvenkman@gbusters.com\",  \"fullName\": \"Peter Venkman\",  \"accountID\": 13485,  \"roles\": [ 2 ]}"'
       responses:
         200:
           description: successful operation
