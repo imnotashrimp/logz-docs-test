@@ -39,6 +39,12 @@ ul[role=navigation] label[type=group] {
 p {
   font-weight: 300 !important;
   font-size: 14px !important;
+  line-height: 19px !important;
+}
+
+p > code {
+  padding-top: 1px !important;
+  padding-bottom: 1px !important;
 }
 
 h1, h2 {
