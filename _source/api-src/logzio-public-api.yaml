@@ -833,7 +833,7 @@ paths:
       summary: Create a Slack endpoint
       tags:
         - Create endpoints
-      description: Use this API endpoint to create a new notification endpoint for Slack or send a test message.
+      description: Using this API endpoint, you can create a new Slack notification endpoint or send a test message to Slack
       parameters:
         - name: test
           in: query
@@ -863,7 +863,7 @@ paths:
       tags:
         - Update endpoints
       summary: Update Slack endpoint
-      description: ''
+      description: Using this API endpoint, you can update a Slack notification endpoint or send a test message to Slack
       operationId: updateSlack
       parameters:
         - name: id
@@ -871,16 +871,25 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ID of the notification endpoint
         - name: test
           in: query
           required: false
           type: boolean
           default: false
+          description: >-
+            To send a test message to the endpoint, `true`. Otherwise, `false`.
+
+
+            **Note:** If set to `true`, the notification endpoint is not updated. To update the endpoint, you need to send the API request where `test=false`.
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/SlackEndpointUpsertRequest'
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X PUT "https://api.logz.io/v1/endpoints/slack/269?test=false" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>" -d "{  \"title\": \"New Slack endpoint\",  \"description\": \"Sends notifications to #logzio-alerts channel\",  \"url\": \"https://hooks.slack.com/services/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\"}"'
       responses:
         200:
           description: successful operation
@@ -946,8 +955,8 @@ paths:
     post:
       tags:
         - Create endpoints
-      summary: Create PagerDuty endpoint
-      description: ''
+      summary: Create a PagerDuty endpoint
+      description: Using this API endpoint, you can create a new PagerDuty notification endpoint or send a test message to PagerDuty.
       operationId: createPagerDuty
       parameters:
         - name: test
@@ -955,11 +964,19 @@ paths:
           required: false
           type: boolean
           default: false
+          description: >-
+            To send a test message to the endpoint, `true`. Otherwise, `false`.
+
+
+            **Note:** If set to `true`, the notification endpoint is not created. To create the endpoint, you need to send the API request where `test=false`.
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/PagerDutyEndpointUpsertRequest'
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X POST "https://api.logz.io/v1/endpoints/pager-duty" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>" -d "{  \"title\": \"New PagerDuty endpoint\",  \"description\": \"Sends notifications to PagerDuty\",  \"serviceKey\": \"78c3b6cf0a884a538410fe281227eb0b\"}"'
       responses:
         200:
           description: successful operation
@@ -997,8 +1014,8 @@ paths:
     post:
       tags:
         - Create endpoints
-      summary: Create BigPanda endpoint
-      description: ''
+      summary: Create a BigPanda endpoint
+      description: Using this API endpoint, you can create a new BigPanda notification endpoint or send a test message to BigPanda.
       operationId: createBigPanda
       parameters:
         - name: test
@@ -1006,6 +1023,11 @@ paths:
           required: false
           type: boolean
           default: false
+          description: >-
+            To send a test message to the endpoint, `true`. Otherwise, `false`.
+
+
+            **Note:** If set to `true`, the notification endpoint is not created. To create the endpoint, you need to send the API request where `test=false`.
         - in: body
           name: body
           required: false
@@ -1016,6 +1038,9 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X POST "https://api.logz.io/v1/endpoints/big-panda" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>" -d "{  \"title\": \"New BigPanda endpoint\",  \"description\": \"Sends notifications to BigPanda\",  \"apiToken\": \"94ad63254a1397a51a1ae340c4f10890\",  \"appKey\": \"c687f9231619d7d7b959f33e4cc821a5\"}"'
   /endpoints/big-panda/{id}:
     put:
       tags:
@@ -1048,8 +1073,8 @@ paths:
     post:
       tags:
         - Create endpoints
-      summary: Create Datadog endpoint
-      description: ''
+      summary: Create a Datadog endpoint
+      description: Using this API endpoint, you can create a new Datadog notification endpoint or send a test message to Datadog.
       operationId: createDataDog
       parameters:
         - name: test
@@ -1057,11 +1082,19 @@ paths:
           required: false
           type: boolean
           default: false
+          description: >-
+            To send a test message to the endpoint, `true`. Otherwise, `false`.
+
+
+            **Note:** If set to `true`, the notification endpoint is not created. To create the endpoint, you need to send the API request where `test=false`.
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/DatadogEndpointUpsertRequest'
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X POST "https://api.logz.io/v1/endpoints/data-dog" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>" -d "{  \"title\": \"New Datadog endpoint\",  \"description\": \"Sends notifications to Datadog\",  \"apiKey\": \"c687f9231619d7d7b959f33e4cc821a5\"}"'
       responses:
         200:
           description: successful operation
@@ -1172,8 +1205,8 @@ paths:
       tags:
         - Delete endpoints
       summary: Delete an endpoint
-      description: ''
-      operationId: delete
+      description: Deletes a notification endpoint
+      operationId: deleteEndpoint
       parameters:
         - name: id
           in: path
@@ -1181,8 +1214,11 @@ paths:
           type: integer
           format: int32
           description: ID of the notification endpoint
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X DELETE "https://api.logz.io/v1/endpoints/269" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>"'
       responses:
-        200:
+        204:
           description: successful operation
   /endpoints:
     get:
@@ -2697,30 +2733,50 @@ definitions:
     properties:
       title:
         type: string
+        description: Name of the endpoint
+        example: New PagerDuty endpoint
       description:
         type: string
+        description: Detailed description of the endpoint
+        example: Sends notifications to PagerDuty
       serviceKey:
         type: string
+        description: API key from PagerDuty
+        example: 94ad63254a1397a51a1ae340c4f10890
   BigPandaEndpointUpsertRequest:
     type: object
     properties:
       title:
         type: string
+        description: Name of the endpoint
+        example: New BigPanda endpoint
       description:
         type: string
+        description: Detailed description of the endpoint
+        example: Sends notifications to BigPanda
       apiToken:
         type: string
+        description: API authentication token from BigPanda
+        example: 94ad63254a1397a51a1ae340c4f10890
       appKey:
         type: string
+        description: Application key from BigPanda
+        example: c687f9231619d7d7b959f33e4cc821a5
   DatadogEndpointUpsertRequest:
     type: object
     properties:
       title:
         type: string
+        description: Name of the endpoint
+        example: New Datadog endpoint
       description:
         type: string
+        description: Detailed description of the endpoint
+        example: Sends notifications to Datadog
       apiKey:
         type: string
+        description: API key from Datadog
+        example: c687f9231619d7d7b959f33e4cc821a5
   VictoropsEndpointUpsertRequest:
     type: object
     required:
@@ -2758,7 +2814,7 @@ definitions:
           - Custom
           - PagerDuty
           - VictorOps
-        description: The endpoint type that will receive alert messages
+        description: The notification endpoint type that will receive alert messages
         example: Slack
       id:
         type: integer
@@ -2768,7 +2824,7 @@ definitions:
       title:
         type: string
         description: Name of the endpoint
-        example: OpsGenie
+        example: Slack
       description:
         type: string
         description: Detailed description of the endpoint
