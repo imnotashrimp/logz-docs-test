@@ -8,15 +8,11 @@
 /* ===== PAGE LAYOUT ===== */
 div.big-container {
   display: grid;
-  grid-template-columns: 300px 500px 1fr;
-  grid-template-rows: auto, auto;
+  grid-template-columns: 300px auto;
+  grid-template-rows: auto;
   grid-template-areas:
-    "toc content related"
-    "footer footer footer";
-  grid-column-gap: 20px;
+    "toc content";
   grid-column-gap: 3.5rem;
-  grid-row-gap: 20px;
-  justify-content: start;
   align-items: start;
 }
 
@@ -61,7 +57,6 @@ footer {
   margin: 0 auto;
   font-size: .8rem;
   border-top: 1px solid #dddddd;
-  /* padding-top: 10px; */
   padding: 10px 50px;
 }
 
@@ -76,15 +71,12 @@ div.full-width {
   grid-column: 1 / -1 !important;
 }
 
-div.related-links-container {
-  grid-area: related;
-}
-
 div.body-container {
   grid-area: content;
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 800px;
+  margin-top: 2rem;
   vertical-align: top;
+  justify-self: start;
 }
 
 div.card-container {
@@ -190,24 +182,6 @@ h6 { /* We use h6 to introduce procedures. If you need a regular heading, use h5
 
 h6:before {
   content: "> "
-}
-
-div.article-info {
-  font-size: .75rem;
-  display: block;
-}
-
-div.article-info > span > svg {
-  margin-right: .25rem;
-}
-
-span.reading-time {
-  text-transform: lowercase;
-}
-
-span.contributor-list, span.reading-time {
-  display: block;
-  line-height: 1rem;
 }
 
 /* Alpha nested ordered lists */
@@ -604,12 +578,24 @@ ul.toc-child li span.toc-heading:hover {
   background-color: #e1e1e1;
 }
 
-/* ===== GITHUB BUTTONS ===== */
-
-div.community-container {
-  grid-area: community;
-  margin: 2rem auto 0 auto;
+/* ===== CONTRIBUTORS ===== */
+div.article-info-container {
+  font-size: .75rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
 }
+
+div.contributor-list svg {
+  margin-right: .25rem;
+}
+
+div.contributor-list {
+  line-height: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* ===== GITHUB BUTTONS ===== */
 
 div.community-container a {
   display: inline-block;
@@ -625,8 +611,8 @@ span.community.button svg {
 span.community.button {
   border-radius: 3px;
   border: 1px solid currentColor;
-  font-family: "Nunito Sans", sans-serif;
   font-size: 11px;
+  font-weight: 700;
   padding: 3px 5px;
 }
 

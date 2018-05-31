@@ -1,11 +1,21 @@
-{% if site.public == true %}
-  {%- capture repo_path -%}
-  {{site.github.org_url | append: site.github.repo_name}}
-  {%- endcapture -%}
+  <div class="article-info-container">
+    {% if page.contributors %}
+      <div class="contributor-list"><i class="fas fa-users"></i>
+        {%- for contributor in page.contributors -%}
+          <a href="https://www.github.com/{{ contributor }}">{{ site.data.contributors[contributor].name }}</a>
+          {%- unless forloop.last -%},&nbsp;&nbsp;{%- endunless -%}
+        {%- endfor -%}
+      </div>
+    {% endif %}
 
-  {%- capture edit_path -%}
-  {{ repo_path | append: "/tree" | append: site.github.edit_branch }}{{site.source | remove_first: "."}}{% if site.collections_dir %}{{site.collections_dir | prepend: "/" }}{% endif %}
-  {%- endcapture -%}
+    {% if site.public == true %}
+      {%- capture repo_path -%}
+      {{site.github.org_url | append: site.github.repo_name}}
+      {%- endcapture -%}
+
+      {%- capture edit_path -%}
+      {{ repo_path | append: "/tree" | append: site.github.edit_branch }}{{site.source | remove_first: "."}}{% if site.collections_dir %}{{site.collections_dir | prepend: "/" }}{% endif %}
+      {%- endcapture -%}
 
   <div class="community-container">
     {% if site.edit_enabled == true and page.collection %}
@@ -32,3 +42,4 @@
 
 </div>
 {% endif %}
+</div>

@@ -13,16 +13,8 @@
       <h1 class="post-title">
         {{ page.title | escape }}
       </h1>
-      <div class="article-info">
-        {%- if page.contributors -%}
-          <span class="contributor-list"><i class="fas fa-users"></i>
-            {%- for contributor in page.contributors -%}
-              <a href="https://www.github.com/{{ contributor }}">{{ site.data.contributors[contributor].name }}</a>
-              {%- unless forloop.last -%},&nbsp;&nbsp;{%- endunless -%}
-            {%- endfor -%}
-          </span>
-        {%- endif -%}
-      </div>
+
+      {% include community.html %}
 
       <main class="page-content" aria-label="Content">
         {{ content }}
@@ -32,7 +24,6 @@
 
 
     </div> <!-- /.body-container -->
-    {% include related-links.html %}
     {% include anchorjs.html %}
   </div> <!-- /div.big-container -->
   {% include footer.html %}
