@@ -833,7 +833,7 @@ paths:
       summary: Create a Slack endpoint
       tags:
         - Create endpoints
-      description: Using this API endpoint, you can create a new Slack notification endpoint or send a test message to Slack
+      description: Creates a new Slack notification endpoint or send a test message to Slack
       parameters:
         - name: test
           in: query
@@ -863,7 +863,7 @@ paths:
       tags:
         - Update endpoints
       summary: Update Slack endpoint
-      description: Using this API endpoint, you can update a Slack notification endpoint or send a test message to Slack
+      description: Updates a Slack notification endpoint or send a test message to Slack
       operationId: updateSlack
       parameters:
         - name: id
@@ -956,7 +956,7 @@ paths:
       tags:
         - Create endpoints
       summary: Create a PagerDuty endpoint
-      description: Using this API endpoint, you can create a new PagerDuty notification endpoint or send a test message to PagerDuty.
+      description: Creates a new PagerDuty notification endpoint or send a test message to PagerDuty.
       operationId: createPagerDuty
       parameters:
         - name: test
@@ -987,7 +987,7 @@ paths:
       tags:
         - Update endpoints
       summary: Update a PagerDuty endpoint
-      description: Using this API endpoint, you can update a PagerDuty notification endpoint or send a test message to PagerDuty
+      description: Updates a PagerDuty notification endpoint or send a test message to PagerDuty
       operationId: updatePagerDuty
       parameters:
         - name: id
@@ -1024,7 +1024,7 @@ paths:
       tags:
         - Create endpoints
       summary: Create a BigPanda endpoint
-      description: Using this API endpoint, you can create a new BigPanda notification endpoint or send a test message to BigPanda.
+      description: Creates a new BigPanda notification endpoint or send a test message to BigPanda.
       operationId: createBigPanda
       parameters:
         - name: test
@@ -1055,7 +1055,7 @@ paths:
       tags:
         - Update endpoints
       summary: Update a BigPanda endpoint
-      description: Using this API endpoint, you can update a BigPanda notification endpoint or send a test message to BigPanda
+      description: Updates a BigPanda notification endpoint or send a test message to BigPanda
       operationId: updateBigPanda
       parameters:
         - name: id
@@ -1092,7 +1092,7 @@ paths:
       tags:
         - Create endpoints
       summary: Create a Datadog endpoint
-      description: Using this API endpoint, you can create a new Datadog notification endpoint or send a test message to Datadog.
+      description: Creates a new Datadog notification endpoint or send a test message to Datadog.
       operationId: createDataDog
       parameters:
         - name: test
@@ -1123,7 +1123,7 @@ paths:
       tags:
         - Update endpoints
       summary: Update a Datadog endpoint
-      description: Using this API endpoint, you can update a Datadog notification endpoint or send a test message to Datadog
+      description: Updates a Datadog notification endpoint or send a test message to Datadog
       operationId: updateDataDog
       parameters:
         - name: id
@@ -1160,7 +1160,7 @@ paths:
       tags:
         - Create endpoints
       summary: Create a VictorOps endpoint
-      description: Using this API endpoint, you can create a new VictorOps notification endpoint or send a test message to VictorOps.
+      description: Creates a new VictorOps notification endpoint or send a test message to VictorOps.
       operationId: createVictorops
       parameters:
         - name: test
