@@ -1160,7 +1160,7 @@ paths:
             $ref: '#/definitions/DatadogEndpointUpsertRequest'
       x-code-samples:
         - lang: cURL
-          source: 'curl -X PUT "http://endpoints/data-dog/273" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API key>" -d "{\"title\": \"Updated Datadog endpoint\", \"description\": \"Sends notifications to Datadog\", \"apiKey\": \"c687f9231619d7d7b959f33e4cc821a5\"}"'
+          source: 'curl -X PUT "http://endpoints/data-dog/273" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{\"title\": \"Updated Datadog endpoint\", \"description\": \"Sends notifications to Datadog\", \"apiKey\": \"c687f9231619d7d7b959f33e4cc821a5\"}"'
       responses:
         200:
           description: successful operation
@@ -1201,8 +1201,8 @@ paths:
     put:
       tags:
         - Update endpoints
-      summary: Update VictorOps endpoint
-      description: ''
+      summary: Update a VictorOps endpoint
+      description: Updates a VictorOps notification endpoint or sends a test message to VictorOps
       operationId: updateVictorops
       parameters:
         - name: id
@@ -1210,11 +1210,17 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ID of the notification endpoint
         - name: test
           in: query
           required: false
           type: boolean
           default: false
+          description: >-
+            To send a test message to the endpoint, `true`. Otherwise, `false`.
+
+
+            **Note:** If set to `true`, the notification endpoint is not updated. To update the endpoint, you need to send the API request where `test=false`.
         - in: body
           name: body
           required: false
@@ -1225,7 +1231,7 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/EndpointUpsertResponse'
-      x-sample-codes:
+      x-code-samples:
         - lang: cURL
           source: 'curl -X PUT "https://api.logz.io/v1/endpoints/victorops/274" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{\"title\": \"New VictorOps endpoint\", \"description\": \"Sends notifications to VictorOps\", \"routingKey\": \"devops\", \"messageType\": \"WARNING\", \"serviceApiKey\": \"c687f9231619d7d7b959f33e4cc821a5\"}"'
   /endpoints/{id}:
