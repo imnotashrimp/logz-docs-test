@@ -16,7 +16,9 @@
                   <a href="{{ child.url | prepend:site.baseurl }}">{{ child.title }}</a>
                   {% if child.thirdLevel %}<span class="collapse-button"><i class="fas fa-chevron-right"></i></span>{% endif %}
                 </span>
-                {% else %}<span class="toc-heading" style="color: silver;">{{ child.title }}</span>{% endif %}
+                {% else %}<span class="toc-heading" style="color: silver;">{{ child.title }}
+                  {% if child.thirdLevel %}<span class="collapse-button"><i class="fas fa-chevron-right"></i></span>{% endif %}
+                </span>{% endif %}
 
                 {% if child.thirdLevel %}
                 <ul class="toc-grandchild">

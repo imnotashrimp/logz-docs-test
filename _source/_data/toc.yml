@@ -85,8 +85,8 @@ firstLevel:
   - title: Quickstarts
     thirdLevel:
     - title: Create API token & make a test call
-  - title: Logz.io Public API
-    url: /developer-center/logzio-public-api.html
+  - title: Logz.io API
+    url: /api/index.html
   - title: API cookbook
     thirdLevel:
     - title: Create alert
