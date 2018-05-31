@@ -471,7 +471,7 @@ paths:
           required: true
           type: integer
           format: int32
-          description: ID of the alert
+          description: ID of the alert definition
       responses:
         200:
           description: successful operation
@@ -2213,14 +2213,14 @@ definitions:
       id:
         type: integer
         format: int32
-        description: ID of the alert
+        description: ID of the alert definition
       name:
         type: string
         description: Name of the alert
         example: 404 errors
       description:
         type: string
-        description: Detailed description of the alert
+        description: Detailed description of the alert definition
         example: Trigger alert if more than 50 404 errors in 1 minute
       enabled:
         type: boolean
