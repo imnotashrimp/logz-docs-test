@@ -18,7 +18,7 @@ info:
 
     <!-- ReDoc-Inject: <security-definitions> -->
 
-    The Logz.io API is available to Enterprise plan subscribers. You can create a new API key in your [account settings](https://app.logz.io/#/dashboard/settings/manage-accounts_). You can also set and revoke API permissions at any time.
+    The Logz.io API is available to Enterprise plan subscribers. You can create a new API token in your [account settings](https://app.logz.io/#/dashboard/settings/manage-accounts_). You can also set and revoke API permissions at any time.
 
     If you don't have an Enterprise account, we encourage you to sign up for a [free trial](https://logz.io/signup/freetrial.php).
 
@@ -34,13 +34,13 @@ info:
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 
 securityDefinitions:
-  API key:
+  API token:
     description: This is used in most of our endpoints. If no other security methods are used, this one wins.
     type: apiKey
     in: header
-    name: X-API-KEY
+    name: X-API-TOKEN
 security:
-  - API key: []
+  - API token: []
 
 tags:
   # ::::: ACCOUNTS TAGS
