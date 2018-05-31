@@ -85,7 +85,11 @@ firstLevel:
   - title: Quickstarts
     thirdLevel:
     - title: Create API token & make a test call
+<<<<<<< HEAD
   - title: Logz.io API
+=======
+  - title: Logz.io Public API
+>>>>>>> change api permalink => /api/index.html
     url: /api/index.html
   - title: API cookbook
     thirdLevel:
