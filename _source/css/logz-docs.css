@@ -250,6 +250,11 @@ ul.horizontal-list li {
   display: inline;
 }
 
+/* anchorjs icon */
+.anchor-icon, .anchor-icon:hover {
+  color: #757c86;
+}
+
 /* ===== SEARCH ===== */
 
 div.search-container {
