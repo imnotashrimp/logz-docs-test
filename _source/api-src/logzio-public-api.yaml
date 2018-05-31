@@ -833,7 +833,7 @@ paths:
       summary: Create a Slack endpoint
       tags:
         - Create endpoints
-      description: Creates a new Slack notification endpoint or send a test message to Slack
+      description: Creates a new Slack notification endpoint or sends a test message to Slack
       parameters:
         - name: test
           in: query
@@ -863,7 +863,7 @@ paths:
       tags:
         - Update endpoints
       summary: Update Slack endpoint
-      description: Updates a Slack notification endpoint or send a test message to Slack
+      description: Updates a Slack notification endpoint or sends a test message to Slack
       operationId: updateSlack
       parameters:
         - name: id
@@ -889,7 +889,7 @@ paths:
             $ref: '#/definitions/SlackEndpointUpsertRequest'
       x-code-samples:
         - lang: cURL
-          source: 'curl -X PUT "https://api.logz.io/v1/endpoints/slack/269?test=false" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{  \"title\": \"New Slack endpoint\",  \"description\": \"Sends notifications to #logzio-alerts channel\",  \"url\": \"https://hooks.slack.com/services/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\"}"'
+          source: 'curl -X PUT "https://api.logz.io/v1/endpoints/slack/269?test=false" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{  \"title\": \"Updated Slack endpoint\",  \"description\": \"Sends notifications to #logzio-alerts channel\",  \"url\": \"https://hooks.slack.com/services/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\"}"'
       responses:
         200:
           description: successful operation
@@ -900,7 +900,7 @@ paths:
       tags:
         - Create endpoints
       summary: Create a custom notification endpoint
-      description: Creates a new notification endpoint for a custom integration, or sends a test message.
+      description: Creates a new notification endpoint for a custom integration or sends a test message to the custom endpoint.
       operationId: createCustom
       parameters:
         - name: test
@@ -918,6 +918,9 @@ paths:
           required: false
           schema:
             $ref: '#/definitions/CustomEndpointUpsertRequest'
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X POST "https://api.logz.io/v1/endpoints/custom" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{\"title\": \"New custom endpoint\", \"description\": \"Sends notifications to my custom endpoint\", \"url\": \"https://my.custom-endpoint.com\", \"method\": \"POST\", \"headers\": \"authKey=6e30-60a9-3591\", \"bodyTemplate\": {\"subject\": \"Alert from Logz.io\", \"message\": {\"severity\": \"LOW\", \"body\": \"Check Logz.io for log activity\"} }}"'
       responses:
         200:
           description: successful operation
@@ -927,8 +930,8 @@ paths:
     put:
       tags:
         - Update endpoints
-      summary: Update custom endpoint
-      description: ''
+      summary: Update a custom notification endpoint
+      description: Updates a new notification endpoint for a custom integration or sends a test message to the custom endpoint.
       operationId: updateCustom
       parameters:
         - name: id
@@ -941,11 +944,19 @@ paths:
           required: false
           type: boolean
           default: false
+          description: >-
+            To send a test message to the endpoint, `true`. Otherwise, `false`.
+
+
+            **Note:** If set to `true`, the notification endpoint is not updated. To update the endpoint, you need to send the API request where `test=false`.
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/CustomEndpointUpsertRequest'
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X PUT "https://api.logz.io/v1/endpoints/custom/275" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <API token>" -d "{\"title\": \"Updated custom endpoint\", \"description\": \"Sends notifications to my custom endpoint\", \"url\": \"https://my.custom-endpoint.com/\", \"method\": \"POST\", \"headers\": \"authKey=6e30-60a9-3591\", \"bodyTemplate\": {\"subject\": \"Alert from Logz.io\", \"message\": {\"severity\": \"LOW\", \"body\": \"Check Logz.io for log activity\"} }}"'
       responses:
         200:
           description: successful operation
@@ -956,7 +967,7 @@ paths:
       tags:
         - Create endpoints
       summary: Create a PagerDuty endpoint
-      description: Creates a new PagerDuty notification endpoint or send a test message to PagerDuty.
+      description: Creates a new PagerDuty notification endpoint or sends a test message to PagerDuty.
       operationId: createPagerDuty
       parameters:
         - name: test
@@ -987,7 +998,7 @@ paths:
       tags:
         - Update endpoints
       summary: Update a PagerDuty endpoint
-      description: Updates a PagerDuty notification endpoint or send a test message to PagerDuty
+      description: Updates a PagerDuty notification endpoint or sends a test message to PagerDuty
       operationId: updatePagerDuty
       parameters:
         - name: id
@@ -1024,7 +1035,7 @@ paths:
       tags:
         - Create endpoints
       summary: Create a BigPanda endpoint
-      description: Creates a new BigPanda notification endpoint or send a test message to BigPanda.
+      description: Creates a new BigPanda notification endpoint or sends a test message to BigPanda.
       operationId: createBigPanda
       parameters:
         - name: test
@@ -1055,7 +1066,7 @@ paths:
       tags:
         - Update endpoints
       summary: Update a BigPanda endpoint
-      description: Updates a BigPanda notification endpoint or send a test message to BigPanda
+      description: Updates a BigPanda notification endpoint or sends a test message to BigPanda
       operationId: updateBigPanda
       parameters:
         - name: id
@@ -1092,7 +1103,7 @@ paths:
       tags:
         - Create endpoints
       summary: Create a Datadog endpoint
-      description: Creates a new Datadog notification endpoint or send a test message to Datadog.
+      description: Creates a new Datadog notification endpoint or sends a test message to Datadog.
       operationId: createDataDog
       parameters:
         - name: test
@@ -1123,7 +1134,7 @@ paths:
       tags:
         - Update endpoints
       summary: Update a Datadog endpoint
-      description: Updates a Datadog notification endpoint or send a test message to Datadog
+      description: Updates a Datadog notification endpoint or sends a test message to Datadog
       operationId: updateDataDog
       parameters:
         - name: id
@@ -1160,7 +1171,7 @@ paths:
       tags:
         - Create endpoints
       summary: Create a VictorOps endpoint
-      description: Creates a new VictorOps notification endpoint or send a test message to VictorOps.
+      description: Creates a new VictorOps notification endpoint or sends a test message to VictorOps.
       operationId: createVictorops
       parameters:
         - name: test
@@ -2726,7 +2737,7 @@ definitions:
       id:
         type: integer
         format: int32
-        description: "ID of the notification endpoint. If the API call was made where `test=true`, then the endpoint is not created, and the response body contains `{\"id\": -1}`."
+        description: "ID of the notification endpoint. If the API call was made where `test=true`, then no changes are made to the endpoint. In this case, the response body contains `{\"id\": -1}` to indicate that a test message was sent."
         example: 88
   SlackEndpointUpsertRequest:
     type: object
@@ -2749,7 +2760,7 @@ definitions:
       title:
         type: string
         description: Name of the endpoint
-        example: My custom endpoint
+        example: New custom endpoint
       description:
         type: string
         description: Detailed description of the endpoint
@@ -2765,11 +2776,13 @@ definitions:
       headers:
         type: string
         description: Header parameters to be included in the HTTP request. Each parameter-value pair is comma-separated.
+        example: authKey=6e30-60a9-3591
       bodyTemplate:
         type: object
         description: JSON object that serves as the template for the message body.
         additionalProperties:
           type: object
+        example: {"subject": "Alert from Logz.io", "message": {"severity": "LOW", "body": "Check Logz.io for log activity"}}
   PagerDutyEndpointUpsertRequest:
     type: object
     properties:
