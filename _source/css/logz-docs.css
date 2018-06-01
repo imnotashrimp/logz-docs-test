@@ -6,7 +6,7 @@
 
 
 /* ===== PAGE LAYOUT ===== */
-div.big-container {
+div.big-container, div.home-page-container {
   display: grid;
   grid-template-columns: 300px auto;
   grid-template-rows: auto;
@@ -17,14 +17,10 @@ div.big-container {
 }
 
 div.home-page-container {
-  display: grid;
-  grid-template-columns: 300px auto;
   grid-template-rows: auto auto;
   grid-template-areas:
     "toc cards"
     "toc half-cards";
-    grid-column-gap: 3.5rem;
-    align-items: start;
 }
 
 header {
@@ -99,6 +95,8 @@ div.card-container {
 div.half-card-container {
   display: flex;
   grid-area: half-cards;
+  margin-top: 0;
+  margin-bottom: 2rem;
 }
 
 div.card-container a {
@@ -106,7 +104,8 @@ div.card-container a {
 }
 
 div.card {
-  border: 1px solid black;
+  border: 1px solid #757c86;
+  border-radius: 3px;
   padding: 10px;
   margin: 0;
   width: 250px;
