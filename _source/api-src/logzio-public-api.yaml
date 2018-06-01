@@ -520,6 +520,9 @@ paths:
       description: Use this endpoint to see all alert definitions in an account. This endpoint returns an array of JSON objects, with each object showing all the available details for an alert definition.
       tags:
         - Retrieve alert definitions
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X GET "https://api.logz.io/v1/triggers/alerts" -H "accept: application/json" -H "X-API-TOKEN: <API token>"'
       responses:
         200:
           description: successful operation
@@ -2216,7 +2219,7 @@ definitions:
         description: ID of the alert definition
       name:
         type: string
-        description: Name of the alert
+        description: Name of the alert definition
         example: 404 errors
       description:
         type: string
@@ -2224,7 +2227,7 @@ definitions:
         example: Trigger alert if more than 50 404 errors in 1 minute
       enabled:
         type: boolean
-        description: If this alert is enabled, `true`. Otherwise, `false`.
+        description: If the alert definition is enabled, `true`. Otherwise, `false`.
       search:
         $ref: '#/definitions/TriggerSearchParameters'
       triggerOn:
@@ -2252,7 +2255,7 @@ definitions:
         example: loglevel:ERROR
       filter:
         type: string
-        description: Filter to be performed on `queryString`
+        description: Filter to be performed on `queryString` results
         example: {'bool':{'must':[{'match':{'type':'mytype'}}],'must_not':[]}}
       groupBy:
         type: array
@@ -2265,7 +2268,7 @@ definitions:
       periodInMinutes:
         type: integer
         format: int32
-        description: The time period for the threshold to be passed, in minutes.
+        description: The time period for the query, in minutes
       source:
         $ref: '#/definitions/TriggerSearchSources'
       metricsAggregations:
