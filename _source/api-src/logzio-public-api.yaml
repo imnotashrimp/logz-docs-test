@@ -27,7 +27,7 @@ info:
     API call and response reates are limited per individual account. To find out your rate limits or to make changes to your account plan, please email [our Support team](mailto:help@logz.io).
 
 
-  version: 1.0.0
+  version: v1
   title: Logzio API
   termsOfService: 'https://logz.io/about-us/terms-of-use/'
   contact:
