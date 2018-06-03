@@ -522,7 +522,7 @@ paths:
         - Retrieve alert definitions
       x-code-samples:
         - lang: cURL
-          source: 'curl -X GET "https://api.logz.io/v1/triggers/alerts" -H "accept: application/json" -H "X-API-TOKEN: <API token>"'
+          source: 'curl -X GET "https://api.logz.io/v1/triggers/alerts" -H "accept: application/json" -H "X-API-TOKEN: <token>"'
       responses:
         200:
           description: successful operation
@@ -1795,7 +1795,7 @@ paths:
       tags:
         - Create snapshots
       summary: Create a snapshot
-      description: ''
+      description: Creates a new shapshot and shares with recipients through email or notification endpoint
       operationId: createSnapshot
       parameters:
         - in: body
@@ -1830,10 +1830,10 @@ paths:
   # ::::: USER MANAGEMENT
   /user-management:
     get:
-      tags:
-        - Retrieve users
       summary: Retrieve all users
       description: Returns a list of users as an array of JSON objects.
+      tags:
+        - Retrieve users
       operationId: listUsers
       responses:
         200:
@@ -1846,10 +1846,10 @@ paths:
         - lang: cURL
           source: 'curl -X GET "https://api.logz.io/v1/user-management" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <token>"'
     post:
+      summary: Create a user
+      description: Creates a new user with specified permissions to access your log data
       tags:
         - Create, update, or delete users
-      summary: Create a user
-      description: ''
       operationId: createUser
       parameters:
         - in: body
@@ -3119,36 +3119,49 @@ definitions:
         enum:
           - DASHBOARD
           - VISUALIZATION
-          - SAVED_SEARCH
+        description: The object type to share
       snapshotSavedObjectId:
         type: string
+        description: ID of the object to be shared. If you don't know the object ID, you can use the [/kibana/export](#operation/exportSavedObjects) endpoint.
+        example: 11f6a669-4f21-6313-dd83-319dbfc8ff96
       slackWebhookUrls:
         type: array
         items:
           type: string
+        description: URLs of Slack webhooks that you want to send this snapshot to
+        example: https://hooks.slack.com/services/CC29C43F8/7E6E833FB/Ebe297580E7FaC354F9D4d7
       endpoints:
         type: array
         items:
           type: integer
           format: int32
+        description: IDs of notification endpoints that you want to send this snapshot to
       emails:
         type: array
         items:
           type: string
+        description: Email addresses that you want to send this snapshot to
       message:
         type: string
+        description: Message to be sent to the shared object recipients
+        example: Take a look at these Apache logs, let me know if you want me to do anything about it
       timeFrameFrom:
         type: integer
         format: int64
+        description: Starting timedate of the visualization, as a Unix epoch integer.
+        example: 389836800
       timeFrameTo:
         type: integer
         format: int64
+        description: Ending timedate of the visualization, as a Unix epoch integer.
+        example: 414720000
       snapshotTimeZone:
         type: string
       queryString:
         type: string
       darkTheme:
         type: boolean
+        description: To send the object with Kibana dark theme colors, `true`. Otherwise, `false`.
   SnapshotGetResponse:
     type: object
     properties:
@@ -3286,6 +3299,7 @@ definitions:
     required:
       - fullName
       - username
+      - roles
     properties:
       username:
         type: string
