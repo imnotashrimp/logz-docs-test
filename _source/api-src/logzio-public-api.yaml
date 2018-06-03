@@ -1579,6 +1579,9 @@ paths:
           required: false
           schema:
             $ref: '#/definitions/SnapshotCreateRequest'
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X POST "https://api.logz.io/v1/snapshotter/snapshotter" -H "accept: application/json" -H "X-API-TOKEN: <token>" -H "Content-Type: application/json" -d "{ \"snapshotType\": \"VISUALIZATION\", \"snapshotSavedObjectId\": \"c3cf4ac9-81f7-60ef-1a9d-d32c1fa7c012\", \"emails\": [ \"shalom@logz.io\" ], \"message\": \"Hey, let me know if you need me to do anything about this.\", \"timeFrameFrom\": 1527951945, \"timeFrameTo\": 1528038346, \"snapshotTimeZone\": \"UTC\", \"darkTheme\": true}"'
       responses:
         200:
           description: successful operation
@@ -1589,7 +1592,7 @@ paths:
       tags:
         - Retrieve snapshots
       summary: Retrieve snapshot by ID
-      description: ''
+      description: Returns a visualization or dashboard snapshot as a JSON object
       operationId: getSnapshot
       parameters:
         - name: snapshotId
@@ -1597,6 +1600,11 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ID of the snapshot
+          example: 3094
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X GET "https://api.logz.io/v1/snapshotter/3094" -H "accept: application/json" -H "X-API-TOKEN: <token>"'
       responses:
         200:
           description: successful operation
@@ -2548,6 +2556,8 @@ definitions:
       snapshotId:
         type: integer
         format: int32
+        description: ID of the snapshot
+        example: 2049
   SnapshotCreateRequest:
     type: object
     required:
@@ -2599,8 +2609,12 @@ definitions:
         example: 414720000
       snapshotTimeZone:
         type: string
+        description: Time zone to be used in `timeFrameFrom` and `timeFrameTo`
+        example: UTC
       queryString:
         type: string
+        description: Search query
+        example: "type:example"
       darkTheme:
         type: boolean
         description: To send the object with Kibana dark theme colors, `true`. Otherwise, `false`.
@@ -2610,37 +2624,54 @@ definitions:
       snapshotId:
         type: integer
         format: int32
+        description: ID of the snapshot
+        example: 3094
       accountId:
         type: integer
         format: int32
+        description: ID of the account
+        example: 5555
       snapshotType:
         type: string
         enum:
           - DASHBOARD
           - VISUALIZATION
-          - SAVED_SEARCH
+        description: The object type
+        example: VISUALIZATION
       status:
         type: string
         enum:
           - SUCCESS
           - FAILED
           - IN_PROGRESS
+        description: Status of the snapshot capture operation
+        example: SUCCESS
       snapshotSavedObjectName:
         type: string
+        description: Name of the object captured in the snapshot
+        example: Mysql response times percentiles
       imageUrl:
         type: string
       appLinkUrl:
         type: string
       message:
         type: string
+        description: Message to be sent to snapshot recipients
+        example: Hey, let me know if you need me to do anything about this.
       timeFrameFrom:
         type: integer
         format: int64
+        description: Starting timedate of the visualization, as a Unix epoch integer.
+        example: 389836800
       timeFrameTo:
         type: integer
         format: int64
+        description: Ending timedate of the visualization, as a Unix epoch integer.
+        example: 414720000
       snapshotTimeZone:
         type: string
+        description: Time zone to be used in `timeFrameFrom` and `timeFrameTo`
+        example: UTC
   SnapshotNotification:
     type: object
     properties:
