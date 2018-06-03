@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: 2.0
 schemes: [ https ]
 host: api.logz.io
 basePath: /v1
@@ -28,7 +28,7 @@ info:
 
 
   version: v1
-  title: Logzio API
+  title: Logz.io API
   termsOfService: 'https://logz.io/about-us/terms-of-use/'
   contact:
     email: help@logz.io

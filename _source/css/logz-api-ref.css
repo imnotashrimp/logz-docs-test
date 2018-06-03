@@ -28,8 +28,8 @@ div[role=search] {
 /* Override redoc styles
   These are temporary workarounds until redoc documents theming  */
 
-ul[role=navigation] label {
-  text-transform: none;
+ul[role=navigation] label, h1 {
+  text-transform: none !important;
 }
 
 ul[role=navigation] label[type=group] {
