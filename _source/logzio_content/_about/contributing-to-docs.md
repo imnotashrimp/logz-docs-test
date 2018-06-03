@@ -3,8 +3,8 @@ layout: article
 title: Contributing to docs
 collection: about
 contributors:
-- imnotashrimp
-- proudboffin
+- shalom-boroda
+- daniel-berman
 ---
 
 ## Logz.io feature graphics

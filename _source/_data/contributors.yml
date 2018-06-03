@@ -2,8 +2,12 @@
 # The first level is the contributor's GitHub username.
 # Second level contains the contributor's name, as they want it shown on the site.
 
-imnotashrimp:
+shalom-boroda:
   name: Shalom Boroda
+  github: imnotashrimp
+  linkedin: sboroda
 
-proudboffin:
+daniel-berman:
   name: Daniel Berman
+  github: proudboffin
+  twitter: proudboffin
