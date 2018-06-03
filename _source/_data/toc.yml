@@ -1,9 +1,12 @@
 # *** Logz.io template can handle 3 levels max ***
 # 3-level hierarchy:
-# firstLevel (contains 'secondLevel'. in filetree: folder).
-#   secondLevel (contains 'thirdLevel'. in filetree: .html).
-#     thirdLevel (in filetree: #anchor)
+# firstLevel
+#   secondLevel
+#     thirdLevel
+
 # Each entry should contain 'title' and 'url'
+# Add `external: true` if an entry links to outside docs
+
 firstLevel:
 
   # ===== GETTING STARTED =====
@@ -15,6 +18,7 @@ firstLevel:
 
   - title: Quickstart
     url: /getting-started/quickstart/index.html
+
     thirdLevel:
     - title: Ship sample logs with Filebeat
       url: /placeholder.html
@@ -64,7 +68,8 @@ firstLevel:
   - title: Manage accounts and usage
     url: /account-settings/accounts-and-usage/index.html
     thirdLevel:
-    - title: Manage accounts, usage, and billing
+    - title: Manage accounts
+    - title: Usage and billing
     - title: Archive and restore
     - title: Sub accounts
     - title: Timeless accounts
@@ -85,7 +90,7 @@ firstLevel:
   - title: Quickstarts
     thirdLevel:
     - title: Create API token & make a test call
-  - title: Logz.io API
+  - title: API
     url: /api/index.html
     external: true
   - title: API cookbook
