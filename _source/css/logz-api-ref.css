@@ -28,7 +28,11 @@ div[role=search] {
 /* Override redoc styles
   These are temporary workarounds until redoc documents theming  */
 
-ul[role=navigation] label, h1 {
+ul[role=navigation] label {
+  text-transform: none;
+}
+
+h1 {
   text-transform: none !important;
 }
 
