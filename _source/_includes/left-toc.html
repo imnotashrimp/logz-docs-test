@@ -12,10 +12,14 @@
               {% for child in parent.secondLevel %}
               <li class="{% if page.url == child.url %}toc-active{% endif %} {% if child.thirdLevel %}has-child{% endif %}">
                 {% if child.url %}
-                <span class="toc-heading">
+                <span class="toc-heading {% if child.external %}external-link{% endif %}">
                   <a href="{{ child.url | prepend:site.baseurl }}">{{ child.title }}</a>
-                  {% if child.thirdLevel %}<span class="collapse-button"><i class="fas fa-chevron-right"></i></span>{% endif %}
-                </span>
+                  {% if child.thirdLevel %}
+                    <span class="collapse-button">
+                      <i class="fas fa-chevron-right"></i>
+                    </span>
+                  {% endif %}
+                  </span>
                 {% else %}<span class="toc-heading" style="color: silver;">{{ child.title }}
                   {% if child.thirdLevel %}<span class="collapse-button"><i class="fas fa-chevron-right"></i></span>{% endif %}
                 </span>{% endif %}
