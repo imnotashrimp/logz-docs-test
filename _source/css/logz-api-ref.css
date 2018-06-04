@@ -19,24 +19,10 @@ iframe.header-frame {
   background-color: white;
 }
 
-/*  hide redoc search bar */
-/* div[role=search] {
-  display: none;
-} */
 
 /* Override redoc styles  */
-
-<<<<<<< HEAD
-ul[role=navigation] label {
-  text-transform: none;
-}
-
-h1 {
-  text-transform: none !important;
-=======
 ul[role=navigation] label, h1 {
   text-transform: none;
->>>>>>> move redoc styles from css to init script
 }
 
 ul[role=navigation] label[type=group] {
