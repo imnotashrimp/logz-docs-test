@@ -1641,14 +1641,14 @@ paths:
           required: false
           schema:
             $ref: '#/definitions/UserManagementUpsertRequest'
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X POST "https://api.logz.io/v1/user-management" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <token>" -d "{ \"username\": \"artvandelay@kramerica.com\",  \"fullName\": \"Art Vandelay\",  \"accountID\": 11111,  \"roles\": [ 2 ]}"'
       responses:
         200:
           description: successful operation
           schema:
             $ref: '#/definitions/UserManagementUpsertResponse'
-      x-code-samples:
-        - lang: cURL
-          source: 'curl -X POST "https://api.logz.io/v1/user-management" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <token>" -d "{ \"username\": \"artvandelay@kramerica.com\",  \"fullName\": \"Art Vandelay\",  \"accountID\": 11111,  \"roles\": [ 2 ]}"'
   /user-management/{id}:
     get:
       tags:
@@ -1675,7 +1675,7 @@ paths:
       tags:
         - Create, update, or delete users
       summary: Update a user
-      description: Use this endpoint to update an existing user's details or permissions.
+      description: Changes an existing user's details or permissions.
       operationId: updateUser
       parameters:
         - in: body
@@ -1689,6 +1689,7 @@ paths:
           type: integer
           format: int32
           description: ID of the user
+          example: 11300
       x-code-samples:
         - lang: cURL
           source: 'curl -X PUT "https://api.logz.io/v1/user-management/12345"  -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <token>" -d "{ \"username\": \"drvenkman@gbusters.com\",  \"fullName\": \"Peter Venkman\",  \"accountID\": 13485,  \"roles\": [ 2 ]}"'
@@ -2051,7 +2052,7 @@ definitions:
         example: 5374
       fullName:
         type: string
-        description: User's first and last name
+        description: The user's first and last name
         example: Larry Appleton
       deleted:
         type: boolean
@@ -2741,7 +2742,7 @@ definitions:
         example: 33265
       username:
         type: string
-        description: Email address used for signing in to Logz.io
+        description: Email address used to sign in to Logz.io
         example: steve@winslows.com
       fullName:
         type: string
@@ -2769,7 +2770,7 @@ definitions:
       id:
         type: integer
         format: int32
-        description: ID of the account
+        description: ID of the user
         example: 13485
   UserManagementUpsertRequest:
     type: object
@@ -2782,11 +2783,11 @@ definitions:
         type: string
         pattern: >-
           ^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,})$
-        description: Email address used for signing in to Logz.io
+        description: Email address used to sign in to Logz.io
         example: drvenkman@gbusters.com
       fullName:
         type: string
-        description: User's first and last name
+        description: The user's first and last name
         example: Peter Venkman
       accountID:
         type: integer
