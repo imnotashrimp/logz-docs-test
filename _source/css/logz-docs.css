@@ -2,7 +2,6 @@
 /* Roboto (body) and Titillium (heading) */
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,700');
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
 
 
 /* ===== PAGE LAYOUT ===== */
@@ -524,7 +523,7 @@ nav.all-pages-toc {
 
   /* text */
   color: #263238;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 nav.all-pages-toc ul {
@@ -533,7 +532,7 @@ nav.all-pages-toc ul {
 }
 
 ul.toc-parent {
-  font-size: .85rem;
+  font-size: .75rem;
   text-transform: uppercase;
 }
 
