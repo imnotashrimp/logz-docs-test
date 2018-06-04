@@ -1702,7 +1702,7 @@ paths:
       tags:
         - Create, update, or delete users
       summary: Delete a user
-      description: ''
+      description: Revokes a user's access to your accounts
       operationId: deleteUser
       parameters:
         - name: id
@@ -1710,15 +1710,20 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ID of the user
+          example: 11300
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X DELETE "https://api.logz.io/v1/user-management/11300" -H "accept: application/json" -H "X-API-TOKEN: <token>"'
       responses:
-        200:
+        204:
           description: successful operation
   /user-management/suspend/{id}:
     post:
       tags:
         - Create, update, or delete users
       summary: Suspend a user
-      description: ''
+      description: Locks a user's access to your accounts
       operationId: suspendUser
       parameters:
         - name: id
@@ -1726,15 +1731,20 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ID of the user
+          example: 3325
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X POST "https://api.logz.io/v1/user-management/suspend/11300" -H "accept: application/json" -H "X-API-TOKEN: <token>"'
       responses:
-        200:
+        204:
           description: successful operation
   /user-management/unsuspend/{id}:
     post:
       tags:
         - Create, update, or delete users
       summary: Unsuspend a user
-      description: ''
+      description: Restores a suspended user's access to your accounts
       operationId: unsuspendUser
       parameters:
         - name: id
@@ -1742,8 +1752,13 @@ paths:
           required: true
           type: integer
           format: int32
+          description: ID of the user
+          example: 3325
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X POST "https://api.logz.io/v1/user-management/unsuspend/11300" -H "accept: application/json" -H "X-API-TOKEN: <token>"'
       responses:
-        200:
+        204:
           description: successful operation
 
 
