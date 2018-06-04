@@ -445,7 +445,7 @@ paths:
   /audit-trail/event-types:
     post:
       operationId: listAccountAuditTrails
-      summary: Retrieve event types in the audit trail
+      summary: Retrieve all event types in the audit trail
       description: Returns an array of strings. Each string is an event type that appears in the account's audit trail. Each event type is shown once, no matter how many times it occurs in the acconut's audit trail.
       tags:
         - Retrieve audit trail
@@ -459,7 +459,7 @@ paths:
           source: 'curl -X POST "https://api.logz.io/v1/audit-trail/event-types" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <token>"'
   /audit-trail:
     post:
-      operationId: listAccountAuditTrails
+      operationId: listAccountAuditTrailsFiltered
       summary: Retrieve a filtered list of audit trail events
       tags:
         - Retrieve audit trail
@@ -2114,6 +2114,7 @@ definitions:
         format: int32
         minimum: 0
         maximum: 500
+        default: 500
         description: Number of records to return
         example: 150
       from:
@@ -2121,6 +2122,9 @@ definitions:
         format: int32
         minimum: 0
         maximum: 2147483647
+        default: 0
+        description: The first record to return in the response
+        example: 15
       auditEventUser:
         $ref: '#/definitions/AuditEventUser'
       auditEventType:
