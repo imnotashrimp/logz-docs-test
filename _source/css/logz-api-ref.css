@@ -20,41 +20,25 @@ iframe.header-frame {
 }
 
 /*  hide redoc search bar */
-div[role=search] {
+/* div[role=search] {
   display: none;
-}
+} */
 
+/* Override redoc styles  */
 
-/* Override redoc styles
-  These are temporary workarounds until redoc documents theming  */
-
+<<<<<<< HEAD
 ul[role=navigation] label {
   text-transform: none;
 }
 
 h1 {
   text-transform: none !important;
+=======
+ul[role=navigation] label, h1 {
+  text-transform: none;
+>>>>>>> move redoc styles from css to init script
 }
 
 ul[role=navigation] label[type=group] {
   text-transform: uppercase;
-}
-
-p {
-  font-weight: 300 !important;
-  font-size: 14px !important;
-  line-height: 19px !important;
-}
-
-p > code {
-  padding-top: 1px !important;
-  padding-bottom: 1px !important;
-}
-
-h1, h2 {
-  color: #296386 !important;
-}
-
-a {
-  color: #009cbd !important;
 }
