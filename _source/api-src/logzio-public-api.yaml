@@ -58,8 +58,8 @@ tags:
   - name: Retrieve audit trail
 
   # ::::: CLOUDTRAIL TAGS
-  - name: Retrieve connections to CloudTrail
-  - name: Create, update, or delete connections to CloudTrail
+  - name: Retrieve CloudTrail links
+  - name: Create, update, or delete CloudTrail links
 
   # ::::: NOTIFICATION ENDPOINT TAGS
   - name: Retrieve endpoints
@@ -92,10 +92,10 @@ x-tagGroups:
   - name: Audit trail
     tags:
       - Retrieve audit trail
-  - name: CloudTrail
+  - name: AWS CloudTrail
     tags:
-      - Retrieve connections to CloudTrail
-      - Create, update, or delete connections to CloudTrail
+      - Retrieve CloudTrail links
+      - Create, update, or delete CloudTrail links
   - name: Kibana
     tags:
       - Import or export objects
@@ -479,14 +479,14 @@ paths:
   /log-shipping/cloudtrails:
     get:
       operationId: getAccountCloudTrails
-      summary: Retrieve all CloudTrail connections
+      summary: Retrieve all CloudTrail links
       description: >-
-        Returns a list of CloudTrail connections attached to your Logz.io account
+        Returns a list of CloudTrail links attached to your Logz.io account
 
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Retrieve connections to CloudTrail
+        - Retrieve CloudTrail links
       responses:
         200:
           description: successful operation
@@ -499,14 +499,14 @@ paths:
           source: 'curl -X GET "https://api.logz.io/v1/log-shipping/cloudtrails" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <token>"'
     post:
       operationId: createCloudTrail
-      summary: Create a CloudTrail connection
+      summary: Create a CloudTrail link
       description: >-
-        Creates a new connection to your CloudTrail data in an AWS S3 bucket.
+        Creates a new link to your CloudTrail data in an AWS S3 bucket.
 
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete connections to CloudTrail
+        - Create, update, or delete CloudTrail links
       parameters:
         - in: body
           name: body
@@ -532,20 +532,21 @@ paths:
   /log-shipping/cloudtrails/{id}:
     get:
       operationId: getCloudTrail
-      summary: Retrieve a CloudTrail connection by ID
+      summary: Retrieve a CloudTrail link by ID
       description: >-
-        Using a connection ID, returns information on a single CloudTrail connection.
+        Returns connection information on a single CloudTrail link.
+
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Retrieve connections to CloudTrail
+        - Retrieve CloudTrail links
       parameters:
         - name: id
           in: path
           required: true
           type: integer
           format: int32
-          description: ID of the CloudTrail connection
+          description: ID of the CloudTrail link
       responses:
         200:
           description: successful operation
@@ -553,14 +554,14 @@ paths:
             $ref: '#/definitions/CloudTrailResponse'
     put:
       operationId: updateCloudTrail
-      summary: Update a CloudTrail connection
+      summary: Update a CloudTrail link
       description: >-
-        Using a connection ID, updates information for a CloudTrail connection.
+        Updates connection information for a CloudTrail link.
 
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete connections to CloudTrail
+        - Create, update, or delete CloudTrail links
       parameters:
         - in: body
           name: body
@@ -579,14 +580,14 @@ paths:
             $ref: '#/definitions/MessageBean'
     delete:
       operationId: deleteCloudTrail
-      summary: Delete a CloudTrail connection
+      summary: Delete a CloudTrail link
       description: >-
-        Using a connection ID, deletes a Logz.io connection to CloudTrail.
+        Deletes a Logz.io link to CloudTrail.
 
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete connections to CloudTrail
+        - Create, update, or delete CloudTrail links
       parameters:
         - name: id
           in: path
@@ -2147,7 +2148,7 @@ definitions:
       id:
         type: integer
         format: int32
-        description: ID of the CloudTrail connection
+        description: ID of the CloudTrail link
         example: 15
       accessKey:
         type: string
@@ -2163,7 +2164,7 @@ definitions:
         example: AWSLogs/7364988021587/myprefix
       active:
         type: boolean
-        description: If the CloudTrail connection is active, `true`. If it is disabled, `false`.
+        description: If the CloudTrail link is active, `true`. If it is disabled, `false`.
         example: true
   IdBean:
     type: object
@@ -2195,7 +2196,7 @@ definitions:
         example: AWSLogs/7364988021587/myprefix
       active:
         type: boolean
-        description: If the CloudTrail connection is active, `true`. If it is disabled, `false`.
+        description: If the CloudTrail link is active, `true`. If it is disabled, `false`.
   MessageBean:
     type: object
     properties:
