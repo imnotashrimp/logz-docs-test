@@ -371,7 +371,7 @@ paths:
                     description: To return the `_source` field, `true`. Otherwise, `false`.
                     example: true
                   - type: string
-                    description: Fields to return.
+                    description: Fields to return
               post_filter:
                 type: object
               # aggs:
@@ -545,7 +545,7 @@ paths:
           required: true
           type: integer
           format: int32
-          description: ??
+          description: ID of the CloudTrail connection
       responses:
         200:
           description: successful operation
@@ -2147,7 +2147,7 @@ definitions:
       id:
         type: integer
         format: int32
-        description: ??
+        description: ID of the CloudTrail connection
         example: 15
       accessKey:
         type: string
@@ -2163,7 +2163,7 @@ definitions:
         example: AWSLogs/7364988021587/myprefix
       active:
         type: boolean
-        description: ??
+        description: If the CloudTrail connection is active, `true`. If it is disabled, `false`.
         example: true
   IdBean:
     type: object
@@ -2195,7 +2195,7 @@ definitions:
         example: AWSLogs/7364988021587/myprefix
       active:
         type: boolean
-        description: ??
+        description: If the CloudTrail connection is active, `true`. If it is disabled, `false`.
   MessageBean:
     type: object
     properties:
