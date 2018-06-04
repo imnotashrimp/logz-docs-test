@@ -58,8 +58,8 @@ tags:
   - name: Retrieve audit trail
 
   # ::::: CLOUDTRAIL TAGS
-  - name: Retrieve account CloudTrails
-  - name: Create, update, or delete CloudTrails
+  - name: Retrieve connections to CloudTrail
+  - name: Create, update, or delete connections to CloudTrail
 
   # ::::: NOTIFICATION ENDPOINT TAGS
   - name: Retrieve endpoints
@@ -94,8 +94,8 @@ x-tagGroups:
       - Retrieve audit trail
   - name: CloudTrail
     tags:
-      - Retrieve account CloudTrails
-      - Create, update, or delete CloudTrails
+      - Retrieve connections to CloudTrail
+      - Create, update, or delete connections to CloudTrail
   - name: Kibana
     tags:
       - Import or export objects
@@ -479,14 +479,14 @@ paths:
   /log-shipping/cloudtrails:
     get:
       operationId: getAccountCloudTrails
-      summary: Retrieve all CloudTrails in a S3 bucket
+      summary: Retrieve all CloudTrail connections
       description: >-
-        ??
+        Returns a list of CloudTrail connections attached to your Logz.io account
 
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Retrieve account CloudTrails
+        - Retrieve connections to CloudTrail
       responses:
         200:
           description: successful operation
@@ -499,14 +499,14 @@ paths:
           source: 'curl -X GET "https://api.logz.io/v1/log-shipping/cloudtrails" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <token>"'
     post:
       operationId: createCloudTrail
-      summary: Create a CloudTrail
+      summary: Create a CloudTrail connection
       description: >-
-        ??
+        Creates a new connection to your CloudTrail data in an AWS S3 bucket.
 
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete CloudTrails
+        - Create, update, or delete connections to CloudTrail
       parameters:
         - in: body
           name: body
@@ -532,13 +532,13 @@ paths:
   /log-shipping/cloudtrails/{id}:
     get:
       operationId: getCloudTrail
-      summary: Retrieve a CloudTrail by ID
+      summary: Retrieve a CloudTrail connection by ID
       description: >-
-        ??
+        Using a connection ID, returns information on a single CloudTrail connection.
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Retrieve account CloudTrails
+        - Retrieve connections to CloudTrail
       parameters:
         - name: id
           in: path
@@ -553,14 +553,14 @@ paths:
             $ref: '#/definitions/CloudTrailResponse'
     put:
       operationId: updateCloudTrail
-      summary: Update CloudTrail
+      summary: Update a CloudTrail connection
       description: >-
-        ??
+        Using a connection ID, updates information for a CloudTrail connection.
 
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete CloudTrails
+        - Create, update, or delete connections to CloudTrail
       parameters:
         - in: body
           name: body
@@ -579,14 +579,14 @@ paths:
             $ref: '#/definitions/MessageBean'
     delete:
       operationId: deleteCloudTrail
-      summary: Delete a CloudTrail
+      summary: Delete a CloudTrail connection
       description: >-
-        ??
+        Using a connection ID, deletes a Logz.io connection to CloudTrail.
 
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete CloudTrails
+        - Create, update, or delete connections to CloudTrail
       parameters:
         - name: id
           in: path
