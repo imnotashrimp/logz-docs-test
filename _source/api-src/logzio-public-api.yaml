@@ -186,7 +186,7 @@ paths:
   /account-management/time-based-accounts/detailed:
     get:
       summary: Retrieve detailed information on all sub accounts
-      description: This endpoint retrieves all time-based sub accounts, returned as an array of objects. Each sub account is its own object.
+      description: Retrieves all time-based sub accounts, returned as an array of objects. Each sub account is its own object.
       tags:
         - Retrieve sub accounts
       operationId: getAllDetailedTimeBasedAccount
@@ -203,7 +203,7 @@ paths:
   /account-management/time-based-accounts/detailed/{id}:
     get:
       summary: Retrieve detailed account information by ID
-      description: This endpoint takes an account ID as the only path parameter and returns detailed account information.
+      description: Using account ID, returns detailed account information.
       tags:
         - Retrieve sub accounts
       operationId: getDetailedTimeBasedAccount
@@ -292,7 +292,7 @@ paths:
           }'
     delete:
       summary: Delete a sub account
-      description: Using an account ID as the only parameter, this endpoint deletes a sub account.
+      description: Using an account ID, deletes a sub account.
       tags:
         - Create, update, or delete sub accounts
       operationId: deleteTimeBasedAccount
@@ -1073,7 +1073,7 @@ paths:
         - Import or export objects
       summary: Export Kibana objects
       description: >-
-        This endpoint exports the configuration of Kibana objects. All objects of a single type (search, visualization, or dashboard) are returned as an array of JSON objects. For example, if you export `visualization`, each visualization is returned as a JSON object.
+        Exports the configuration of Kibana objects. All objects of a single type (search, visualization, or dashboard) are returned as an array of JSON objects. For example, if you export `visualization`, each visualization is returned as a JSON object.
 
 
         You can import objects using the [/kibana/import](#operation/importSavedObjects) endpoint.
@@ -1097,7 +1097,7 @@ paths:
       tags:
         - Import or export objects
       summary: Import Kibana objects
-      description: Use this endpoint to import Kibana search, visualization, or dashboard objects. You can export objects using the [/kibana/export](#operation/exportSavedObjects) endpoint.
+      description: Imports Kibana search, visualization, or dashboard objects. You can export objects using the [/kibana/export](#operation/exportSavedObjects) endpoint.
       operationId: importSavedObjects
       parameters:
         - in: body
@@ -1205,7 +1205,7 @@ paths:
       operationId: createFilter
       summary: Create a token filter
       description: >-
-        Use this endpoint to create a new token filter.
+        Creates a new token filter.
 
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
@@ -1292,7 +1292,7 @@ paths:
       operationId: deleteFilter
       summary: Delete a token filter
       description: >-
-        Use this endpoint delete a token filter.
+        Deletes a token filter.
 
 
         <span style='color: red'>**Warning:**</span> Deleting a token filter can change the behavior of your integrations. As a best practice, test all integrations when updating or deleting shared tokens or filters.
@@ -1384,7 +1384,7 @@ paths:
       operationId: updateToken
       summary: Update a shared token
       description: >-
-        Use this endpoint change the filters attached to a shared token.
+        Changes the filters attached to a shared token.
 
 
         <span style='color: red'>**Warning:**</span> Updating a shared token can change the behavior of your integrations. As a best practice, test all integrations when updating or deleting shared tokens or filters.
@@ -1436,7 +1436,7 @@ paths:
       operationId: deleteToken
       summary: Delete a shared token
       description: >-
-        Use this endpoint delete a shared token.
+        Deletes a shared token.
 
 
         <span style='color: red'>**Warning:**</span> Deleting a shared token can change the behavior of your integrations. As a best practice, test all integrations when updating or deleting shared tokens or filters.
@@ -1524,7 +1524,7 @@ paths:
       operationId: createToken
       summary: Create a shared token
       description: >-
-        Use this endpoint to create a new shared token.
+        Creates a new shared token.
 
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
