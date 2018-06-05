@@ -47,82 +47,36 @@ security:
   - Token: []
 
 tags:
-  # ::::: ACCOUNTS TAGS
-  - name: Retrieve sub accounts
-  - name: Create, update, or delete sub accounts
-
-  # ::::: SEARCH, SCROLL TAGS
+  - name: Manage sub accounts
   - name: Search logs
-
-  # ::::: AUDIT TRAIL TAGS
   - name: Retrieve audit trail
-
-  # ::::: CLOUDTRAIL TAGS
-  - name: Retrieve CloudTrail links
-  - name: Create, update, or delete CloudTrail links
-
-  # ::::: NOTIFICATION ENDPOINT TAGS
-  - name: Retrieve endpoints
-  - name: Create endpoints
-  - name: Update endpoints
-  - name: Delete endpoints
-
-  # ::::: KIBANA IMPORT/EXPORT TAGS
-  - name: Import or export objects
-
-  # ::::: SHARED TOKEN TAGS
-  - name: Retrieve shared tokens
-  - name: Create, update, or delete shared tokens
-  - name: Retrieve token filters
-  - name: Create, update, or delete token filters
-
-  # ::::: SNAPSHOTS TAGS
-  - name: Retrieve snapshots
-  - name: Create snapshots
-
-  # ::::: USER MANAGEMENT TAGS
-  - name: Retrieve users
-  - name: Create, update, or delete users
+  - name: Manage CloudTrail links
+  - name: Manage notification endpoints
+  - name: Import or export Kibana objects
+  - name: Manage shared tokens
+  - name: Share snapshots
+  - name: Manage users
 
 x-tagGroups:
-  - name: Accounts
-    tags:
-      - Retrieve sub accounts
-      - Create, update, or delete sub accounts
-  - name: Audit trail
-    tags:
-      - Retrieve audit trail
-  - name: AWS CloudTrail
-    tags:
-      - Retrieve CloudTrail links
-      - Create, update, or delete CloudTrail links
-  - name: Kibana
-    tags:
-      - Import or export objects
-  - name: Notification endpoints
-    tags:
-      - Retrieve endpoints
-      - Create endpoints
-      - Update endpoints
-      - Delete endpoints
-  - name: Search and scroll logs
+  - name: Log monitoring
     tags:
       - Search logs
-  - name: Shared tokens and filters
+      - Share snapshots
+  - name: Account administration
     tags:
-      - Retrieve shared tokens
-      - Retrieve token filters
-      - Create, update, or delete shared tokens
-      - Create, update, or delete token filters
-  - name: Snapshotter
+      - Manage users
+      - Manage sub accounts
+      - Manage shared tokens
+      - Manage notification endpoints
+      - Import or export Kibana objects
+  - name: Data security
     tags:
-      - Retrieve snapshots
-      - Create snapshots
-  - name: Users
+      - Retrieve audit trail
+      - Manage shared tokens
+  - name: AWS security and audit
     tags:
-      - Retrieve users
-      - Create, update, or delete users
-#
+      - Manage CloudTrail links
+
 paths:
   # ::::: ACCOUNTS
   /account-management/time-based-accounts:
@@ -130,7 +84,7 @@ paths:
       summary: Retrieve all sub accounts
       description: Returns a list of sub accounts as an array of JSON objects.
       tags:
-        - Retrieve sub accounts
+        - Manage sub accounts
       operationId: getAll
       responses:
         200:
@@ -146,7 +100,7 @@ paths:
       summary: Create a sub account
       description: Creates a new time-based sub account.
       tags:
-        - Create, update, or delete sub accounts
+        - Manage sub accounts
       operationId: createTimeBasedAccount
       parameters:
         - in: body
@@ -188,7 +142,7 @@ paths:
       summary: Retrieve detailed information on all sub accounts
       description: Retrieves all time-based sub accounts, returned as an array of objects. Each sub account is its own object.
       tags:
-        - Retrieve sub accounts
+        - Manage sub accounts
       operationId: getAllDetailedTimeBasedAccount
       responses:
         200:
@@ -205,7 +159,7 @@ paths:
       summary: Retrieve detailed account information by ID
       description: Using account ID, returns detailed account information.
       tags:
-        - Retrieve sub accounts
+        - Manage sub accounts
       operationId: getDetailedTimeBasedAccount
       parameters:
         - name: id
@@ -228,7 +182,7 @@ paths:
       summary: Retrieve sub account by ID
       description: Returns account information and configuration as a JSON object.
       tags:
-        - Retrieve sub accounts
+        - Manage sub accounts
       operationId: get
       parameters:
         - name: id
@@ -249,7 +203,7 @@ paths:
     put:
       summary: Update a sub account
       tags:
-        - Create, update, or delete sub accounts
+        - Manage sub accounts
       operationId: updateTimeBasedAccount
       parameters:
         - name: id
@@ -294,7 +248,7 @@ paths:
       summary: Delete a sub account
       description: Using an account ID, deletes a sub account.
       tags:
-        - Create, update, or delete sub accounts
+        - Manage sub accounts
       operationId: deleteTimeBasedAccount
       parameters:
         - name: id
@@ -486,7 +440,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Retrieve CloudTrail links
+        - Manage CloudTrail links
       responses:
         200:
           description: successful operation
@@ -506,7 +460,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete CloudTrail links
+        - Manage CloudTrail links
       parameters:
         - in: body
           name: body
@@ -539,7 +493,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Retrieve CloudTrail links
+        - Manage CloudTrail links
       parameters:
         - name: id
           in: path
@@ -561,7 +515,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete CloudTrail links
+        - Manage CloudTrail links
       parameters:
         - in: body
           name: body
@@ -587,7 +541,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete CloudTrail links
+        - Manage CloudTrail links
       parameters:
         - name: id
           in: path
@@ -606,7 +560,7 @@ paths:
       operationId: createSlack
       summary: Create a Slack endpoint
       tags:
-        - Create endpoints
+        - Manage notification endpoints
       description: Creates a new Slack notification endpoint or sends a test message to Slack
       parameters:
         - name: test
@@ -635,7 +589,7 @@ paths:
   /endpoints/slack/{id}:
     put:
       tags:
-        - Update endpoints
+        - Manage notification endpoints
       summary: Update Slack endpoint
       description: Updates a Slack notification endpoint or sends a test message to Slack
       operationId: updateSlack
@@ -672,7 +626,7 @@ paths:
   /endpoints/custom:
     post:
       tags:
-        - Create endpoints
+        - Manage notification endpoints
       summary: Create a custom notification endpoint
       description: Creates a new notification endpoint for a custom integration or sends a test message to the custom endpoint.
       operationId: createCustom
@@ -703,7 +657,7 @@ paths:
   /endpoints/custom/{id}:
     put:
       tags:
-        - Update endpoints
+        - Manage notification endpoints
       summary: Update a custom notification endpoint
       description: Updates a new notification endpoint for a custom integration or sends a test message to the custom endpoint.
       operationId: updateCustom
@@ -739,7 +693,7 @@ paths:
   /endpoints/pager-duty:
     post:
       tags:
-        - Create endpoints
+        - Manage notification endpoints
       summary: Create a PagerDuty endpoint
       description: Creates a new PagerDuty notification endpoint or sends a test message to PagerDuty.
       operationId: createPagerDuty
@@ -770,7 +724,7 @@ paths:
   /endpoints/pager-duty/{id}:
     put:
       tags:
-        - Update endpoints
+        - Manage notification endpoints
       summary: Update a PagerDuty endpoint
       description: Updates a PagerDuty notification endpoint or sends a test message to PagerDuty
       operationId: updatePagerDuty
@@ -807,7 +761,7 @@ paths:
   /endpoints/big-panda:
     post:
       tags:
-        - Create endpoints
+        - Manage notification endpoints
       summary: Create a BigPanda endpoint
       description: Creates a new BigPanda notification endpoint or sends a test message to BigPanda.
       operationId: createBigPanda
@@ -838,7 +792,7 @@ paths:
   /endpoints/big-panda/{id}:
     put:
       tags:
-        - Update endpoints
+        - Manage notification endpoints
       summary: Update a BigPanda endpoint
       description: Updates a BigPanda notification endpoint or sends a test message to BigPanda
       operationId: updateBigPanda
@@ -875,7 +829,7 @@ paths:
   /endpoints/data-dog:
     post:
       tags:
-        - Create endpoints
+        - Manage notification endpoints
       summary: Create a Datadog endpoint
       description: Creates a new Datadog notification endpoint or sends a test message to Datadog.
       operationId: createDataDog
@@ -906,7 +860,7 @@ paths:
   /endpoints/data-dog/{id}:
     put:
       tags:
-        - Update endpoints
+        - Manage notification endpoints
       summary: Update a Datadog endpoint
       description: Updates a Datadog notification endpoint or sends a test message to Datadog
       operationId: updateDataDog
@@ -943,7 +897,7 @@ paths:
   /endpoints/victorops:
     post:
       tags:
-        - Create endpoints
+        - Manage notification endpoints
       summary: Create a VictorOps endpoint
       description: Creates a new VictorOps notification endpoint or sends a test message to VictorOps.
       operationId: createVictorops
@@ -974,7 +928,7 @@ paths:
   /endpoints/victorops/{id}:
     put:
       tags:
-        - Update endpoints
+        - Manage notification endpoints
       summary: Update a VictorOps endpoint
       description: Updates a VictorOps notification endpoint or sends a test message to VictorOps
       operationId: updateVictorops
@@ -1011,7 +965,7 @@ paths:
   /endpoints/{id}:
     get:
       tags:
-        - Retrieve endpoints
+        - Manage notification endpoints
       summary: Retrieve an endpoint by ID
       description: Returns a JSON object representing a notification endpoint configured in the account.
       operationId: getEndpointById
@@ -1032,7 +986,7 @@ paths:
             $ref: '#/definitions/Endpoint'
     delete:
       tags:
-        - Delete endpoints
+        - Manage notification endpoints
       summary: Delete an endpoint
       description: Deletes a notification endpoint
       operationId: deleteEndpoint
@@ -1052,7 +1006,7 @@ paths:
   /endpoints:
     get:
       tags:
-        - Retrieve endpoints
+        - Manage notification endpoints
       summary: Retrieve all notification endpoints
       description: Returns an array of JSON objects. Each object represents a notification endpoint configured in the account.
       operationId: getAllEndpoints
@@ -1071,7 +1025,7 @@ paths:
   /kibana/export:
     post:
       tags:
-        - Import or export objects
+        - Import or export Kibana objects
       summary: Export Kibana objects
       description: >-
         Exports the configuration of Kibana objects. All objects of a single type (search, visualization, or dashboard) are returned as an array of JSON objects. For example, if you export `visualization`, each visualization is returned as a JSON object.
@@ -1096,7 +1050,7 @@ paths:
   /kibana/import:
     post:
       tags:
-        - Import or export objects
+        - Import or export Kibana objects
       summary: Import Kibana objects
       description: Imports Kibana search, visualization, or dashboard objects. You can export objects using the [/kibana/export](#operation/exportSavedObjects) endpoint.
       operationId: importSavedObjects
@@ -1170,7 +1124,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Retrieve token filters
+        - Manage shared tokens
       x-code-samples:
         - lang: cURL
           source: 'curl -X GET "https://api.logz.io/v1/shared-tokens/filters" -H  "accept: application/json" -H  "content-type: application/json" -H  "X-API-TOKEN: <token>"'
@@ -1211,7 +1165,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete token filters
+        - Manage shared tokens
       parameters:
         - in: body
           name: body
@@ -1253,7 +1207,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Retrieve token filters
+        - Manage shared tokens
       parameters:
         - name: id
           in: path
@@ -1301,7 +1255,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete token filters
+        - Manage shared tokens
       parameters:
         - name: id
           in: path
@@ -1345,7 +1299,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Retrieve shared tokens
+        - Manage shared tokens
       parameters:
         - name: id
           in: path
@@ -1393,7 +1347,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete shared tokens
+        - Manage shared tokens
       parameters:
         - name: id
           in: path
@@ -1445,7 +1399,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete shared tokens
+        - Manage shared tokens
       parameters:
         - name: id
           in: path
@@ -1489,7 +1443,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Retrieve shared tokens
+        - Manage shared tokens
       responses:
         200:
           description: successful operation
@@ -1530,7 +1484,7 @@ paths:
 
         **Note:** This endpoint requires permissions that must be set by our Support team. Please email [help@logz.io](mailto:help@logz.io) for assistance.
       tags:
-        - Create, update, or delete shared tokens
+        - Manage shared tokens
       parameters:
         - in: body
           name: body
@@ -1570,7 +1524,7 @@ paths:
   /snapshotter:
     post:
       tags:
-        - Create snapshots
+        - Share snapshots
       summary: Create a snapshot
       description: Creates a new shapshot and shares with recipients through email or notification endpoint
       operationId: createSnapshot
@@ -1591,7 +1545,7 @@ paths:
   /snapshotter/{snapshotId}:
     get:
       tags:
-        - Retrieve snapshots
+        - Share snapshots
       summary: Retrieve snapshot by ID
       description: Returns a visualization or dashboard snapshot as a JSON object
       operationId: getSnapshot
@@ -1618,7 +1572,7 @@ paths:
       summary: Retrieve all users
       description: Returns a list of users as an array of JSON objects.
       tags:
-        - Retrieve users
+        - Manage users
       operationId: listUsers
       responses:
         200:
@@ -1634,7 +1588,7 @@ paths:
       summary: Create a user
       description: Creates a new user with specified permissions to access your log data
       tags:
-        - Create, update, or delete users
+        - Manage users
       operationId: createUser
       parameters:
         - in: body
@@ -1653,7 +1607,7 @@ paths:
   /user-management/{id}:
     get:
       tags:
-        - Retrieve users
+        - Manage users
       summary: Retrieve a user by ID
       description: Returns user information and permissions as a JSON object
       operationId: getUser
@@ -1674,7 +1628,7 @@ paths:
           source: 'curl -X GET "https://api.logz.io/v1/user-management/55555" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <token>"'
     put:
       tags:
-        - Create, update, or delete users
+        - Manage users
       summary: Update a user
       description: Changes an existing user's details or permissions.
       operationId: updateUser
@@ -1701,7 +1655,7 @@ paths:
             $ref: '#/definitions/UserManagementUpsertResponse'
     delete:
       tags:
-        - Create, update, or delete users
+        - Manage users
       summary: Delete a user
       description: Revokes a user's access to your accounts
       operationId: deleteUser
@@ -1722,7 +1676,7 @@ paths:
   /user-management/suspend/{id}:
     post:
       tags:
-        - Create, update, or delete users
+        - Manage users
       summary: Suspend a user
       description: Locks a user's access to your accounts
       operationId: suspendUser
@@ -1743,7 +1697,7 @@ paths:
   /user-management/unsuspend/{id}:
     post:
       tags:
-        - Create, update, or delete users
+        - Manage users
       summary: Unsuspend a user
       description: Restores a suspended user's access to your accounts
       operationId: unsuspendUser
