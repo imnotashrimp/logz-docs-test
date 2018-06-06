@@ -235,22 +235,22 @@ paths:
           "https://api.logz.io/v1/account-management/time-based-accounts/88888" \
           -H "accept: application/json" -H "content-type: application/json" \
           -H "X-API-TOKEN: <token>" \
-          -d '{
-            "email": "help@logz.io",
-            "accountName": "AWS Lambda svr 3",
-            "maxDailyGB": 5,
-            "retentionDays": 5,
-            "searchable": true,
-            "accessible": false,
-            "sharingObjectsAccounts": [
+          -d "{
+            \"email\": \"help@logz.io\",
+            \"accountName\": \"AWS Lambda svr 3\",
+            \"maxDailyGB\": 5,
+            \"retentionDays\": 5,
+            \"searchable\": true,
+            \"accessible\": false,
+            \"sharingObjectsAccounts\": [
                 55555
             ],
-            "docSizeSetting": true,
-            "utilizationSettings": {
-              "frequencyMinutes": 5,
-              "utilizationEnabled": true
+            \"docSizeSetting\": true,
+            \"utilizationSettings\": {
+              \"frequencyMinutes\": 5,
+              \"utilizationEnabled\": true
             }
-          }'
+          }"
     delete:
       summary: Delete a sub account
       description: Using an account ID, deletes a sub account.
@@ -276,28 +276,12 @@ paths:
   /search:
     post:
       operationId: search
-      summary: Run an Elasticsearch query
+      summary: Search logs
       description: >-
-        Use the `/search` endpoint to query your account data using the Elasticsearch Search API DSL query language. To ensure system performance, we've restricted some options from the Elasticsearch defaults.
+        Searches your account data using the Elasticsearch [Search API DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/search.html) query language. 
 
-        * We support these top-level elements in the Elasticsearch Search API: `query`, `from`, `size`, `sort`, `_source`, `post_filter`, `aggs`, `aggregations`
 
-        * When using the `query_string` element, the `allow_leading_wildcard` field can't be set to `true`
-
-        * The `wildcard` element can't start with `*` or `?`
-
-        * Your query will run only on data sent today and yesterday. You can still specify a filter on `timestamp` to search a smaller time frame
-
-        * When using the `size` element for aggregations, the value must be ≤ `1000`
-
-        * Can't nest 2 or more bucket aggregations of these types: `date_histogram`, `geohash_grid`, `histogram`, `ip_ranges`, `significant_terms`, `terms`
-
-        * Can't sort or aggregate on the `message` field
-
-        * Aggregation type `significant_terms` can't be used
-
-        * `query` can't contain the `fuzzy_max_expansions`, `max_expansions`, or `max_determinized_states`
-
+        **Note:** To ensure speed and availability of your logs, we've restricted some options from the Elasticsearch defaults that could hamper system performance. Restrictions are described with their respective elements below.
       tags:
         - Search logs
       parameters:
@@ -309,6 +293,18 @@ paths:
             required:
               - query
             properties:
+              query:
+                type: object
+                description: >-
+                  **Limitations:**
+
+                  * Your query will run only on data sent today and yesterday. You can still specify a filter on `timestamp` to search a smaller time frame
+
+                  * `allow_leading_wildcard` must be set to `false`
+
+                  * `wildcard` cannot start with `*` or `?`
+
+                  * `query` can't contain the `fuzzy_max_expansions`, `max_expansions`, or `max_determinized_states`
               from:
                 type: number
                 minimum: 0
@@ -320,7 +316,12 @@ paths:
                 default: 10
               sort:
                 type: array
-                description: Array that allows sorting by specific fields. Each array item contains a field name and sort parameters. See [Elasticsearch Sort](https://www.elastic.co/guide/en/elasticsearch/reference/5.5/search-request-sort.html) for more information.
+                description: >-
+                  **Limitations:**
+
+                  * Can't sort or aggregate on the `message` field
+
+                  * Aggregation type `significant_terms` can't be used
                 items:
                   type: object
               _source:
@@ -339,8 +340,17 @@ paths:
                 type: object
               aggs:
                 type: object
-              aggregations:
-                type: object
+                description: >-
+                  **Limitations:**
+
+                  * When using the `size` element, the value must be ≤ `1000`
+
+                  * Can't nest 2 or more bucket aggregations of these types: `date_histogram`, `geohash_grid`, `histogram`, `ip_ranges`, `significant_terms`, `terms`
+
+                  * Can't sort or aggregate on the `message` field
+
+
+                  **Note:** You can use `aggs` or `aggregations` as the field name.
       x-code-samples:
         - lang: cURL
           source: 'curl -X POST "https://api.logz.io/v1/search" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <token>" -d "{ \"size\": 0, \"query\": { \"bool\": { \"must\": [ { \"range\": { \"@timestamp\": { \"gte\": \"now-5m\", \"lte\": \"now\" } } }] } }, \"aggs\": { \"byType\": { \"terms\": { \"field\": \"type\", \"size\": 5 } } } }"'
