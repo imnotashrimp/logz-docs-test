@@ -60,14 +60,14 @@ tags:
   - name: Manage notification endpoints
   - name: Import or export Kibana objects
   - name: Manage shared tokens
-  - name: Share snapshots
+  - name: Logz.io snapshots
   - name: Manage users
 
 x-tagGroups:
   - name: Log monitoring
     tags:
       - Search logs
-      - Share snapshots
+      - Logz.io snapshots
   - name: Account administration
     tags:
       - Manage users
@@ -1509,9 +1509,9 @@ paths:
   /snapshotter:
     post:
       tags:
-        - Share snapshots
+        - Logz.io snapshots
       summary: Create a snapshot
-      description: Creates a new shapshot and shares with recipients through email or notification endpoint
+      description: Creates a new Kibana shapshot and shares with recipients through email or notification endpoint
       operationId: createSnapshot
       parameters:
         - in: body
@@ -1530,9 +1530,9 @@ paths:
   /snapshotter/{snapshotId}:
     get:
       tags:
-        - Share snapshots
-      summary: Retrieve snapshot by ID
-      description: Returns a visualization or dashboard snapshot as a JSON object
+        - Logz.io snapshots
+      summary: Retrieve a snapshot by ID
+      description: Returns a snapshot of a Kibana visualization or dashboard as a JSON object
       operationId: getSnapshot
       parameters:
         - name: snapshotId
