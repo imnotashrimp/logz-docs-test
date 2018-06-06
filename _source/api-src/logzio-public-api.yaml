@@ -360,7 +360,48 @@ paths:
                   **Note:** You can use `aggs` or `aggregations` as the field name.
       x-code-samples:
         - lang: cURL
-          source: 'curl -X POST "https://api.logz.io/v1/search" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <token>" -d "{ \"size\": 0, \"query\": { \"bool\": { \"must\": [ { \"range\": { \"@timestamp\": { \"gte\": \"now-5m\", \"lte\": \"now\" } } }] } }, \"aggs\": { \"byType\": { \"terms\": { \"field\": \"type\", \"size\": 5 } } } }"'
+          source: >-
+            curl -X POST \
+              https://api.logz.io/v1/search \
+              -H 'Content-Type: application/json' \
+              -H 'X-USER-TOKEN: <token>' \
+              -d '{
+              "size": 50,
+              "sort": [{
+                "@timestamp": {
+                  "order": "desc",
+                  "unmapped_type": "boolean"
+                }
+              }],
+              "query": {
+                "bool": {
+                  "must": [{
+                    "query_string": {
+                      "analyze_wildcard": true,
+                      "query": "type:nginx"
+                    }
+                  }, {
+                    "range": {
+                      "@timestamp": {
+                        "gte": 1528258111887,
+                        "lte": 1528259011887
+                      }
+                    }
+                  }],
+                  "must_not": []
+                }
+              },
+              "aggs": {
+                "2": {
+                  "date_histogram": {
+                    "field": "@timestamp",
+                    "interval": "30s",
+                    "time_zone": "Asia/Jerusalem",
+                    "min_doc_count": 1
+                  }
+                }
+              }
+            }'
       responses:
         200:
           description: successful query
