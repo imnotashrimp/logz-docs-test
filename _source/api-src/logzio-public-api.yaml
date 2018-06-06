@@ -38,13 +38,18 @@ info:
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 
 securityDefinitions:
-  Token:
+  X-API-TOKEN:
     description: You can manage your tokens in your Logz.io account settings. Tokens are tied to individual accounts, including sub accounts. Tokens carry privileges to make changes to users and accounts, so it's important to keep your tokens secure.
     type: apiKey
     in: header
     name: X-API-TOKEN
+  X-USER-TOKEN:
+    description: The `/search` and `/scroll` API endpoints use the native Elasticsearch API. When calling these endpoints, authenticate with the `X-USER-TOKEN`. `X-USER-TOKEN` is identical to `X-API-TOKEN` in usage. It can be any of the tokens that you manage in your Logz.io account.
+    type: apiKey
+    in: header
+    name: X-USER-TOKEN
 security:
-  - Token: []
+  - X-API-TOKEN: []
 
 tags:
   - name: Manage sub accounts
@@ -275,6 +280,8 @@ paths:
   # ::::: SEARCH, SCROLL
   /search:
     post:
+      security: 
+        - X-USER-TOKEN: []
       operationId: search
       summary: Search logs
       description: >-
