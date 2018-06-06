@@ -44,7 +44,7 @@ securityDefinitions:
     in: header
     name: X-API-TOKEN
   X-USER-TOKEN:
-    description: The `/search` and `/scroll` API endpoints use the native Elasticsearch API. When calling these endpoints, authenticate with the `X-USER-TOKEN`. `X-USER-TOKEN` is identical to `X-API-TOKEN` in usage. It can be any of the tokens that you manage in your Logz.io account.
+    description: The `/search` API endpoint uses the native Elasticsearch API and authenticates with the `X-USER-TOKEN`. `X-USER-TOKEN` is identical to `X-API-TOKEN` in usage. It can be any of the tokens that you manage in your Logz.io account.
     type: apiKey
     in: header
     name: X-USER-TOKEN
