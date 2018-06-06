@@ -311,8 +311,9 @@ paths:
             properties:
               from:
                 type: number
+                minimum: 0
                 default: 0
-                description: ??description
+                description: Of the records found, the first record to return
               size:
                 type: number
                 description: Number of results to return
@@ -336,8 +337,13 @@ paths:
                     description: Fields to return
               post_filter:
                 type: object
-              # aggs:
-              # aggregations:
+              aggs:
+                type: object
+              aggregations:
+                type: object
+      x-code-samples:
+        - lang: cURL
+          source: 'curl -X POST "https://api.logz.io/v1/search" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <token>" -d "{ \"size\": 0, \"query\": { \"bool\": { \"must\": [ { \"range\": { \"@timestamp\": { \"gte\": \"now-5m\", \"lte\": \"now\" } } }] } }, \"aggs\": { \"byType\": { \"terms\": { \"field\": \"type\", \"size\": 5 } } } }"'
       responses:
         200:
           description: successful query
@@ -346,44 +352,12 @@ paths:
             example: { "hits": { "total": 339604, "max_score": 0, "hits": [] }, "aggregations": { "byType": { "doc_count_error_upper_bound": 0, "sum_other_doc_count": 44879, "buckets": [ { "key": "web-app", "doc_count": 163690 }, { "key": "core-service", "doc_count": 64893 } ] } } }
         400:
           description: invalid query
-          schema:
-            type: string
-            description: >-
-              Possible responses:
-                * `Found JSON elements which are not allowed ...`
-                * `... query_string.allow_leading_wildcard not allowed to be true`
-                * `... 'wildcard' queries are not allowed to start with '*' or '?'`
-                * `... contains a wildcard search with leading wildcard which is not allowed ...`
-                * `Query has failed. Elasticsearch Response: ...`
-                * `Query syntax (in 'query' field) is invalid: ...`
-                * `This search can't be executed: ... Please contact customer support for more details`
-            example: Found JSON elements which are not allowed ...
         403:
           description: access forbidden
-          schema:
-            type: string
-            description: >-
-              `Your account is not allowed to use Search API. Please contact support/sales to enable this feature for you`
-            example: Your account is not allowed to use Search API. Please contact support/sales to enable this feature for you
         429:
           description: rate limit exceeded
-          schema:
-            type: string
-            description: >-
-              Possible responses:
-                * `Exceeded your account rate limit of searches`
-                * `Your account is allowed to run up to ... concurrent queries via the API`
-            example: Exceeded your account rate limit of searches
         503:
           description: service unavailable
-          schema:
-            type: string
-            description: >-
-              `Our service is temporarily unavailable.`
-            example: Our service is temporarily unavailable.
-      x-code-samples:
-        - lang: cURL
-          source: 'curl -X POST "https://api.logz.io/v1/search" -H "accept: application/json" -H "content-type: application/json" -H "X-API-TOKEN: <token>" -d "{ \"size\": 0, \"query\": { \"bool\": { \"must\": [ { \"range\": { \"@timestamp\": { \"gte\": \"now-5m\", \"lte\": \"now\" } } }] } }, \"aggs\": { \"byType\": { \"terms\": { \"field\": \"type\", \"size\": 5 } } } }"'
   /scroll:
     post:
       summary: Run a paginated Elasticsearch query
