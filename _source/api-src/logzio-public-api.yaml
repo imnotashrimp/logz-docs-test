@@ -313,13 +313,13 @@ paths:
 
                   * Cannot contain `fuzzy_max_expansions`, `max_expansions`, or `max_determinized_states`
               from:
-                type: number
+                type: integer
                 minimum: 0
                 default: 0
                 description: Of the results found, the first result to return
                 example: 10
               size:
-                type: number
+                type: integer
                 description: Number of results to return
                 default: 10
                 example: 50
@@ -421,6 +421,35 @@ paths:
           required: false
           schema:
             $ref: '#/definitions/ScrollRequest'
+      x-code-samples:
+        - lang: cURL
+          source: >-
+            curl -X POST https://api.logz.io/v1/scroll \
+              -H 'Content-Type: application/json' \
+              -H 'X-API-TOKEN: <token>' \
+              -d '{
+              "size": 10,
+              "query": {
+                "bool": {
+                  "must": [{
+                    "range": {
+                      "@timestamp": {
+                        "gte": "now-5m",
+                        "lte": "now"
+                      }
+                    }
+                  }]
+                }
+              },
+              "aggs": {
+                "byType": {
+                  "terms": {
+                    "field": "type",
+                    "size": 5
+                  }
+                }
+              }
+            }'
       responses:
         200:
           description: successful operation
@@ -2475,6 +2504,7 @@ definitions:
         type: integer
         format: int32
         readOnly: true
+        example: 200
       scrollId:
         type: string
         readOnly: true
@@ -2524,20 +2554,26 @@ definitions:
 
           * Cannot sort on `message`
       _source:
-        type: object
-        additionalProperties:
-          type: object
+        type: array
+        description: >-
+          * _Option 1:_ A single item to say whether you want to return the `_source` field.
+
+          * _Option 2:_ An array of fields to return.
+        items:
+          - type: boolean
+            description: To return the `_source` field, `true`. Otherwise, `false`.
+            example: true
+          - type: string
+            description: Fields to return
       post_filter:
         type: object
-        additionalProperties:
-          type: object
       scroll_id:
         type: string
         description: >-
-          This is `scrollId` that was returned in a previous scroll request. 
+          This is `scrollId` that was returned in the previous scroll request. 
           
           
-          If you use `scroll_id`, Elasticsearch will use the same query and data as was used in the initial request of the scroll series. In other words, you'll use `query` in the first request of a scroll series, and use `scroll_id` in all subsequent requests.
+          If you use `scroll_id`, Elasticsearch searches the same query and data as was used in the initial request of the scroll series. In other words, in a single scroll series, use `query` in the first request, and use `scroll_id` in all subsequent requests.
       scroll:
         type: string
         description: >-
