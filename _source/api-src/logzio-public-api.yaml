@@ -328,7 +328,7 @@ paths:
                 description: >-
                   #### Limitations
 
-                  * Can't sort or aggregate on the `message` field
+                  * Cannot sort or aggregate on `message`
                 items:
                   type: object
               _source:
@@ -2478,9 +2478,12 @@ definitions:
       scrollId:
         type: string
         readOnly: true
+        description: ID of this response. Use this in `scroll_id` in the next scroll request to retrieve the next set of scroll results.
+        example: DnF1ZXJ5VGhlbkZldGNoCQAAAAAWXRbqFlNpSWRrTUtXUUR1N1pJbG9uSkJINncAAAAAFp6B-xZTTVFrMGt4eVFnZXhQZV9YbVRrU3NnAAAAABakA8QWNjY1RUZtdWZRS1NZZWt1ZERTNHNaQQAAAAAWXRbrFlNpSWRrTUtXUUR1N1pJbG9uSkJINncAAAAAFl0W7BZTaUlka01LV1FEdTdaSWxvbkpCSDZ3AAAAABQ1nb4WVjRyRlUxZWRUU0dzbTV5VVVqYkhxdwAAAAAUdHVqFlF0b3Znei1ZUXgtZEkyZkR3M0pMbGcAAAAAFvGs6hZKVklxaXIyZ1NOQzF5NHg1cmhtVDV3AAAAABR0dWkWUXRvdmd6LVlReC1kSTJmRHczSkxsZw==
       hits:
         type: string
         readOnly: true
+        description: Query results
   ScrollRequest:
     type: object
     properties:
@@ -2494,8 +2497,6 @@ definitions:
 
           #### Limitations
 
-          * Cannot be used when using `scroll_id`
-
           * Your query will run only on data sent today and yesterday. You can still specify a filter on `timestamp` to search a smaller time frame.
 
           * When using `query_string`, `allow_leading_wildcard` must be set to `false`
@@ -2506,10 +2507,14 @@ definitions:
       size:
         type: integer
         format: int32
+        description: Number of results to return
+        example: 10
       from:
         type: integer
         format: int32
         minimum: 0
+        description: Of the results found, the first result to return
+        example: 0
       sort:
         type: array
         items:
