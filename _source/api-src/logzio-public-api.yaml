@@ -2094,21 +2094,21 @@ definitions:
         format: int32
         minimum: 0
         maximum: 500
-        description: The number of records requested
+        description: The number of results requested
         example: 50
       from:
         type: integer
         format: int32
         minimum: 0
         maximum: 2147483647
-        description: Of the records found, the first record returned
+        description: Of the results found, the first result returned
         example: 0
       total:
         type: integer
         format: int64
         minimum: 0
         maximum: 500
-        description: Total number of records that met the search criteria
+        description: Total number of results that met the search criteria
       results:
         type: array
         items:
@@ -2130,7 +2130,7 @@ definitions:
         minimum: 0
         maximum: 500
         default: 500
-        description: Maximum number of records to return
+        description: Maximum number of results to return
         example: 150
       from:
         type: integer
@@ -2138,7 +2138,7 @@ definitions:
         minimum: 0
         maximum: 2147483647
         default: 0
-        description: Of the records found, the first record to return
+        description: Of the results found, the first result to return
         example: 15
       auditEventUser:
         $ref: '#/definitions/AuditEventUser'
@@ -2158,7 +2158,7 @@ definitions:
         example: 414763200
       sortDescending:
         type: boolean
-        description: To sort records in descending order, `true`. For ascending order, `false`.
+        description: To sort results in descending order, `true`. For ascending order, `false`.
       includeFiltersData:
         type: boolean
 
