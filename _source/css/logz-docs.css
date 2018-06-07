@@ -586,7 +586,7 @@ nav.all-pages-toc a {
 
 .external-link::after {
   font-family: "Font Awesome 5 Free";
-  font-weight: 900;
+  font-weight: 700;
   content: "\f360";
   color: silver;
   font-size: .85rem;

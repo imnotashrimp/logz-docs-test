@@ -32,3 +32,7 @@ ul[role=navigation] label, h1 {
 ul[role=navigation] label[type=group] {
   text-transform: uppercase;
 }
+
+table {
+  font-size: .8rem;
+}
