@@ -311,24 +311,24 @@ paths:
 
                   * `wildcard` cannot start with `*` or `?`
 
-                  * `query` can't contain the `fuzzy_max_expansions`, `max_expansions`, or `max_determinized_states`
+                  * Cannot contain `fuzzy_max_expansions`, `max_expansions`, or `max_determinized_states`
               from:
                 type: number
                 minimum: 0
                 default: 0
-                description: Of the records found, the first record to return
+                description: Of the results found, the first result to return
+                example: 10
               size:
                 type: number
                 description: Number of results to return
                 default: 10
+                example: 50
               sort:
                 type: array
                 description: >-
                   **Limitations:**
 
                   * Can't sort or aggregate on the `message` field
-
-                  * Aggregation type `significant_terms` can't be used
                 items:
                   type: object
               _source:
@@ -356,8 +356,10 @@ paths:
 
                   * Can't sort or aggregate on the `message` field
 
+                  * Aggregation type `significant_terms` can't be used
 
-                  **Note:** You can use `aggs` or `aggregations` as the field name.
+                  **Note:** You can use `aggs` or `aggregations` as the field name
+                example: '{ \"byType\": { \"terms\": { \"field\": \"type\", \"size\": 5 } } }'
       x-code-samples:
         - lang: cURL
           source: >-
@@ -368,18 +370,25 @@ paths:
               "size": 10,
               "query": {
                 "bool": {
-                  "must": [
-                    {
-                      "query_string": {
-                        "query": "message:exception",
-                        "analyze_wildcard": true
+                  "must": [{
+                    "range": {
+                      "@timestamp": {
+                        "gte": "now-5m",
+                        "lte": "now"
                       }
-                    }, {
-                      "range": {
-                        "@timestamp": {
-                          "gte": "now-15m",
-                          "lte": "now"
-                } } } ] } } }'
+                    }
+                  }]
+                }
+              },
+              "aggs": {
+                "byType": {
+                  "terms": {
+                    "field": "type",
+                    "size": 5
+                  }
+                }
+              }
+            }'
       responses:
         200:
           description: successful query
