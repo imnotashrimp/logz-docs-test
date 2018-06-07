@@ -361,47 +361,25 @@ paths:
       x-code-samples:
         - lang: cURL
           source: >-
-            curl -X POST \
-              https://api.logz.io/v1/search \
+            curl -X POST https://api.logz.io/v1/search \
               -H 'Content-Type: application/json' \
               -H 'X-USER-TOKEN: <token>' \
               -d '{
-              "size": 50,
-              "sort": [{
-                "@timestamp": {
-                  "order": "desc",
-                  "unmapped_type": "boolean"
-                }
-              }],
+              "size": 10,
               "query": {
                 "bool": {
-                  "must": [{
-                    "query_string": {
-                      "analyze_wildcard": true,
-                      "query": "type:nginx"
-                    }
-                  }, {
-                    "range": {
-                      "@timestamp": {
-                        "gte": 1528258111887,
-                        "lte": 1528259011887
+                  "must": [
+                    {
+                      "query_string": {
+                        "query": "message:exception",
+                        "analyze_wildcard": true
                       }
-                    }
-                  }],
-                  "must_not": []
-                }
-              },
-              "aggs": {
-                "2": {
-                  "date_histogram": {
-                    "field": "@timestamp",
-                    "interval": "30s",
-                    "time_zone": "Asia/Jerusalem",
-                    "min_doc_count": 1
-                  }
-                }
-              }
-            }'
+                    }, {
+                      "range": {
+                        "@timestamp": {
+                          "gte": "now-15m",
+                          "lte": "now"
+                } } } ] } } }'
       responses:
         200:
           description: successful query
