@@ -15,12 +15,12 @@ description: >- # this means to ignore newlines until "baseurl:"
   AWS Integration · Long-term Data Retention · Essential DevOps Tool · Multi-role Definitions
   Services: Log Analytics, DevOps Automation, Critical Event Prediction
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://affectionate-mccarthy-d5aefa.netlify.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://dev-logz-docs.pantheonsite.io" # the base hostname & protocol for your site, e.g. http://example.com
 favicon: https://logz.io/wp-content/uploads/2016/04/favicon.png
 
 # Community buttons
-public: true
-edit_enabled: true
+public: false
+edit_enabled: false
 api_only: false
 
 # Social
@@ -35,8 +35,8 @@ show_atom_feed: false
 
 # GitHub repository paths - Leave beginning slashes, unless field is empty.
 github:
-  org_url:  https://github.com/imnotashrimp # only edit username - leave base URL
-  repo_name: /logz-docs-test
+  org_url:  https://github.com/logzio # only edit username - leave base URL
+  repo_name: /logz-docs
   edit_branch: /develop # which branch do you want users to edit?
 
 # Slackin - shows Slack community button
@@ -44,11 +44,11 @@ slackin_enabled: false
 
 # if you wish to integrate disqus on pages set your shortname here
 disqus:
-  shortname: 'sboroda'
-  site_url: 'imnotashrimp.github.com'
+  shortname: ''
+  site_url: ''
 
 # if you use google analytics, add your tracking id here. To disable, remove or comment out the line
-google_analytics_id: 'UA-117595536-1'
+google_analytics_id: ''
 
 # if you use Intercom, add app id here. To disable, remove or comment out the line
 intercom_app_id: bkz9ugqv
