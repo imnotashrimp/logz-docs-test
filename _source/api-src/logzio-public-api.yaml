@@ -303,7 +303,7 @@ paths:
               query:
                 type: object
                 description: >-
-                  **Limitations:**
+                  #### Limitations
 
                   * Your query will run only on data sent today and yesterday. You can still specify a filter on `timestamp` to search a smaller time frame.
 
@@ -326,7 +326,7 @@ paths:
               sort:
                 type: array
                 description: >-
-                  **Limitations:**
+                  #### Limitations
 
                   * Can't sort or aggregate on the `message` field
                 items:
@@ -348,7 +348,7 @@ paths:
               aggs:
                 type: object
                 description: >-
-                  **Limitations:**
+                  #### Limitations
 
                   * When using the `size` element, the value must be ≤ `1000`
 
@@ -2515,7 +2515,7 @@ definitions:
         items:
           type: object
         description: >-
-          **Limitations**
+          #### Limitations
 
           * Cannot sort on `message`
       _source:
@@ -2548,7 +2548,7 @@ definitions:
           </table>
 
 
-          **Limitations**
+          #### Limitations
 
           * Time search must be ≤ 5 minutes. If no time is specified, default is `1m` (1 minute).
 
