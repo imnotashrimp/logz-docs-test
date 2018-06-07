@@ -164,6 +164,7 @@ body, h6, h5 {
 
 code, pre {
   font-family: "Fira Mono", monospace;
+  font-size: .8rem;
 }
 
 h1, h2, h3, h4, h5, .site-title, .post-title {
@@ -229,10 +230,11 @@ p code {
   padding-right: .25rem;
   margin-left: .1rem;
   margin-right: .1rem;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 div.highlight *, p code {
-  font-size: .9rem;
   border-radius: 3px;
 }
 
