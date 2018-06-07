@@ -21,6 +21,10 @@ iframe.header-frame {
 
 
 /* Override redoc styles  */
+div.api-info p a {
+  border-radius: 3px;
+}
+
 ul[role=navigation] label, h1 {
   text-transform: none;
 }
