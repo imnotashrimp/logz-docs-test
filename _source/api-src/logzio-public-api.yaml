@@ -305,9 +305,9 @@ paths:
                 description: >-
                   **Limitations:**
 
-                  * Your query will run only on data sent today and yesterday. You can still specify a filter on `timestamp` to search a smaller time frame
+                  * Your query will run only on data sent today and yesterday. You can still specify a filter on `timestamp` to search a smaller time frame.
 
-                  * `allow_leading_wildcard` must be set to `false`
+                  * When using `query_string`, `allow_leading_wildcard` must be set to `false`
 
                   * `wildcard` cannot start with `*` or `?`
 
@@ -394,7 +394,7 @@ paths:
           description: successful query
           schema:
             type: object
-            example: { "hits": { "total": 339604, "max_score": 0, "hits": [] }, "aggregations": { "byType": { "doc_count_error_upper_bound": 0, "sum_other_doc_count": 44879, "buckets": [ { "key": "web-app", "doc_count": 163690 }, { "key": "core-service", "doc_count": 64893 } ] } } }
+            example: '{ "hits": { "total": 339604, "max_score": 0, "hits": [] }, "aggregations": { "byType": { "doc_count_error_upper_bound": 0, "sum_other_doc_count": 44879, "buckets": [ { "key": "web-app", "doc_count": 163690 }, { "key": "core-service", "doc_count": 64893 } ] } } }'
         400:
           description: invalid query
         403:
@@ -405,10 +405,14 @@ paths:
           description: service unavailable
   /scroll:
     post:
-      summary: Run a paginated Elasticsearch query
+      summary: Scroll logs
       tags:
         - Search logs
-      description: ''
+      description: >-
+        Searches your account data using the [Elasticsearch Search API DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/search.html) query language.
+
+
+        **Note:** To ensure speed and availability of your logs, we've restricted some options from the Elasticsearch defaults that could hamper system performance. Restrictions are described with their respective elements below.
       operationId: scroll
       parameters:
         - in: body
@@ -421,6 +425,14 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/ScrollResponse'
+        400:
+          description: invalid query
+        403:
+          description: access forbidden
+        429:
+          description: rate limit exceeded
+        503:
+          description: service unavailable
 
   # ::::: AUDIT TRAIL
   /audit-trail/event-types:
@@ -1989,7 +2001,7 @@ definitions:
     description: If document size is attached to logs, `true`. Otherwise, `false`.
     default: false
     example: true
-
+  
   # ::::: AUDIT TRAIL DEFINITIONS
   AuditTrailEventTypesResponse:
     type: object
@@ -2473,8 +2485,18 @@ definitions:
     properties:
       query:
         type: object
-        additionalProperties:
-          type: object
+        description: >-
+          **Limitations**
+
+          * Cannot be used when using `scroll_id`
+
+          * Your query will run only on data sent today and yesterday. You can still specify a filter on `timestamp` to search a smaller time frame.
+
+          * When using `query_string`, `allow_leading_wildcard` must be set to `false`
+
+          * `wildcard` cannot start with `*` or `?`
+
+          * Cannot use `fuzzy_max_expansions`,  `max_expansions`, or `max_determinized_states`
       size:
         type: integer
         format: int32
@@ -2486,6 +2508,10 @@ definitions:
         type: array
         items:
           type: object
+        description: >-
+          **Limitations**
+
+          * Cannot sort on `message`
       _source:
         type: object
         additionalProperties:
@@ -2496,8 +2522,28 @@ definitions:
           type: object
       scroll_id:
         type: string
+        description: >-
+          **Limitations**
+
+          * Cannot be used when using `query`
       scroll:
         type: string
+        description: >-
+          These time units are supported:
+
+          <table>
+            <thead><th>Unit</th><th>Description</th></thead>
+            <tr><td>`m`</td><td>minutes</td></tr>
+            <tr><td>`s`</td><td>seconds</td></tr>
+            <tr><td>`ms`</td><td>milliseconds</td></tr>
+            <tr><td>`micros`</td><td>microseconds</td></tr>
+            <tr><td>`nanos`</td><td>nanoseconds</td></tr>
+          </table>
+
+
+          **Limitations**
+
+          * Time search must be ≤ 5 minutes. If no time is specified, default is `1m` (1 minute).
 
   # ::::: SHARED TOKENS DEFINITIONS
   QueryFilter:
