@@ -2,6 +2,7 @@
 /* Roboto (body) and Titillium (heading) */
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,700');
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono');
 
 
 /* ===== PAGE LAYOUT ===== */
@@ -159,6 +160,10 @@ body, h6, h5 {
   line-height: 1.4rem;
   color: #757c86;
   margin-bottom: 1rem;
+}
+
+code, pre {
+  font-family: "Fira Mono", monospace;
 }
 
 h1, h2, h3, h4, h5, .site-title, .post-title {
