@@ -403,6 +403,7 @@ paths:
           description: rate limit exceeded
         503:
           description: service unavailable
+
   /scroll:
     post:
       summary: Scroll logs
@@ -2486,7 +2487,12 @@ definitions:
       query:
         type: object
         description: >-
-          **Limitations**
+          Search query. Uses Elasticsearch [Search API DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/search.html) query language.
+
+
+          In Your first request of a scroll series, `query` is used to establish the search query. In all subsequent requests of the series, you'll use `scroll_id`.
+
+          #### Limitations
 
           * Cannot be used when using `scroll_id`
 
@@ -2523,9 +2529,10 @@ definitions:
       scroll_id:
         type: string
         description: >-
-          **Limitations**
-
-          * Cannot be used when using `query`
+          This is `scrollId` that was returned in a previous scroll request. 
+          
+          
+          If you use `scroll_id`, Elasticsearch will use the same query and data as was used in the initial request of the scroll series. In other words, you'll use `query` in the first request of a scroll series, and use `scroll_id` in all subsequent requests.
       scroll:
         type: string
         description: >-
