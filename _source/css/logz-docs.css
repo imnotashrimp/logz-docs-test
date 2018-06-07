@@ -224,18 +224,16 @@ a, a:hover {
 }
 
 p code {
-  border: 1px solid navy;
-  color: navy;
-  padding-left: .25rem;
-  padding-right: .25rem;
+  border: 1px solid #2632381a;
+  color: #e53935;
+  background-color: #2632380a;
+  padding: 2.75px 3.25px;
   margin-left: .1rem;
   margin-right: .1rem;
-  padding-top: 2px;
-  padding-bottom: 2px;
 }
 
 div.highlight *, p code {
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 pre.highlight {
