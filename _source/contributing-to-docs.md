@@ -3,8 +3,7 @@ layout: article
 title: Contributing to docs
 collection: about
 contributors:
-- shalom-boroda
-- daniel-berman
+- sboroda
 ---
 
 ## Logz.io feature graphics
@@ -14,7 +13,7 @@ Like so: `<div class="feature-box"></div>`
 
 <div class="feature-box"></div>
 
-See that gray line? That's the feature box. Of course, this box has no content, so we'll add one of three classes (`enterprise`, `pro`, or `community`). A linked javascript file takes care of all the content. The samples below show how it's done.
+See that gray line? That's the feature box. This box has no content, so we'll add one of three classes (`enterprise`, `pro`, or `community`). A linked javascript file takes care of all the content. The samples below show how it's done.
 
 #### Enterprise plan
 
@@ -82,7 +81,9 @@ Info boxes come in 3 CSS classes: `note`, `warning`, `gotcha`, `tip`. CSS handle
 
 #### Pro tips
 ````html
-<div class="info-box tip">Content</div>
+<div class="info-box tip">
+  Content
+</div>
 ````
 <p> </p>
 <div class="info-box tip">
