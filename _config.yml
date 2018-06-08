@@ -11,7 +11,7 @@
 title: Logz.io Docs
 copyright: 2018 Logz.io, all rights reserved.
 description: >- # this means to ignore newlines until "baseurl:"
-  Parse, visualize, set up alerts & leverage AI with cloud-based ELK. Free Trial!
+  Parse, visualize, set up alerts & leverage AI with cloud-based ELK.
   AWS Integration · Long-term Data Retention · Essential DevOps Tool · Multi-role Definitions
   Services: Log Analytics, DevOps Automation, Critical Event Prediction
 baseurl: "" # the subpath of your site, e.g. /blog
