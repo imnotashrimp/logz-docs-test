@@ -364,20 +364,19 @@ div.info-box {
   display: grid;
   grid-template-columns: 2rem, auto;
   grid-template-areas: "icon info";
-  grid-column-gap: .25rem;
   border-top: 1px solid;
   border-bottom: 1px solid;
+  padding-top: .5rem;
 }
 
 div.info-box::before {
   font-family: "Font Awesome 5 Free";
-  font-size: 2rem;
+  font-size: 1.25rem;
   grid-area: icon;
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-  margin-top: 1.2rem;
 }
 
 div.info-box > p::before {
@@ -388,7 +387,7 @@ div.info-box > p::before {
 div.info-box > p {
   grid-area: info;
   margin: 0;
-  padding: .75rem;
+  padding: 0 .5rem .5rem .5rem;
 }
 
 /* --- info-box colors ---
